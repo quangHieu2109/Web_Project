@@ -53,13 +53,13 @@ li {
 	<div
 		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
 		<div>
-			<a href=""><img alt="logo"
+			<a href="" style="display: block; height: max_content;"><img alt="logo"
 				src="https://tse4.mm.bing.net/th?id=OIP._IfEaUssjZQwZ1u92b1_GgHaEK&pid=Api&P=0&h=180"
 				style="max-height: 100px"> </a>
 		</div>
 		<div
-			style="margin-top: auto; margin-bottom: auto; display: flex; width: 20%; justify-content: space-between;">
-			<a href="dangNhap.jsp"style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
+			style="margin-top: auto; margin-bottom: auto; display: flex; width: max-content; justify-content: space-between;">
+			<a href="dangNhap.jsp"style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;">Đăng
 				nhập</a> <a href="dangKy.jsp"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
 				ký</a>
@@ -68,6 +68,7 @@ li {
 			<label>Xin chào ...</label>
 			<div class="div2">
 				<ul>
+					<li><a href="dangBai.jsp" style="text-decoration: none; color: black;">Đăng  bài</a></li>
 					<li><a href="" style="text-decoration: none; color: black;">Thông
 							tin tài khoản</a></li>
 					<li><a href="" style="text-decoration: none; color: black;">Thay

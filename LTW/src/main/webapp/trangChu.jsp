@@ -185,7 +185,7 @@
 					</div>
 					<!-- 						end ô lớn ở giữa -->
 					<!-- 						3 ô nhỏ ở dưới -->
-					<div class="row  mt-4">
+					<div class="row  mt-15">
 						<div class="card h-200 " style="width: 31%;">
 							<div class="row no-gutters">
 								<div class="col-md-12">
