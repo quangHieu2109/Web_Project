@@ -14,10 +14,11 @@ public class BaiBao {
 	private Date ngayDang;
 	private NguoiDung nguoiDang;
 	private int luotXem;
-	private TheLoai theLoai;
+	private DSTheLoai theLoai;
 	private ArrayList<BinhLuan> dsBinhLuan = new ArrayList<BinhLuan>();
+
 	public BaiBao(String maBaiBao, String tieuDe, String moTa, String filePath, String noiDung, Date ngayDang,
-			NguoiDung nguoiDang, int luotXem, TheLoai theLoai) {
+			NguoiDung nguoiDang, int luotXem, DSTheLoai theLoai, ArrayList<BinhLuan> dsBinhLuan) {
 		super();
 		this.maBaiBao = maBaiBao;
 		this.tieuDe = tieuDe;
@@ -28,13 +29,27 @@ public class BaiBao {
 		this.nguoiDang = nguoiDang;
 		this.luotXem = luotXem;
 		this.theLoai = theLoai;
+		this.dsBinhLuan = dsBinhLuan;
 	}
 
 	public BaiBao() {
 		super();
 	}
 
-	public BaiBao(String tieuDe, String moTa, String filePath, String noiDung, NguoiDung nguoiDang, TheLoai theLoai) {
+	public BaiBao(String maBaiBao, String tieuDe, String moTa, String filePath, String noiDung, Date ngayDang,
+			NguoiDung nguoiDang, int luotXem) {
+		super();
+		this.maBaiBao = maBaiBao;
+		this.tieuDe = tieuDe;
+		this.moTa = moTa;
+		this.filePath = filePath;
+		this.noiDung = noiDung;
+		this.ngayDang = ngayDang;
+		this.nguoiDang = nguoiDang;
+		this.luotXem = luotXem;
+	}
+
+	public BaiBao(String tieuDe, String moTa, String filePath, String noiDung, NguoiDung nguoiDang, DSTheLoai theLoai) {
 		super();
 		Random rd = new Random();
 		int c = 65 + rd.nextInt(25);
@@ -114,17 +129,35 @@ public class BaiBao {
 		this.luotXem = luotXem;
 	}
 
-	public TheLoai getTheLoai() {
+	public DSTheLoai getTheLoai() {
 		return theLoai;
 	}
 
-	public void setTheLoai(TheLoai theLoai) {
+	public void setTheLoai(DSTheLoai theLoai) {
 		this.theLoai = theLoai;
 	}
+
+	public ArrayList<BinhLuan> getDsBinhLuan() {
+		return dsBinhLuan;
+	}
+
+	public void setDsBinhLuan(ArrayList<BinhLuan> dsBinhLuan) {
+		this.dsBinhLuan = dsBinhLuan;
+	}
+
 	public void addBinhLuan(BinhLuan bl) {
 		this.dsBinhLuan.add(bl);
 	}
+
 	public void addAllBinhLuan(ArrayList<BinhLuan> dsbl) {
 		this.dsBinhLuan.addAll(dsbl);
 	}
+
+	@Override
+	public String toString() {
+		return "BaiBao [maBaiBao=" + maBaiBao + ", tieuDe=" + tieuDe + ", moTa=" + moTa + ", filePath=" + filePath
+				+ ", noiDung=" + noiDung + ", ngayDang=" + ngayDang + ", nguoiDang=" + nguoiDang + ", luotXem="
+				+ luotXem + ", theLoai=" + theLoai + ", dsBinhLuan=" + dsBinhLuan + "]";
+	}
+	
 }

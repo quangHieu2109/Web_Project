@@ -65,7 +65,7 @@ public class UploadServlet extends HttpServlet {
 			theLoai ="";
 			values = new ArrayList<String>();
 		}
-		TheLoai tl = new TheLoai(theLoai, values);
+		TheLoai tl = null;
 		String tieuDe = request.getParameter("tieuDe");
 		String moTa = request.getParameter("moTa");
 		String noiDung = request.getParameter("noiDung");

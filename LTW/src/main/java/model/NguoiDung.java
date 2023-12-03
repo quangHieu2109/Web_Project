@@ -58,4 +58,10 @@ public class NguoiDung {
 		this.ngaySinh = ngaySinh;
 	}
 
+	@Override
+	public String toString() {
+		return "NguoiDung [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + ", hoVaTen=" + hoVaTen + ", email="
+				+ email + ", ngaySinh=" + ngaySinh + "]";
+	}
+
 }

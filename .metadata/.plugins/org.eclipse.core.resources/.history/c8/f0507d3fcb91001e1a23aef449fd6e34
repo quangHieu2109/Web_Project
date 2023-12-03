@@ -1,0 +1,58 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import database.JDBCUtil;
+import model.BaiBao;
+import model.BinhLuan;
+import model.NguoiDung;
+import model.TheLoai;
+
+public class BinhLuanDAO extends GeneralDAO{
+	public List<BinhLuan> getDSBinhLuan(String id) {
+	List<BinhLuan> result = new ArrayList<BinhLuan>();
+	// 
+	return result;
+}
+	public ArrayList<BinhLuan> selectByBaiBao(BaiBao baiBao){
+		ArrayList<BinhLuan> result = new ArrayList<BinhLuan>();
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			String sql="select * from binhluan where maBaiBao=?";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, baiBao.getMaBaiBao());
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				String maBinhLuan = rs.getString("maBinhLuan");
+				String tenDangNhap = rs.getString("tenDangNhap");
+				String noiDung = rs.getString("noiDung");
+				Date ngayBinhLuan = rs.getDate("ngayBinhLuan");
+				NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
+				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				result.add(new BinhLuan(maBinhLuan, nguoiDung, ngayBinhLuan, noiDung));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+		return result;
+	}
+public void addBinhLuan(BaiBao baiBao) {
+	
+}
+public void removeBinhLuan(String id) {
+	
+}
+public static void main(String[] args) {
+	BinhLuanDAO dao = new BinhLuanDAO();
+	for(BinhLuan bl:dao.selectByBaiBao(new BaiBao("bb1", null, null, null, null, null, null, 0, null, null))) {
+		System.out.println(bl);
+	}
+}
+}

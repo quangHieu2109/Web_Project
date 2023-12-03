@@ -1,0 +1,59 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import database.JDBCUtil;
+import model.BaiBao;
+import model.BinhLuan;
+import model.DSTheLoai;
+import model.NguoiDung;
+
+
+public class BaiBaoDAO {
+	public ArrayList<BaiBao> getDSBaiBao() {
+		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
+		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
+		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
+		TheLoaiDAO theLoaiDAO = new TheLoaiDAO();
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			String sql = "select * from baibao";
+			PreparedStatement st = conn.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				String maBaiBao = rs.getString("maBaiBao");
+				String tenBaiBao = rs.getString("tenBaiBao");
+				String moTa = rs.getString("moTa");
+				String filePath = rs.getString("filePath");
+				String noiDung = rs.getString("noiDung");
+				Date ngayDang = rs.getDate("ngayDang");
+				String tenDangNhap = rs.getString("tenDangNhap");
+				int luotXem = rs.getInt("luotXem");
+				
+				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenDangNhap, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
+				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+				DSTheLoai dsTheLoai = 
+				baiBao.addAllBinhLuan(dsBinhLuan);
+				result.add(baiBao);
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		// 
+		return result;
+	}
+	public void addBaiBao(BaiBao baiBao) {
+		
+	}
+	public void removeBaiBao(BaiBao baiBao) {
+		
+	}
+}

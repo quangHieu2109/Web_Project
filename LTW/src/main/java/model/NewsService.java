@@ -17,7 +17,7 @@ public class NewsService {
 		return dbTheLoai.getDSTheLoai();
 	}
 	public void addNguoiDung(NguoiDung nguoiDung) {
-		dbNguoiDung.addNguoiDung(nguoiDung);
+		dbNguoiDung.insertNguoiDung(nguoiDung);
 	}
 	
 	

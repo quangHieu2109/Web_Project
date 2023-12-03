@@ -1,0 +1,7 @@
+1701612726112	Rename method 'getDSBaiBao'
+1701612744463	Rename method 'getDSNguoiDung'
+1701612759249	Rename method 'addNguoiDung'
+1701612773283	Rename method 'getDSBinhLuan'
+1701612785389	Rename method 'addBinhLuan'
+1701615948207	Rename local variable 'dsTheLoai'
+1701616190570	Rename method 'addTheLoaiByBaiBao'

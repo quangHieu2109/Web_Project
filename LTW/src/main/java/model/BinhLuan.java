@@ -9,13 +9,16 @@ public class BinhLuan {
 	private NguoiDung nguoiDung;
 	private Date ngayBinhLuan;
 	private String noiDung;
+	private BaiBao baiBao;;
 
-	public BinhLuan(String maBinhLuan, NguoiDung nguoiDung, Date ngayBinhLuan, String noiDung) {
+
+	public BinhLuan(String maBinhLuan, NguoiDung nguoiDung, Date ngayBinhLuan, String noiDung, BaiBao baiBao) {
 		super();
 		this.maBinhLuan = maBinhLuan;
 		this.nguoiDung = nguoiDung;
 		this.ngayBinhLuan = ngayBinhLuan;
 		this.noiDung = noiDung;
+		this.baiBao = baiBao;
 	}
 
 	public BinhLuan(NguoiDung nguoiDung, String noiDung) {
@@ -30,6 +33,7 @@ public class BinhLuan {
 		this.noiDung = noiDung;
 	}
 
+	
 	public String getMaBinhLuan() {
 		return maBinhLuan;
 	}
@@ -60,6 +64,20 @@ public class BinhLuan {
 
 	public void setNoiDung(String noiDung) {
 		this.noiDung = noiDung;
+	}
+
+	public BaiBao getBaiBao() {
+		return baiBao;
+	}
+
+	public void setBaiBao(BaiBao baiBao) {
+		this.baiBao = baiBao;
+	}
+
+	@Override
+	public String toString() {
+		return "BinhLuan [maBinhLuan=" + maBinhLuan + ", nguoiDung=" + nguoiDung + ", ngayBinhLuan=" + ngayBinhLuan
+				+ ", noiDung=" + noiDung + "]";
 	}
 
 }

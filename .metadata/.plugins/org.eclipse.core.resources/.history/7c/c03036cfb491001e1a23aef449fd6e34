@@ -1,0 +1,47 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.cj.protocol.Resultset;
+
+import database.JDBCUtil;
+import model.BaiBao;
+import model.NguoiDung;
+import model.TheLoai;
+
+public class NguoiDungDAO {
+	public List<NguoiDung> getDSNguoiDung() {
+		List<NguoiDung> result = new ArrayList<NguoiDung>();
+		// 
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			String sql = "select * from nguoidung";
+			PreparedStatement st = conn.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				String tenNguoiDung = rs.getString("tenDangNhap");
+				String matKhau = rs.getString("matKhau");
+				String hoVaTen = rs.getString("hoVaTen");
+				String email = rs.getString("email");
+				Date ngaySinh = rs.getDate("ngaySinh");
+				result.add(new NguoiDung(tenNguoiDung, matKhau, hoVaTen, email, ngaySinh));
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
+	}
+	public void addNguoiDung(NguoiDung baiBao) {
+		
+	}
+	public void removeNguoiDung(NguoiDung baiBao) {
+		
+	}
+}
