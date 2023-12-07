@@ -12,6 +12,15 @@ public class TheLoai {
 		this.maTheLoai = maTheLoai;
 		this.tenTheLoai = tenTheLoai;
 	}
+	public String checked(String s) {
+		return "";
+	}
+	public String name(String s) {
+		return "";
+	}
+	public TheLoai() {
+		super();
+	}
 
 	public String getMaTheLoai() {
 		return maTheLoai;

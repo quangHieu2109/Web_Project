@@ -1,2 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.mysql.cj.xdevapi.PreparableStatement"/>
+    <fullyQualifiedTypeName name="dao.BinhLuanDAO"/>
+    <fullyQualifiedTypeName name="dao.NguoiDungDAO"/>
+    <fullyQualifiedTypeName name="model.NguoiDung"/>
+    <fullyQualifiedTypeName name="model.BinhLuan"/>
+    <fullyQualifiedTypeName name="dao.TheLoaiDAO"/>
+    <fullyQualifiedTypeName name="dao.BaiBaoDAO"/>
+    <fullyQualifiedTypeName name="model.BaiBao"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="database.JDBCUtil"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="com.mysql.cj.protocol.Resultset"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="model.DSTheLoai"/>
+    <fullyQualifiedTypeName name="model.TheLoai"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+</qualifiedTypeNameHistroy>

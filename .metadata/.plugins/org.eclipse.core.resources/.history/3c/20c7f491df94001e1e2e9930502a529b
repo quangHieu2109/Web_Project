@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/main.css" rel="stylesheet">
+</head>
+<body>
+	<jsp:include page="header.jsp"></jsp:include>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="dateTime">
+					<label>Thứ năm, 7/12/2023, 13:35(GMT+7)</label>
+				</div>
+
+			</div>
+
+			<div class="col-md-4">
+				<div class="list-group border">
+					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Xu
+						hướng</span> <a href="#" class="list-group-item"> <span
+						class="text-danger " style="font-size: 18px; font-weight: bold;">Viễn
+							cảnh ảm đạm</span> / Giấc mơ chủ nhà trọ tan vỡ ở Đà Lạt
+					</a> <a href="#" class="list-group-item"> <span class="text-danger"
+						style="font-size: 18px; font-weight: bold;">Một chiều</span> /
+						Thời đại mạng xã hội, giáo viên ngày càng sợ phụ huynh
+					</a> <a href="#" class="list-group-item"> <span class="text-danger"
+						style="font-size: 18px; font-weight: bold;">Nhận con nuôi</span> /
+						Bà mẹ Mỹ nuôi hai đứa trẻ mồ côi song sinh người Việt
+					</a> <a href="#" class="list-group-item"> <span class="text-danger"
+						style="font-size: 18px; font-weight: bold;">Nhu cầu tăng</span> /
+						Giá gạo tăng cao kỷ lục
+					</a> <a href="#" class="list-group-item"> <span class="text-danger"
+						style="font-size: 18px; font-weight: bold;">Chuyển mình</span> /
+						Tân Hòa: Vươn lên từ nông thôn khó khăn đến du lịch xuất sắc
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<jsp:include page="footer.jsp"></jsp:include>
+</body>
+</html>

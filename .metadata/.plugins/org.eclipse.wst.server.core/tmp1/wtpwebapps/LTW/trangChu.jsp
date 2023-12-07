@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -6,132 +7,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/main.css" rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-	integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
-</head>
+
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<!-- Navbar -->
-	<div class="nav">
-
-		<div class="nav-item">
-			<a href="" style="padding: 15px;"><i class="fa-solid fa-house"></i></a>
-
-		</div>
-		<div class="nav-item">
-			<a href="">Thời sự</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Chính trị</a></li>
-
-					<li><a href="">Lao động</a></li>
-					<li><a href="">Giáo dục</a></li>
-					<li><a href="">Giao thông</a></li>
-				</ul>
-
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Thế giới</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Tư liệu</a></li>
-					<li><a href="">Cuộc sống</a></li>
-					<li><a href="">Quân sự</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Kinh doanh</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Quốc tế</a></li>
-					<li><a href="">Doanh nghiệp</a></li>
-					<li><a href="">Chứng khoáng</a></li>
-					<li><a href="">Bảo hiểm</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Bất động sản</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Chính sách</a></li>
-					<li><a href="">Thị trường</a></li>
-					<li><a href="">Dự án</a></li>
-					<li><a href="">Tư vấn</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Thể thao</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Bóng đá</a></li>
-					<li><a href="">Lịch thi đấu</a></li>
-					<li><a href="">Tennis</a></li>
-					<li><a href="">Marathon</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Giáo dục</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Tin tức</a></li>
-					<li><a href="">Tuyển sinh</a></li>
-					<li><a href="">Du học</a></li>
-					<li><a href="">Học tiếng Anh</a></li>
-					<li><a href="">Giáo dục 4.0</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Đời sống</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Nhịp sống</a></li>
-					<li><a href="">Tổ ấm</a></li>
-					<li><a href="">Cooking</a></li>
-					<li><a href="">Tiêu dùng</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Du lịch</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Điểm đến</a></li>
-					<li><a href="">Ăm thực</a></li>
-					<li><a href="">Cẩm nang</a></li>
-					<li><a href="">Tư vấn</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="nav-item">
-			<a href="">Xe</a>
-			<div class="nav-itemlist">
-				<ul>
-
-					<li><a href="">Thị trường</a></li>
-					<li><a href="">Diễn đàn</a></li>
-					<li><a href="">Thi bằng lái</a></li>
-					<li><a href="">Mu bán</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	<!-- end Navbar -->
+	<jsp:useBean id="newsService" class="model.NewsService" scope="session"></jsp:useBean>
+	<c:set var="category" value="${newsService.getDSTheLoai()}"></c:set>
+	
 	<div class="container">
 		<div class="row">
 
