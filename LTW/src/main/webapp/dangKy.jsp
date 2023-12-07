@@ -9,7 +9,7 @@
 
 </head>
 <body>
-	<form action="">
+	<form action="RegisterServlet" method="post">
 		<h1>Đăng ký tài khoản</h1>
 		<div class="body">
 			<div class="content">
@@ -45,7 +45,7 @@
 			</label>
 		</div>
 		<div class="button">
-			<a href="dangNhap.jsp" class="btn">Đăng nhập</a>
+			<a href="LoginServlet" class="btn">Đăng nhập</a>
 			<button type="submit" class="btn">Đăng ký</button>
 		</div>
 	</form>

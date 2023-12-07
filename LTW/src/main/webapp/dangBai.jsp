@@ -1,3 +1,4 @@
+<%@page import="model.DSTheLoai"%>
 <%@page import="model.BaiBao"%>
 <%@page import="model.TheLoai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,7 +23,7 @@
 			
 			BaiBao baiBao = (BaiBao) request.getAttribute("baiBao");
 			baiBao=(baiBao == null)?new BaiBao():baiBao;
-			TheLoai theLoai = baiBao.getTheLoai();
+			DSTheLoai theLoai = baiBao.getTheLoai();
 			theLoai = (theLoai == null)?new TheLoai():theLoai;
 			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
 			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();

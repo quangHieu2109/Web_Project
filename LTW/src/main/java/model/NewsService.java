@@ -16,6 +16,9 @@ public class NewsService {
 	public List<TheLoai> getDSTheLoai() {
 		return dbTheLoai.getDSTheLoai();
 	}
+	public boolean checkDangNhap(String tenDangNhap,String matKhau) {
+		return dbNguoiDung.checkNguoiDung(tenDangNhap, matKhau);
+	}
 	public void addNguoiDung(NguoiDung nguoiDung) {
 		dbNguoiDung.insertNguoiDung(nguoiDung);
 	}
