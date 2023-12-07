@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.NewsService;
 import model.NguoiDung;
 
-@WebServlet("RegisterServlet")
+@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +23,11 @@ public class RegisterServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String ngaySinh = req.getParameter("ngaySinh");
 		NewsService service = (NewsService) req.getSession().getAttribute("newsService");
-		service.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, null));
+		if(service.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh)))!=0) {
+			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
+		}else {
+			req.getRequestDispatcher("dangKy.jsp").forward(req, resp);
+		}
 	}
 
 	@Override
