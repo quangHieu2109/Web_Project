@@ -48,7 +48,7 @@ form {
 
 </head>
 <body>
-	<form action="">
+	<form action="LoginServlet" method="post">
 		<h1>Đăng nhập tài khoản</h1>
 		<div class="body">
 			<div class="content">
@@ -61,7 +61,7 @@ form {
 
 
 				<div class="button2">
-					<a href="dangKy.jsp" class="btn">Đăng ký</a>
+					<a href="RegisterServlet" class="btn">Đăng ký</a>
 					<button type="submit" class="btn">Đăng nhập</button>
 				</div>
 			</div>

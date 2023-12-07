@@ -114,6 +114,19 @@ public class NguoiDungDAO {
 		}
 		return result; //so dong thay doi
 	}
+	public boolean checkNguoiDung(String tenDangNhap,String matKhau) {
+		try {
+		Connection conn = JDBCUtil.getConnection();
+		String sql = "SELECT * FROM nguoidung WHERE tenDangNhap = ? AND matKhau = ?";
+		PreparedStatement st = conn.prepareStatement(sql);
+		st.setString(1, tenDangNhap);
+		st.setString(2, matKhau);
+		return st.executeQuery().next();
+		}catch (Exception e) {
+			// TODO: handle exception
+			return false;
+		}
+	}
 	public static void main(String[] args) {
 		JDBCUtil.connection();
 		NguoiDungDAO dao = new NguoiDungDAO();
