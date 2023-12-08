@@ -15,7 +15,7 @@ public class JDBCUtil {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
 			// Các thông số
-			String url = "jdbc:mySQL://localhost:3306/news";
+			String url = "jdbc:mySQL://localhost:3306/web";
 			String username = "root";
 			String password = "";
 

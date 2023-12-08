@@ -1,3 +1,4 @@
+<%@page import="model.DSTheLoai"%>
 <%@page import="model.BaiBao"%>
 <%@page import="model.TheLoai"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,12 +22,22 @@
 					+ request.getContextPath();
 
 			BaiBao baiBao = (BaiBao) request.getAttribute("baiBao");
+<<<<<<< HEAD
 			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
 			TheLoai theLoai = null;
 			theLoai = (theLoai == null) ? new TheLoai() : theLoai;
 			String tieuDe = (baiBao.getTieuDe() == null) ? "" : baiBao.getTieuDe();
 			String moTa = (baiBao.getMoTa() == null) ? "" : baiBao.getMoTa();
 			String noiDung = (baiBao.getNoiDung() == null) ? "" : baiBao.getNoiDung();
+=======
+			baiBao=(baiBao == null)?new BaiBao():baiBao;
+			DSTheLoai theLoai = baiBao.getTheLoai();
+			theLoai = (theLoai == null)?new TheLoai():theLoai;
+			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
+			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();
+			String noiDung=(baiBao.getNoiDung() == null)?"":baiBao.getNoiDung();
+			
+>>>>>>> b7e69c2031e5a18d357a84b4659d96e6b12304ae
 			%>
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>

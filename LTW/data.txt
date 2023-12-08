@@ -1,0 +1,3 @@
+insert into binhluan(maBinhLuan, tenDangNhap, maBaiBao, noiDung, ngayBinhLuan)values ('bl12311','hiu3','bb1','asdasd','null')
+insert into binhluan(maBinhLuan, tenDangNhap, maBaiBao, noiDung, ngayBinhLuan)values ('bl12312','hiu3','bb1','asdasd','null')
+insert into binhluan(maBinhLuan, tenDangNhap, maBaiBao, noiDung, ngayBinhLuan)values ('bl1234','hiu3','bb1','asdasd','null')

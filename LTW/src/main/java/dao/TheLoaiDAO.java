@@ -1,5 +1,8 @@
 package dao;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +25,7 @@ public class TheLoaiDAO extends GeneralDAO {
 		return result;
 	}
 
-	public DSTheLoai selectByBaiBao(BaiBao baiBao) {
+	public static DSTheLoai selectByBaiBao(BaiBao baiBao) {
 		DSTheLoai result = new DSTheLoai();
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -55,9 +58,10 @@ public class TheLoaiDAO extends GeneralDAO {
 		return result;
 	}
 
-	public int insertTheLoaiByBaiBao(BaiBao baiBao) {
+	public static int insertTheLoaiByBaiBao(BaiBao baiBao) {
 		int result=0;
 		try {
+			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
 			Connection conn = JDBCUtil.getConnection();
 			String sql ="insert into theloaichinh(maBaiBao, maTheLoai) values (?,?)";
 			PreparedStatement st = conn.prepareStatement(sql);
@@ -65,13 +69,18 @@ public class TheLoaiDAO extends GeneralDAO {
 			st.setString(2, baiBao.getTheLoai().getTheLoaiChinh().getMaTheLoai());
 			result += st.executeUpdate();
 			
+			sql="insert into theloaichinh(maBaiBao, maTheLoai) values ('"+baiBao.getMaBaiBao()+"','"+baiBao.getTheLoai().getTheLoaiChinh().getMaTheLoai()+"')";
+			print.println(sql);
 			sql="insert into danhsachtheloaiphu(maBaiBao, maTheLoai) values (?,?)";
 			st = conn.prepareStatement(sql);
 			for(TheLoai tl:baiBao.getTheLoai().getDsTheLoaiPhu()) {
 				st.setString(1, baiBao.getMaBaiBao());
 				st.setString(2, tl.getMaTheLoai());
 				result += st.executeUpdate();
+				sql="insert into danhsachtheloaiphu(maBaiBao, maTheLoai) values ('"+baiBao.getMaBaiBao()+"','"+tl.getMaTheLoai()+"')";
+				print.println(sql);
 			}
+			print.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -79,7 +88,7 @@ public class TheLoaiDAO extends GeneralDAO {
 		return result;
 	}
 
-	public void removeTheLoai(BaiBao baiBao) {
+	public static void removeTheLoai(BaiBao baiBao) {
 
 	}
 

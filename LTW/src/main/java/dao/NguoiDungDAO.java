@@ -1,5 +1,8 @@
 package dao;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -65,6 +68,7 @@ public class NguoiDungDAO {
 	public int insertNguoiDung(NguoiDung nguoiDung) {
 		int result =0;
 		try {
+			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh)"
 					+ " values (?,?,?,?,?)";
@@ -75,6 +79,10 @@ public class NguoiDungDAO {
 			st.setString(4, nguoiDung.getEmail());
 			st.setDate(5, nguoiDung.getNgaySinh());
 			result = st.executeUpdate();
+			
+			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
+					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
+			
 			st.close();
 		} catch (Exception e) {
 			// TODO: handle exception

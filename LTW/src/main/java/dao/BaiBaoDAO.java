@@ -1,5 +1,8 @@
 package dao;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -18,7 +21,7 @@ import model.TheLoai;
 
 
 public class BaiBaoDAO {
-	public ArrayList<BaiBao> selectAll() {
+	public static ArrayList<BaiBao> selectAll() {
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
 		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
@@ -54,7 +57,7 @@ public class BaiBaoDAO {
 		// 
 		return result;
 	}
-	public ArrayList<BaiBao> selectByTen(String tenBB){
+	public static ArrayList<BaiBao> selectByTen(String tenBB){
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
 		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
@@ -89,7 +92,7 @@ public class BaiBaoDAO {
 		
 		return result;
 	}
-	public ArrayList<BaiBao> selectByTheLoai(DSTheLoai theLoai){
+	public static ArrayList<BaiBao> selectByTheLoai(DSTheLoai theLoai){
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
 		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
@@ -138,10 +141,32 @@ public class BaiBaoDAO {
 		
 		return result;
 	}
-	public void addBaiBao(BaiBao baiBao) {
-		
+	public static void addBaiBao(BaiBao baiBao) {
+		Connection conn = JDBCUtil.getConnection();
+		try {
+			String sql="insert into baibao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, tenDangNhap, luotXem)"
+					+ " values(?,?,?,?,?,?,?,?);";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, baiBao.getMaBaiBao());
+			st.setString(2, baiBao.getTieuDe());
+			st.setString(3, baiBao.getMoTa());
+			st.setString(4, baiBao.getFilePath());
+			st.setString(5, baiBao.getNoiDung());
+			st.setDate(6, baiBao.getNgayDang());
+			st.setString(7, baiBao.getNguoiDang().getTenDangNhap());
+			st.setInt(8, baiBao.getLuotXem());
+			
+			st.executeUpdate();
+			sql="insert into baibao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, tenDangNhap, luotXem)"
+					+ " values('"+baiBao.getMaBaiBao()+"', '"+baiBao.getTieuDe()+"', '"+baiBao.getMoTa()+"', '"+baiBao.getFilePath()+"', '"+baiBao.getNoiDung()+"', '"+baiBao.getNgayDang()+"', '"+baiBao.getNguoiDang().getTenDangNhap()+"'," +baiBao.getLuotXem()+");";
+			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
+			print.println(sql);
+			print.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
-	public void removeBaiBao(BaiBao baiBao) {
+	public static void removeBaiBao(BaiBao baiBao) {
 		
 	}
 	public static void main(String[] args) {
