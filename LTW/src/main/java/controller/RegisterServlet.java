@@ -30,6 +30,7 @@ public class RegisterServlet extends HttpServlet {
 		}else {
 			req.getRequestDispatcher("dangKy.jsp").forward(req, resp);
 		}
+		JDBCUtil.closeConnection();
 	}
 
 	@Override

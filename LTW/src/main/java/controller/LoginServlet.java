@@ -10,26 +10,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import database.JDBCUtil;
 import model.NewsService;
+import model.NguoiDung;
 
-@WebServlet("/LoginServlet")
+@WebServlet("/LoginServlet") 
 public class LoginServlet extends HttpServlet {
 
-	@Override
+	@Override 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String tenDangNhap = req.getParameter("tenDangNhap") == null ? "" : req.getParameter("tenDangNhap");
 		String matKhau = req.getParameter("matKhau") == null ? "" : req.getParameter("matKhau");
 		NewsService service = (NewsService) req.getSession().getAttribute("newsService");
 		JDBCUtil.connection();
-		System.out.println("Đang đăng nhập");
-		if (service.checkDangNhap(tenDangNhap, matKhau)) {// nếu đăng nhập đúng
-
+		NguoiDung nguoiDung = service.checkDangNhap(tenDangNhap, matKhau);
+		if (nguoiDung!=null) {// nếu đăng nhập đúng
+			req.getSession().setAttribute("nguoiDung", nguoiDung);
 			req.getRequestDispatcher("trangChu.jsp").forward(req, resp);
 		} else {
 			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
 		}
 		JDBCUtil.closeConnection();
-
 	}
 
 	@Override

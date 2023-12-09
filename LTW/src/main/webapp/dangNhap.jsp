@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Đăng ký</title>
+<title>Đăng nhập</title>
 <link rel="stylesheet" href="css/dangKy.css">
 <style type="text/css">
 .content {
@@ -48,11 +48,10 @@ form {
 
 </head>
 <body>
-
-	<h1>Đăng nhập tài khoản</h1>
-	<div class="body">
-		<div class="content">
-			<form action="LoginServlet" method="post">
+	<form action="LoginServlet"  method="post">
+		<h1>Đăng nhập tài khoản</h1>
+		<div class="body">
+			<div class="content">
 				<div class="line">
 					<label>Tên đăng nhập</label> <input type="text" name="tenDangNhap">
 				</div>
@@ -68,9 +67,8 @@ form {
 					<button type="submit" class="btn">Đăng nhập</button>
 
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>
-
+	</form>
 </body>
 </html>
