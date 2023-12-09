@@ -48,10 +48,11 @@ form {
 
 </head>
 <body>
-	<form action="LoginServlet" method="post">
-		<h1>Đăng nhập tài khoản</h1>
-		<div class="body">
-			<div class="content">
+
+	<h1>Đăng nhập tài khoản</h1>
+	<div class="body">
+		<div class="content">
+			<form action="LoginServlet" method="post">
 				<div class="line">
 					<label>Tên đăng nhập</label> <input type="text" name="tenDangNhap">
 				</div>
@@ -60,11 +61,16 @@ form {
 				</div>
 
 
+
 				<div class="button2">
+
 					<a href="RegisterServlet" class="btn">Đăng ký</a>
 					<button type="submit" class="btn">Đăng nhập</button>
+
 				</div>
-			</div>
-	</form>
+			</form>
+		</div>
+	</div>
+
 </body>
 </html>

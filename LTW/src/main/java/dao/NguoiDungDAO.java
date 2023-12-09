@@ -80,8 +80,8 @@ public class NguoiDungDAO {
 			st.setDate(5, nguoiDung.getNgaySinh());
 			result = st.executeUpdate();
 			
-			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
-					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
+//			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
+//					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
 			
 			st.close();
 		} catch (Exception e) {
@@ -129,9 +129,11 @@ public class NguoiDungDAO {
 		PreparedStatement st = conn.prepareStatement(sql);
 		st.setString(1, tenDangNhap);
 		st.setString(2, matKhau);
-		return st.executeQuery().next();
+		
+		return st.executeQuery().next(); 
 		}catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 			return false;
 		}
 	}

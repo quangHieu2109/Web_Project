@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.JDBCUtil;
 import model.NewsService;
 import model.NguoiDung;
 
@@ -23,6 +24,7 @@ public class RegisterServlet extends HttpServlet {
 		String email = req.getParameter("email");
 		String ngaySinh = req.getParameter("ngaySinh");
 		NewsService service = (NewsService) req.getSession().getAttribute("newsService");
+		JDBCUtil.connection();
 		if(service.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh)))!=0) {
 			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
 		}else {

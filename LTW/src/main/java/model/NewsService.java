@@ -19,7 +19,7 @@ public class NewsService {
 	public boolean checkDangNhap(String tenDangNhap,String matKhau) {
 		return dbNguoiDung.checkNguoiDung(tenDangNhap, matKhau);
 	}
-	public int addNguoiDung(NguoiDung nguoiDung) {
+	public int addNguoiDung(NguoiDung nguoiDung) { 
 		return dbNguoiDung.insertNguoiDung(nguoiDung);
 	}
 	

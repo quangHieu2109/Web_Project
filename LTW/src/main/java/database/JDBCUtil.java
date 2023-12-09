@@ -12,17 +12,18 @@ public class JDBCUtil {
 	public static void connection() {
 		try {
 			// Đăng ký MySQL Driver với DriverManager
+			
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
 			// Các thông số
 			String url = "jdbc:mySQL://localhost:3306/web";
 			String username = "root";
-			String password = "";
+			String password = ""; 
 
 			// Tạo kết nối
 			conn = DriverManager.getConnection(url, username, password);
 			System.out.println("Kết nối thành công");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			System.out.println("Kết nối thất bại");
 			e.printStackTrace();
