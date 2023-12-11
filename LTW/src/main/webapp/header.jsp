@@ -18,6 +18,7 @@
 	height: max-content;
 	margin-top: auto;
 	margin-bottom: auto;
+	z-index: 2;
 }
 
 .label2:hover .div2 {
