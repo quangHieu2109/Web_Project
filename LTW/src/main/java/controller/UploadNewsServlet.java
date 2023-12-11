@@ -4,6 +4,8 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,20 +17,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import model.BaiBao;
+import model.BinhLuan;
+import model.DSTheLoai;
+import model.NguoiDung;
 import model.TheLoai;
 /**
  * Servlet implementation class UploadServlet
  */
 @MultipartConfig
 @WebServlet("/UploadServlet")
-public class UploadServlet extends HttpServlet {
+public class UploadNewsServlet extends HttpServlet {
 	//Vị trí của file sauu khi được upload
 	private static final String UPLOAD_DIRECTORY = "/img";
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UploadServlet() {
+    public UploadNewsServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,7 +56,6 @@ public class UploadServlet extends HttpServlet {
         
         request.setAttribute("filePath", filePath);
         request.setAttribute("fileName", fileName);
-        System.out.println(filePath);
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "0");
@@ -69,7 +73,8 @@ public class UploadServlet extends HttpServlet {
 		String tieuDe = request.getParameter("tieuDe");
 		String moTa = request.getParameter("moTa");
 		String noiDung = request.getParameter("noiDung");
-		BaiBao baiBao = null;
+		NguoiDung nguoiDung = (NguoiDung)request.getSession().getAttribute("nguoiDung");
+		BaiBao baiBao = new BaiBao("mabaibao", tieuDe, moTa, filePath, noiDung, Date.valueOf(LocalDate.now()), nguoiDung, 0, new DSTheLoai(), new ArrayList<BinhLuan>());
 		request.setAttribute("baiBao", baiBao);
         
         
@@ -77,8 +82,8 @@ public class UploadServlet extends HttpServlet {
         request.getRequestDispatcher("dangBai.jsp").forward(request, response);
     	}else {
     		// thêm bài báo ở đây
-    		System.out.println("Thêm bài báo");
-    		response.sendRedirect("trangchu.jsp");
+    		
+    		request.getRequestDispatcher("trangChu.jsp").forward(request, response);
     	}
     }
 	 private String getFileName(Part part) {

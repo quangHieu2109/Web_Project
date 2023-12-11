@@ -80,8 +80,8 @@ public class NguoiDungDAO {
 			st.setDate(5, nguoiDung.getNgaySinh());
 			result = st.executeUpdate();
 			
-			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
-					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
+//			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
+//					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
 			
 			st.close();
 		} catch (Exception e) {
@@ -122,17 +122,26 @@ public class NguoiDungDAO {
 		}
 		return result; //so dong thay doi
 	}
-	public boolean checkNguoiDung(String tenDangNhap,String matKhau) {
+	public NguoiDung checkNguoiDung(String tenDangNhap,String matKhau) {
 		try {
 		Connection conn = JDBCUtil.getConnection();
 		String sql = "SELECT * FROM nguoidung WHERE tenDangNhap = ? AND matKhau = ?";
 		PreparedStatement st = conn.prepareStatement(sql);
 		st.setString(1, tenDangNhap);
 		st.setString(2, matKhau);
-		return st.executeQuery().next();
+		ResultSet rs = st.executeQuery();
+		rs.next();
+		if(rs!=null ) {
+			return new NguoiDung(rs.getString("tenDangNhap"), rs.getString("matKhau"), rs.getString("hoVaTen"), rs.getString("email"), rs.getDate("ngaySinh")); 
+		}else {
+			return null;
+		}
+		
+		
 		}catch (Exception e) {
 			// TODO: handle exception
-			return false;
+			e.printStackTrace();
+			return null;
 		}
 	}
 	public static void main(String[] args) {

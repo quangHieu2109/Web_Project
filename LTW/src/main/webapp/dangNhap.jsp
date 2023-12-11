@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Đăng ký</title>
+<title>Đăng nhập</title>
 <link rel="stylesheet" href="css/dangKy.css">
 <style type="text/css">
 .content {
@@ -62,7 +62,11 @@ width: 90%;
 
 </head>
 <body>
+<<<<<<< HEAD
 	<form action="Login" method="post">
+=======
+	<form action="LoginServlet"  method="post">
+>>>>>>> b77f8014c25a0198a6408f809ee90a16985b2d67
 		<h1>Đăng nhập tài khoản</h1>
 		<div class="body">
 			<div class="content">
@@ -74,11 +78,15 @@ width: 90%;
 				</div>
 
 
+
 				<div class="button2">
+
 					<a href="RegisterServlet" class="btn">Đăng ký</a>
 					<button type="submit" class="btn">Đăng nhập</button>
+
 				</div>
 			</div>
+		</div>
 	</form>
 </body>
 </html>

@@ -143,9 +143,9 @@ margin-right: 0}
 
 		<div
 			style="margin-top: auto; margin-bottom: auto; display: flex; width: max-content; justify-content: space-between;">
-			<a href="dangNhap.jsp"
+			<a href="LoginServlet"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;">Đăng
-				nhập</a> <a href="dangKy.jsp"
+				nhập</a> <a href="RegisterServlet"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
 				ký</a>
 		</div>
