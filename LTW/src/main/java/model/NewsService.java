@@ -12,6 +12,7 @@ public class NewsService {
 	private BaiBaoDAO dbBaiBao = new BaiBaoDAO();
 	private BinhLuanDAO dbBinhLuan = new BinhLuanDAO();
 	private NguoiDungDAO dbNguoiDung = new NguoiDungDAO();
+	private boolean isLogin =false;
 
 	public List<TheLoai> getDSTheLoai() {
 		return dbTheLoai.getDSTheLoai();
@@ -22,6 +23,11 @@ public class NewsService {
 	public int addNguoiDung(NguoiDung nguoiDung) { 
 		return dbNguoiDung.insertNguoiDung(nguoiDung);
 	}
-	
+	public void setIsLogin(boolean isLogin) {
+		this.isLogin=isLogin;
+	}
+	public boolean getIsLogin() {
+		return isLogin;
+	}
 	
 }

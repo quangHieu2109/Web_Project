@@ -20,13 +20,13 @@ import model.TheLoai;
 public class NguoiDungDAO {
 	public List<NguoiDung> selectAll() {
 		List<NguoiDung> result = new ArrayList<NguoiDung>();
-		// 
+		//
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "select * from nguoidung";
 			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				String tenNguoiDung = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");
 				String hoVaTen = rs.getString("hoVaTen");
@@ -41,22 +41,23 @@ public class NguoiDungDAO {
 		}
 		return result;
 	}
+
 	public NguoiDung selectByTenDangNhap(String tenDN) {
 		NguoiDung result = null;
-		// 
+		//
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "select * from nguoidung where tenDangNhap=?";
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, tenDN);
 			ResultSet rs = st.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				String tenNguoiDung = rs.getString("tenDangNhap");
 				String matKhau = rs.getString("matKhau");
 				String hoVaTen = rs.getString("hoVaTen");
 				String email = rs.getString("email");
 				Date ngaySinh = rs.getDate("ngaySinh");
-				result=new NguoiDung(tenNguoiDung, matKhau, hoVaTen, email, ngaySinh);
+				result = new NguoiDung(tenNguoiDung, matKhau, hoVaTen, email, ngaySinh);
 			}
 			rs.close();
 			st.close();
@@ -65,8 +66,9 @@ public class NguoiDungDAO {
 		}
 		return result;
 	}
+
 	public int insertNguoiDung(NguoiDung nguoiDung) {
-		int result =0;
+		int result = 0;
 		try {
 			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
 			Connection conn = JDBCUtil.getConnection();
@@ -79,18 +81,19 @@ public class NguoiDungDAO {
 			st.setString(4, nguoiDung.getEmail());
 			st.setDate(5, nguoiDung.getNgaySinh());
 			result = st.executeUpdate();
-			
+
 //			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
 //					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
-			
+
 			st.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return result; //so dong thay doi
+		return result; // so dong thay doi
 	}
+
 	public int removeNguoiDung(NguoiDung nguoiDung) {
-		int result =0;
+		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "delete from nguoidung where tenDangNhap=?";
@@ -101,15 +104,16 @@ public class NguoiDungDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return result; //so dong thay doi
+		return result; // so dong thay doi
 	}
+
 	public int updateNguoiDung(NguoiDung nguoiDung) {
-		int result =0;
+		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "update nguoidung set matKhau =?, hoVaten=?, email=?, ngaySinh=? where tenDangNhap=?";
 			PreparedStatement st = conn.prepareStatement(sql);
-			
+
 			st.setString(1, nguoiDung.getMatKhau());
 			st.setString(2, nguoiDung.getHoVaTen());
 			st.setString(3, nguoiDung.getEmail());
@@ -120,30 +124,32 @@ public class NguoiDungDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		return result; //so dong thay doi
+		return result; // so dong thay doi
 	}
-	public NguoiDung checkNguoiDung(String tenDangNhap,String matKhau) {
+
+	public NguoiDung checkNguoiDung(String tenDangNhap, String matKhau) {
 		try {
-		Connection conn = JDBCUtil.getConnection();
-		String sql = "SELECT * FROM nguoidung WHERE tenDangNhap = ? AND matKhau = ?";
-		PreparedStatement st = conn.prepareStatement(sql);
-		st.setString(1, tenDangNhap);
-		st.setString(2, matKhau);
-		ResultSet rs = st.executeQuery();
-		rs.next();
-		if(rs!=null ) {
-			return new NguoiDung(rs.getString("tenDangNhap"), rs.getString("matKhau"), rs.getString("hoVaTen"), rs.getString("email"), rs.getDate("ngaySinh")); 
-		}else {
-			return null;
-		}
-		
-		
-		}catch (Exception e) {
+			Connection conn = JDBCUtil.getConnection();
+			String sql = "SELECT * FROM nguoidung WHERE tenDangNhap = ? AND matKhau = ?";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, tenDangNhap);
+			st.setString(2, matKhau);
+			ResultSet rs = st.executeQuery();
+
+			if (rs.next()) {
+				return new NguoiDung(rs.getString("tenDangNhap"), rs.getString("matKhau"), rs.getString("hoVaTen"),
+						rs.getString("email"), rs.getDate("ngaySinh"));
+			}else {
+				return null;
+			}
+
+		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return null;
 		}
 	}
+
 	public static void main(String[] args) {
 		JDBCUtil.connection();
 		NguoiDungDAO dao = new NguoiDungDAO();
