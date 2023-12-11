@@ -18,7 +18,7 @@
 	height: max-content;
 	margin-top: auto;
 	margin-bottom: auto;
-	z-index: 2;
+	z-index: 4;
 }
 
 .label2:hover .div2 {
@@ -34,10 +34,9 @@
 	border: 1px solid;
 	border-color: #bebaba;
 	border-radius: 5px;
-	z-index: 1;
+	z-index: 2;
 	background-color: white;
 	padding-right: 20px;
-	z-index: 1;
 }
 
 .div2::before {

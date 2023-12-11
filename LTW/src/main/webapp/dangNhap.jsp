@@ -33,16 +33,30 @@ a {
 }
 
 h1 {
-	font-size: 50px;
+	font-size: 40px;
 	margin-bottom: 50px;
 }
 
 form {
 	border: 1px solid;
-	width: 40%;
+	min-width: 60%;
+	max-width: max-content;
 	margin: auto;
 	margin-top: 10%;
 	padding-bottom: 30px;
+}
+label{
+text-wrap: nowrap;
+font-size: 25px;
+}
+.body{
+width: 100%;
+}
+.line input {
+	width: 60%;
+}
+.content{
+width: 90%;
 }
 </style>
 
