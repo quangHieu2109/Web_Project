@@ -11,7 +11,7 @@
 <link rel="stylesheet" type="text/css" href="css/dangBai.css">
 </head>
 <body>
-	<jsp:include page="header.jsp" flush="true"></jsp:include>
+<%-- 	<jsp:include page="header.jsp" ></jsp:include> --%>
 	<div>
 		<form method="POST" action="UploadServlet"
 			enctype="multipart/form-data" id="myform">
@@ -29,11 +29,11 @@
 			String moTa = (baiBao.getMoTa() == null) ? "" : baiBao.getMoTa();
 			String noiDung = (baiBao.getNoiDung() == null) ? "" : baiBao.getNoiDung();
 			baiBao=(baiBao == null)?new BaiBao():baiBao;
-			DSTheLoai theLoai = baiBao.getTheLoai();
-			theLoai = (theLoai == null)?new TheLoai():theLoai;
-			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
-			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();
-			String noiDung=(baiBao.getNoiDung() == null)?"":baiBao.getNoiDung();
+// 			DSTheLoai theLoai = baiBao.getTheLoai();
+// 			theLoai = (theLoai == null)?new TheLoai():theLoai;
+// 			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
+// 			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();
+// 			String noiDung=(baiBao.getNoiDung() == null)?"":baiBao.getNoiDung();
 			
 			%>
 			<div class="div TieuDe">

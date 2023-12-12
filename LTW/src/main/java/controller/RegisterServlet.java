@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.NguoiDungDAO;
 import database.JDBCUtil;
 import model.NewsService;
 import model.NguoiDung;
@@ -18,14 +19,22 @@ public class RegisterServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
 		String tenDangNhap = req.getParameter("tenDangNhap");
 		String matKhau = req.getParameter("matKhau");
 		String hoTen = req.getParameter("hoTen");
 		String email = req.getParameter("email");
 		String ngaySinh = req.getParameter("ngaySinh");
 		NewsService service = (NewsService) req.getSession().getAttribute("newsService");
+		if (service == null) {
+			service = new NewsService();
+			
+		}
 		JDBCUtil.connection();
-		if(service.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh)))!=0) {
+		if(new NguoiDungDAO().insertNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh)))!=0) {
+			
 			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
 		}else {
 			req.getRequestDispatcher("dangKy.jsp").forward(req, resp);

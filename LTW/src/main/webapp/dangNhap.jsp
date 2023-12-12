@@ -45,28 +45,29 @@ form {
 	margin-top: 10%;
 	padding-bottom: 30px;
 }
-label{
-text-wrap: nowrap;
-font-size: 25px;
+
+label {
+	text-wrap: nowrap;
+	font-size: 25px;
 }
-.body{
-width: 100%;
+
+.body {
+	width: 100%;
 }
+
 .line input {
 	width: 60%;
 }
-.content{
-width: 90%;
+
+.content {
+	width: 90%;
 }
 </style>
 
 </head>
 <body>
-<<<<<<< HEAD
-	<form action="Login" method="post">
-=======
-	<form action="LoginServlet"  method="post">
->>>>>>> b77f8014c25a0198a6408f809ee90a16985b2d67
+
+	<form action="LoginServlet" method="post">
 		<h1>Đăng nhập tài khoản</h1>
 		<div class="body">
 			<div class="content">

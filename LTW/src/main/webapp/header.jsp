@@ -60,10 +60,23 @@ li {
 	z-index: 2;
 	font-size: 200%;
 }
-
+.nav {
+	padding: 5px 15px;
+	border-radius: 5px;
+	font-size: 20px;
+	font-weight: 600;
+	background-color: #932048e8;
+	border: 1px solid;
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	margin: auto;
+	position: relative;
+	display: flex;
+}
 @media ( max-width : 1060px) {
 	.nav {
-		display: none; /* Ẩn khi màn hình có chiều rộng tối đa là 600px */
+		display: none; /* Ẩn khi màn hình có chiều rộng tối đa là 1060px */
 	}
 }
 

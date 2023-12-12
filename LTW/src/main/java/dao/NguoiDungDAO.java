@@ -2,6 +2,7 @@ package dao;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.Date;
@@ -68,7 +69,7 @@ public class NguoiDungDAO {
 	public int insertNguoiDung(NguoiDung nguoiDung) {
 		int result =0;
 		try {
-			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
+			
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh)"
 					+ " values (?,?,?,?,?)";
@@ -79,11 +80,23 @@ public class NguoiDungDAO {
 			st.setString(4, nguoiDung.getEmail());
 			st.setDate(5, nguoiDung.getNgaySinh());
 			result = st.executeUpdate();
+			try {
+				PrintWriter print = new PrintWriter(new FileWriter("LTW\\data.txt", true));
+				print.println("123123");
+				sql="insert into nguoidung (tendangnhap, matkhau, hovaten, email, ngaysinh) "
+						+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
+				print.println(sql);
+				System.out.println(sql);
+				print.close();
+				
+			} catch (IOException e) {
+				// TODO: handle exception
+			}
 			
-//			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
-//					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
 			
 			st.close();
+			
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -147,6 +160,7 @@ public class NguoiDungDAO {
 	public static void main(String[] args) {
 		JDBCUtil.connection();
 		NguoiDungDAO dao = new NguoiDungDAO();
+		System.out.println(dao.insertNguoiDung(new NguoiDung("123123", null, null, null, null)));;
 //		for(NguoiDung ng : dao.getDSNguoiDung()) {
 //			System.out.println(ng);
 //		}

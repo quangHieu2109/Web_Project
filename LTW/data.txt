@@ -1,3 +1,4 @@
-insert into binhluan(maBinhLuan, tenDangNhap, maBaiBao, noiDung, ngayBinhLuan)values ('bl12311','hiu3','bb1','asdasd','null')
-insert into binhluan(maBinhLuan, tenDangNhap, maBaiBao, noiDung, ngayBinhLuan)values ('bl12312','hiu3','bb1','asdasd','null')
-insert into binhluan(maBinhLuan, tenDangNhap, maBaiBao, noiDung, ngayBinhLuan)values ('bl1234','hiu3','bb1','asdasd','null')
+
+123123
+insert into nguoidung (tendangnhap, matkhau, hovaten, email, ngaysinh) values ('hiu123588','123123','Ng?´ Quang Hiáº¿u','hiu@123.com','2023-12-08')
+123123

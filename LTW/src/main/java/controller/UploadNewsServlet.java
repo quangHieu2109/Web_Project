@@ -28,7 +28,7 @@ import model.TheLoai;
 @WebServlet("/UploadServlet")
 public class UploadNewsServlet extends HttpServlet {
 	//Vị trí của file sauu khi được upload
-	private static final String UPLOAD_DIRECTORY = "/img";
+	private static final String UPLOAD_DIRECTORY = "img";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -50,7 +50,7 @@ public class UploadNewsServlet extends HttpServlet {
         // Lấy tệp tin được tải lên từ yêu cầu
         Part filePart = request.getPart("file");
         String fileName = getFileName(filePart);
-        String filePath = getServletContext().getRealPath(UPLOAD_DIRECTORY) + "\\" + fileName;
+        String filePath = getServletContext().getRealPath("/") +UPLOAD_DIRECTORY+ "/" + fileName;
         filePart.write(filePath);
 
         
@@ -60,7 +60,7 @@ public class UploadNewsServlet extends HttpServlet {
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "0");
         
-        
+        System.out.println(filePath);
 		String theLoai = request.getParameter("theLoai");
 		List<String> values;
 		if(theLoai != null) {
