@@ -1,6 +1,5 @@
 package dao;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -8,9 +7,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
-
-import com.mysql.cj.protocol.Resultset;
 
 import database.JDBCUtil;
 import model.BaiBao;
@@ -229,5 +225,6 @@ public class BaiBaoDAO {
 			System.out.println(bb);
 		}
 		JDBCUtil.closeConnection();
+		
 	}
 }
