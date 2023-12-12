@@ -7,11 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/main.css" rel="stylesheet">
-
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<c:set var="category" value="${newsService.getDSTheLoai()}"></c:set>
 	
+
 	<div class="container">
 		<div class="row">
 
@@ -40,6 +39,7 @@
 			</div>
 			<!-- 				End menu left -->
 			<!--product-->
+			<c:set var="news" value="${newsService.getBaiBaoMoiNhat(5)}"></c:set>
 			<div class="col-lg-7">
 				<div class="row">
 					<!-- 				ô lớn ở giữa -->
@@ -48,16 +48,13 @@
 							<div class="row no-gutters">
 								<div class="col-md-8">
 									<img
-										src="https://i1-english.vnecdn.net/2023/11/07/370594600966424437779483161250-1526-9272-1699357684.jpg?w=500&h=300&q=100&dpr=1&fit=crop&s=ofzTnXjFowCghBME9fFNdA"
+										src="${news[0].getFilePath()}"
 										class="card-img" alt="Hình ảnh">
 								</div>
 								<div class="col-md-4">
 									<div class="card-body">
-										<h5 class="card-title">Public bike service draws users in
-											Hanoi</h5>
-										<p class="card-text">More than 100,000 people have
-											registered to use Hanoi's public bicycle-sharing service, and
-											around 135,000 rides have been made after two months.</p>
+										<h5 class="card-title">${news[0].getTieuDe()}</h5>
+										<p class="card-text">${news[0].getMoTa()}</p>
 									</div>
 								</div>
 							</div>
@@ -70,15 +67,13 @@
 							<div class="row no-gutters">
 								<div class="col-md-12">
 									<img
-										src="https://i1-english.vnecdn.net/2023/11/07/370594600966424437779483161250-1526-9272-1699357684.jpg?w=500&h=300&q=100&dpr=1&fit=crop&s=ofzTnXjFowCghBME9fFNdA"
+										src="${news.get(1).getFilePath()}"
 										class=" card-img-3" alt="Hình ảnh">
 								</div>
 								<div class="row">
 									<div class="card-body">
-										<h5 class="card-title">Public bike service draws users in
-											Hanoi</h5>
-										<p class="card-text">More than 100,000 people have
-											registered to use Hanoi's ...</p>
+										<h5 class="card-title">${news.get(1).getTieuDe()}</h5>
+										<p class="card-text">${news.get(1).getMoTa()}</p>
 									</div>
 								</div>
 
@@ -89,15 +84,13 @@
 							<div class="row no-gutters">
 								<div class="col-md-12">
 									<img
-										src="https://i1-english.vnecdn.net/2023/11/07/370594600966424437779483161250-1526-9272-1699357684.jpg?w=500&h=300&q=100&dpr=1&fit=crop&s=ofzTnXjFowCghBME9fFNdA"
+										src="${news.get(2).getFilePath()}"
 										class="card-img-3" alt="Hình ảnh">
 								</div>
 								<div class="row">
 									<div class="card-body">
-										<h5 class="card-title">Public bike service draws users in
-											Hanoi</h5>
-										<p class="card-text">More than 100,000 people have
-											registered to use Hanoi's ...</p>
+										<h5 class="card-title">${news.get(2).getTieuDe()}</h5>
+										<p class="card-text">${news.get(2).getMoTa()}</p>
 									</div>
 								</div>
 
@@ -107,15 +100,13 @@
 							<div class="row no-gutters">
 								<div class="col-md-12">
 									<img
-										src="https://i1-english.vnecdn.net/2023/11/07/396775675250904860965716866076-3816-9433-1699347864.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=Kemg-DmczBWoH382cx6Njg"
+										src="${news.get(2).getFilePath()}"
 										class="card-img-3" alt="Hình ảnh">
 								</div>
 								<div class="row">
 									<div class="card-body">
-										<h5 class="card-title">Public bike service draws users in
-											Hanoi</h5>
-										<p class="card-text">More than 100,000 people have
-											registered to use Hanoi's ...</p>
+										<h5 class="card-title">${news.get(3).getTieuDe()}</h5>
+										<p class="card-text">${news.get(3).getMoTa()}</p>
 									</div>
 								</div>
 

@@ -1,11 +1,13 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.BaiBaoDAO;
 import dao.BinhLuanDAO;
 import dao.NguoiDungDAO;
 import dao.TheLoaiDAO;
+import database.JDBCUtil;
 
 public class NewsService {
 	private TheLoaiDAO dbTheLoai = new TheLoaiDAO();
@@ -14,8 +16,8 @@ public class NewsService {
 	private NguoiDungDAO dbNguoiDung = new NguoiDungDAO();
 	private boolean isLogin =false;
 
-	public List<TheLoai> getDSTheLoai() {
-		return dbTheLoai.getDSTheLoai();
+	public ArrayList<BaiBao> getBaiBaoMoiNhat(int size) {
+		return dbBaiBao.selectOrderByTime(size);
 	}
 	public NguoiDung checkDangNhap(String tenDangNhap,String matKhau) {
 		return dbNguoiDung.checkNguoiDung(tenDangNhap, matKhau);

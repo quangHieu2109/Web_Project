@@ -82,27 +82,11 @@ public class NguoiDungDAO {
 			st.setString(4, nguoiDung.getEmail());
 			st.setDate(5, nguoiDung.getNgaySinh());
 			result = st.executeUpdate();
-<<<<<<< HEAD
-			try {
-				PrintWriter print = new PrintWriter(new FileWriter("LTW\\data.txt", true));
-				print.println("123123");
-				sql="insert into nguoidung (tendangnhap, matkhau, hovaten, email, ngaysinh) "
-						+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
-				print.println(sql);
-				System.out.println(sql);
-				print.close();
-				
-			} catch (IOException e) {
-				// TODO: handle exception
-			}
 			
-			
-=======
 
 //			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
 //					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
 
->>>>>>> ac5cecdd308c916437b8ac83adf6a45018bde85d
 			st.close();
 			
 			
