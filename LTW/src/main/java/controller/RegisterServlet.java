@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
 			
 		}
 		JDBCUtil.connection();
-		if(new NguoiDungDAO().insertNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh)))!=0) {
+		if(service.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh)))!=0) {
 			
 			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
 		}else {
