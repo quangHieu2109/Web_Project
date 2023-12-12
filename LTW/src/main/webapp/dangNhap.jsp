@@ -66,8 +66,12 @@ label {
 
 </head>
 <body>
+<<<<<<< HEAD
 
 	<form action="LoginServlet" method="post">
+=======
+	<form action="LoginServlet"  method="post">
+>>>>>>> ac5cecdd308c916437b8ac83adf6a45018bde85d
 		<h1>Đăng nhập tài khoản</h1>
 		<div class="body">
 			<div class="content">

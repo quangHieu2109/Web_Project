@@ -10,7 +10,6 @@
 
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:useBean id="newsService" class="model.NewsService" scope="session"></jsp:useBean>
 	<c:set var="category" value="${newsService.getDSTheLoai()}"></c:set>
 	
 	<div class="container">

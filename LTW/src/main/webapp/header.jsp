@@ -18,7 +18,7 @@
 	height: max-content;
 	margin-top: auto;
 	margin-bottom: auto;
-	z-index: 2;
+	z-index: 4;
 }
 
 .label2:hover .div2 {
@@ -34,10 +34,9 @@
 	border: 1px solid;
 	border-color: #bebaba;
 	border-radius: 5px;
-	z-index: 1;
+	z-index: 2;
 	background-color: white;
 	padding-right: 20px;
-	z-index: 1;
 }
 
 .div2::before {
@@ -142,6 +141,8 @@ margin-right: 0}
 </style>
 </head>
 <body>
+
+
 	<div
 		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
 		<div>
@@ -155,14 +156,14 @@ margin-right: 0}
 		</div>
 
 		<div
-			style="margin-top: auto; margin-bottom: auto; display: flex; width: max-content; justify-content: space-between;">
+			style="margin-top: auto; margin-bottom: auto; display:  ${newsService.getIsLogin()?"none":"flex"}; width: max-content; justify-content: space-between;">
 			<a href="LoginServlet"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;">Đăng
 				nhập</a> <a href="RegisterServlet"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
 				ký</a>
 		</div>
-		<div class="label2" style="display: none">
+		<div class="label2" style="display: ${newsService.getIsLogin()?"block":"none"}">
 			<label>Xin chào ...</label>
 			<div class="div2">
 				<ul>
