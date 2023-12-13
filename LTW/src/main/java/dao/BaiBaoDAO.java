@@ -179,7 +179,8 @@ public class BaiBaoDAO {
 		return result;
 	}
 
-	public static void addBaiBao(BaiBao baiBao) {
+	public static boolean addBaiBao(BaiBao baiBao) {
+		JDBCUtil.connection();
 		Connection conn = JDBCUtil.getConnection();
 		try {
 			String sql = "insert into baibao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, tenDangNhap, luotXem)"
@@ -193,8 +194,8 @@ public class BaiBaoDAO {
 			st.setDate(6, baiBao.getNgayDang());
 			st.setString(7, baiBao.getNguoiDang().getTenDangNhap());
 			st.setInt(8, baiBao.getLuotXem());
-
-			st.executeUpdate();
+			int res = st.executeUpdate();
+			
 			sql = "insert into baibao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, tenDangNhap, luotXem)"
 					+ " values('" + baiBao.getMaBaiBao() + "', '" + baiBao.getTieuDe() + "', '" + baiBao.getMoTa()
 					+ "', '" + baiBao.getFilePath() + "', '" + baiBao.getNoiDung() + "', '" + baiBao.getNgayDang()
@@ -202,8 +203,12 @@ public class BaiBaoDAO {
 			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
 			print.println(sql);
 			print.close();
+			JDBCUtil.closeConnection();
+			return res==1;
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			return false;
 		}
 	}
 

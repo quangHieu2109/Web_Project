@@ -16,9 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import model.APISaveImage;
 import model.BaiBao;
 import model.BinhLuan;
 import model.DSTheLoai;
+import model.NewsService;
 import model.NguoiDung;
 import model.TheLoai;
 /**
@@ -49,9 +51,9 @@ public class UploadNewsServlet extends HttpServlet {
     	if(type.equals("upAnh")) {
         // Lấy tệp tin được tải lên từ yêu cầu
         Part filePart = request.getPart("file");
+      
         String fileName = getFileName(filePart);
-        String filePath = getServletContext().getRealPath("/") +UPLOAD_DIRECTORY+ "/" + fileName;
-        filePart.write(filePath);
+        String filePath = APISaveImage.uploadImageAndGetLink(filePart.getInputStream(), fileName);
 
         
         request.setAttribute("filePath", filePath);
@@ -75,14 +77,13 @@ public class UploadNewsServlet extends HttpServlet {
 		String noiDung = request.getParameter("noiDung");
 		NguoiDung nguoiDung = (NguoiDung)request.getSession().getAttribute("nguoiDung");
 		BaiBao baiBao = new BaiBao("mabaibao", tieuDe, moTa, filePath, noiDung, Date.valueOf(LocalDate.now()), nguoiDung, 0, new DSTheLoai(), new ArrayList<BinhLuan>());
-		request.setAttribute("baiBao", baiBao);
-        
-        
+		request.getSession().setAttribute("baiBao", baiBao);
         // Chuyển hướng trở lại trang dangbai.jsp
         request.getRequestDispatcher("dangBai.jsp").forward(request, response);
     	}else {
     		// thêm bài báo ở đây
-    		
+			NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+			System.out.println(newsService.addBaiBao((BaiBao)request.getSession().getAttribute("baiBao")));
     		request.getRequestDispatcher("trangChu.jsp").forward(request, response);
     	}
     }

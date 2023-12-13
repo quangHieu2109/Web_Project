@@ -17,11 +17,11 @@
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 			<%
-			String img = request.getAttribute("fileName") + "";
+			String img = (String)request.getAttribute("fileName");
 			String url1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath();
 
-			BaiBao baiBao = (BaiBao) request.getAttribute("baiBao");
+			BaiBao baiBao = (BaiBao) request.getSession().getAttribute("baiBao");
 			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
 			TheLoai theLoai = null;
 			theLoai = (theLoai == null) ? new TheLoai() : theLoai;

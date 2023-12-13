@@ -3,6 +3,7 @@ package model;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -15,8 +16,9 @@ import org.json.JSONObject;
 public class APISaveImage {
 	private final String EMAIL = "lavekax254@gearstag.com";
 	private final String PASSWORD = "hoctapdh0001";
+	
 
-	public static String uploadImageAndGetLink(File imageFile) {
+	public static String uploadImageAndGetLink(InputStream imageFile,String nameFile) {
 		try {
 			URL url = new URL("https://api.imgur.com/3/upload");
 			HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -34,12 +36,12 @@ public class APISaveImage {
 
 			// Gửi file ảnh
 			writer.append("--").append(boundary).append("\r\n");
-			writer.append("Content-Disposition: form-data; name=\"image\"; filename=\"").append(imageFile.getName())
+			writer.append("Content-Disposition: form-data; name=\"image\"; filename=\"").append(nameFile)
 					.append("\"\r\n");
 			writer.append("Content-Type: ").append("image/jpeg").append("\r\n");
 			writer.append("\r\n");
 			writer.flush();
-			FileInputStream inputStream = new FileInputStream(imageFile);
+			InputStream inputStream = imageFile;
 			byte[] buffer = new byte[4096];
 			int bytesRead;
 			while ((bytesRead = inputStream.read(buffer)) != -1) {

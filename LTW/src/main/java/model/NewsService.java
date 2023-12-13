@@ -31,5 +31,8 @@ public class NewsService {
 	public boolean getIsLogin() {
 		return isLogin;
 	}
-	
+	public boolean addBaiBao(BaiBao baiBao) {
+		return BaiBaoDAO.addBaiBao(baiBao);
+		
+	}
 }
