@@ -76,7 +76,7 @@ public class UploadNewsServlet extends HttpServlet {
 		String moTa = request.getParameter("moTa");
 		String noiDung = request.getParameter("noiDung");
 		NguoiDung nguoiDung = (NguoiDung)request.getSession().getAttribute("nguoiDung");
-		BaiBao baiBao = new BaiBao("mabaibao", tieuDe, moTa, filePath, noiDung, Date.valueOf(LocalDate.now()), nguoiDung, 0, new DSTheLoai(), new ArrayList<BinhLuan>());
+		BaiBao baiBao = new BaiBao( tieuDe, moTa, filePath, noiDung, nguoiDung, new DSTheLoai());
 		request.getSession().setAttribute("baiBao", baiBao);
         // Chuyển hướng trở lại trang dangbai.jsp
         request.getRequestDispatcher("dangBai.jsp").forward(request, response);

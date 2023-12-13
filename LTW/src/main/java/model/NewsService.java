@@ -35,4 +35,7 @@ public class NewsService {
 		return BaiBaoDAO.addBaiBao(baiBao);
 		
 	}
+	public ArrayList<BaiBao> searchBaiBao(String search) {
+		return BaiBaoDAO.selectByTen(search);
+	}
 }
