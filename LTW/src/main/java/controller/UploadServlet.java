@@ -1,16 +1,12 @@
 package controller;
 
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
-import java.io.File;
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,24 +14,22 @@ import javax.servlet.http.Part;
 
 import model.APISaveImage;
 import model.BaiBao;
-import model.BinhLuan;
 import model.DSTheLoai;
 import model.NewsService;
 import model.NguoiDung;
 import model.TheLoai;
+
 /**
  * Servlet implementation class UploadServlet
  */
-@MultipartConfig
 @WebServlet("/UploadServlet")
-public class UploadNewsServlet extends HttpServlet {
-	//Vị trí của file sauu khi được upload
-	private static final String UPLOAD_DIRECTORY = "img";
+public class UploadServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UploadNewsServlet() {
+    public UploadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -104,5 +98,4 @@ public class UploadNewsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
 }
