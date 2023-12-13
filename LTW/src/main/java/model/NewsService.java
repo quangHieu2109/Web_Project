@@ -35,7 +35,14 @@ public class NewsService {
 		return BaiBaoDAO.addBaiBao(baiBao);
 		
 	}
+	public void updateBaiBao(BaiBao baiBao) {
+		BaiBaoDAO.updateBaiBao(baiBao);
+	}
 	public ArrayList<BaiBao> searchBaiBao(String search) {
-		return BaiBaoDAO.selectByTen(search);
+		JDBCUtil.connection();
+		ArrayList<BaiBao> res = BaiBaoDAO.selectByTen(search);
+		JDBCUtil.closeConnection();
+		
+		return res;
 	}
 }

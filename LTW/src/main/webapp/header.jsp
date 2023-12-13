@@ -152,8 +152,9 @@ margin-right: 0}
 				style="max-height: 100px"> </a>
 		</div>
 		<div class="search">
-			<form action="search"></form>
-			<input type="text" name="txtSearch"> <i class="fa-solid fa-magnifying-glass"></i>
+			<form action="search">
+			<input type="text" name="txtSearch"> <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			</form>
 		</div>
 
 		<div

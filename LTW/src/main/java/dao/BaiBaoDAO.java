@@ -16,6 +16,9 @@ import model.NguoiDung;
 import model.TheLoai;
 
 public class BaiBaoDAO {
+	public static void updateBaiBao(BaiBao bao) {
+		
+	}
 	public static ArrayList<BaiBao> selectAll() {
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
