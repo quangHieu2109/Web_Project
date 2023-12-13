@@ -194,7 +194,7 @@
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
 					<img alt=""
-						src="<%=url1%>/img/<%=request.getAttribute("fileName")%>">
+						src="<%=baiBao.getFilePath()%>">
 					<button type="button" onclick="submitFormUpAnh()">up anh</button>
 				</div>
 			</div>

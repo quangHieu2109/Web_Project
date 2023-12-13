@@ -83,7 +83,7 @@ public class UploadNewsServlet extends HttpServlet {
     	}else {
     		// thêm bài báo ở đây
 			NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
-			System.out.println(newsService.addBaiBao((BaiBao)request.getSession().getAttribute("baiBao")));
+			newsService.addBaiBao((BaiBao)request.getSession().getAttribute("baiBao"));
     		request.getRequestDispatcher("trangChu.jsp").forward(request, response);
     	}
     }
