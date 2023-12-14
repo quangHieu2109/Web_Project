@@ -11,34 +11,30 @@
 <link rel="stylesheet" type="text/css" href="css/dangBai.css">
 </head>
 <body>
-<%-- 	<jsp:include page="header.jsp" ></jsp:include> --%>
+	<%-- 	<jsp:include page="header.jsp" ></jsp:include> --%>
+	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean>
 	<div>
 		<form method="POST" action="UploadServlet"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 			<%
-			String img = (String)request.getAttribute("fileName");
-			
+			String img = (String) request.getAttribute("fileName");
 
 			BaiBao baiBao = (BaiBao) request.getSession().getAttribute("baiBao");
 			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
 			TheLoai theLoai = null;
 			theLoai = (theLoai == null) ? new TheLoai() : theLoai;
-			String tieuDe = (baiBao.getTieuDe() == null) ? "" : baiBao.getTieuDe();
-			String moTa = (baiBao.getMoTa() == null) ? "" : baiBao.getMoTa();
-			String noiDung = (baiBao.getNoiDung() == null) ? "" : baiBao.getNoiDung();
-			baiBao=(baiBao == null)?new BaiBao():baiBao;
-// 			DSTheLoai theLoai = baiBao.getTheLoai();
-// 			theLoai = (theLoai == null)?new TheLoai():theLoai;
-// 			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
-// 			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();
-// 			String noiDung=(baiBao.getNoiDung() == null)?"":baiBao.getNoiDung();
-			
+			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
+			// 			DSTheLoai theLoai = baiBao.getTheLoai();
+			// 			theLoai = (theLoai == null)?new TheLoai():theLoai;
+			// 			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
+			// 			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();
+			// 			String noiDung=(baiBao.getNoiDung() == null)?"":baiBao.getNoiDung();
 			%>
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>
 				<textarea rows="1" cols="" wrap="soft" class="tieude" name="tieuDe"
-					value=""><%=tieuDe%></textarea>
+					value="">${bao.getTieuDe()}</textarea>
 			</div>
 			<div class="div TheLoai">
 				<label>Thể loại</label>
@@ -186,20 +182,19 @@
 			</div>
 			<div class="div MoTa">
 				<label>Mô tả</label>
-				<textarea rows="5" cols="" wrap="soft" name="moTa"><%=moTa%></textarea>
+				<textarea rows="5" cols="" wrap="soft" name="moTa">${bao.getMoTa()}</textarea>
 			</div>
 			<div class="div TaiAnh">
 				<label>Tải ảnh lên</label>
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
-					<img alt=""
-						src="<%=baiBao.getFilePath()%>">
+					<img alt="" src="${bao.getFilePath()}">
 					<button type="button" onclick="submitFormUpAnh()">up anh</button>
 				</div>
 			</div>
 			<div class="div NoiDung">
 				<label>Nội dung</label>
-				<textarea rows="20" cols="" wrap="soft" name="noiDung"><%=noiDung%></textarea>
+				<textarea rows="20" cols="" wrap="soft" name="noiDung">${bao.getNoiDung()}</textarea>
 			</div>
 			<div class="divBtn Button">
 				<button type="button" onclick="submitForm()">Đăng bài</button>
