@@ -8,6 +8,9 @@ html {
 	/* sans-serif: là chủng không có chân */
 	box-sizing: border-box;
 }
+a{
+	text-decoration: none;
+}
 
 * {
 	box-sizing: inherit;

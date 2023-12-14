@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import model.TheLoai;
 /**
  * Servlet implementation class UploadServlet
  */
+@MultipartConfig
 @WebServlet("/UploadServlet")
 public class UploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +43,7 @@ public class UploadServlet extends HttpServlet {
     	request.setCharacterEncoding("UTF-8");
     	response.setCharacterEncoding("UTF-8");
     	response.setContentType("text/html; charset=UTF-8");
-    	String type = request.getParameter("type")+"";
+    	String type = (String)request.getParameter("type");
     	if(type.equals("upAnh")) {
         // Lấy tệp tin được tải lên từ yêu cầu
         Part filePart = request.getPart("file");
@@ -55,6 +57,12 @@ public class UploadServlet extends HttpServlet {
         response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
         response.setHeader("Pragma", "no-cache");
         response.setHeader("Expires", "0");
+        TheLoai tl = null;
+		String tieuDe = request.getParameter("tieuDe");
+		String moTa = request.getParameter("moTa");
+		String noiDung = request.getParameter("noiDung");
+		NguoiDung nguoiDung = (NguoiDung)request.getSession().getAttribute("nguoiDung");
+		BaiBao baiBao = new BaiBao( tieuDe, moTa, "", noiDung, nguoiDung, new DSTheLoai());
         
         System.out.println(filePath);
 		String theLoai = request.getParameter("theLoai");
@@ -65,20 +73,16 @@ public class UploadServlet extends HttpServlet {
 			theLoai ="";
 			values = new ArrayList<String>();
 		}
-		TheLoai tl = null;
-		String tieuDe = request.getParameter("tieuDe");
-		String moTa = request.getParameter("moTa");
-		String noiDung = request.getParameter("noiDung");
-		NguoiDung nguoiDung = (NguoiDung)request.getSession().getAttribute("nguoiDung");
-		BaiBao baiBao = new BaiBao( tieuDe, moTa, filePath, noiDung, nguoiDung, new DSTheLoai());
+		
 		request.getSession().setAttribute("baiBao", baiBao);
         // Chuyển hướng trở lại trang dangbai.jsp
         request.getRequestDispatcher("dangBai.jsp").forward(request, response);
     	}else {
     		// thêm bài báo ở đây
+    		
 			NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 			newsService.addBaiBao((BaiBao)request.getSession().getAttribute("baiBao"));
-    		request.getRequestDispatcher("trangChu.jsp").forward(request, response);
+    		response.sendRedirect("MainServlet");
     	}
     }
 	 private String getFileName(Part part) {

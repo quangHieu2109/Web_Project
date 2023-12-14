@@ -18,8 +18,7 @@
 			<input type="hidden" name="type" value="1234" id="type">
 			<%
 			String img = (String)request.getAttribute("fileName");
-			String url1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath();
+			
 
 			BaiBao baiBao = (BaiBao) request.getSession().getAttribute("baiBao");
 			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
