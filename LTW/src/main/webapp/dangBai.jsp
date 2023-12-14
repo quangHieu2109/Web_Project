@@ -21,22 +21,13 @@
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 			<%
-			String img = (String) request.getAttribute("fileName");
-			String url1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath();
-			BaiBao baiBao = (BaiBao) request.getSession().getAttribute("baiBao");
-			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
+			
 			TheLoai theLoai = null;
 			theLoai = (theLoai == null) ? new TheLoai() : theLoai;
-			String tieuDe = (baiBao.getTieuDe() == null) ? "" : baiBao.getTieuDe();
-			String moTa = (baiBao.getMoTa() == null) ? "" : baiBao.getMoTa();
-			String noiDung = (baiBao.getNoiDung() == null) ? "" : baiBao.getNoiDung();
-			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
 			if(request.getAttribute("filePart")!= null){
 				
 				request.setAttribute("filePart", request.getAttribute("filePart"));
 			}
-			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
 			// 			DSTheLoai theLoai = baiBao.getTheLoai();
 			// 			theLoai = (theLoai == null)?new TheLoai():theLoai;
 			// 			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
@@ -200,7 +191,7 @@
 				<label>Tải ảnh lên</label>
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
-					<img alt="" src="<%=url1%>/img/<%=request.getAttribute("fileName")%>">
+					<img alt="" src="${bao.getFilePath()}">
 					<button type="button" onclick="submitFormUpAnh()">up anh</button>
 				</div>
 			</div>

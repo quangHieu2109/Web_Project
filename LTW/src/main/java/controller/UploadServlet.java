@@ -58,8 +58,8 @@ public class UploadServlet extends HttpServlet {
 			String filePath = getServletContext().getRealPath("/img") + "//" + fileName;
 
 			request.getSession().setAttribute("filePath", filePath);
-
-			request.setAttribute("filePath", filePath);
+			String link = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+					+ request.getContextPath() + "/img/" + fileName;
 			request.setAttribute("fileName", fileName);
 			response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 			response.setHeader("Pragma", "no-cache");
@@ -79,7 +79,7 @@ public class UploadServlet extends HttpServlet {
 			String moTa = request.getParameter("moTa");
 			String noiDung = request.getParameter("noiDung");
 			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
-			BaiBao baiBao = new BaiBao(tieuDe, moTa, filePath, noiDung, nguoiDung, new DSTheLoai());
+			BaiBao baiBao = new BaiBao(tieuDe, moTa, link, noiDung, nguoiDung, new DSTheLoai());
 			request.getSession().setAttribute("baiBao", baiBao);
 
 			request.setAttribute("bao", baiBao);
@@ -87,19 +87,21 @@ public class UploadServlet extends HttpServlet {
 			request.getRequestDispatcher("dangBai.jsp").forward(request, response);
 		} else {
 			// thêm bài báo ở đây
-			File file = new File(request.getSession().getAttribute("filePath") + "");
-			InputStream is = new FileInputStream(file);
+			try {
+				File file = new File(request.getSession().getAttribute("filePath") + "");
+				InputStream is = new FileInputStream(file);
 //			System.out.println(filePart.toString());
 
-			String filePath = APISaveImage.uploadImageAndGetLink(is, "123");
-			System.out.println(filePath);
-			file.delete();
-			is.close();
+//			String filePath = APISaveImage.uploadImageAndGetLink(is, "123");
+//			System.out.println(filePath);
+				file.delete();
+				is.close();
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 			NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
-			newsService.addBaiBao((BaiBao) request.getSession().getAttribute("baiBao"));
 			request.getSession().removeAttribute("filePath");
-			request.getRequestDispatcher("trangChu.jsp").forward(request, response);
-			TheLoai tl = null;
+//			TheLoai tl = null;
 			String tieuDe = request.getParameter("tieuDe");
 			String moTa = request.getParameter("moTa");
 			String noiDung = request.getParameter("noiDung");
@@ -107,9 +109,9 @@ public class UploadServlet extends HttpServlet {
 			String link = APISaveImage.uploadImageAndGetLink(filePart.getInputStream(), getFileName(filePart));
 			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 			BaiBao baiBao = new BaiBao(tieuDe, moTa, link, noiDung, nguoiDung, new DSTheLoai());
-			
-			newsService.addBaiBao((BaiBao) request.getSession().getAttribute("baiBao"));
-			response.sendRedirect("MainServlet");
+
+			newsService.addBaiBao(baiBao);
+			request.getRequestDispatcher("trangChu.jsp").forward(request, response);
 		}
 	}
 

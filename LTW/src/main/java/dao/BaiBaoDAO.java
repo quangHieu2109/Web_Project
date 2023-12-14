@@ -96,15 +96,12 @@ public class BaiBaoDAO {
 				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
 				baiBao.addAllBinhLuan(dsBinhLuan);
 				baiBao.setTheLoai(dsTheLoai);
-				temp.add(baiBao);
+				result.add(baiBao);
 				
 
 				
 			}
-			System.out.println();
-			for (int i = 0; i < (((temp.size()-1)/3)*3)+1; i++) {
-				result.add(temp.get(i));
-			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -221,9 +218,7 @@ public class BaiBaoDAO {
 					+ " values('" + baiBao.getMaBaiBao() + "', '" + baiBao.getTieuDe() + "', '" + baiBao.getMoTa()
 					+ "', '" + baiBao.getFilePath() + "', '" + baiBao.getNoiDung() + "', '" + baiBao.getNgayDang()
 					+ "', '" + baiBao.getNguoiDang().getTenDangNhap() + "'," + baiBao.getLuotXem() + ");";
-			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
-			print.println(sql);
-			print.close();
+
 			JDBCUtil.closeConnection();
 			return res==1;
 		} catch (Exception e) {
