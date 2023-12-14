@@ -16,6 +16,9 @@ import model.NguoiDung;
 import model.TheLoai;
 
 public class BaiBaoDAO {
+	public static void updateBaiBao(BaiBao bao) {
+		
+	}
 	public static ArrayList<BaiBao> selectAll() {
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
@@ -52,8 +55,21 @@ public class BaiBaoDAO {
 		//
 		return result;
 	}
-
+	public ArrayList<BaiBao> select(){
+		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
+		
+		int i = selectAll().size()-6;
+		if(i>=0) {
+			i = (selectAll().size()-3)/3;
+			for(int j=3; j<i*3+3; j++) {
+				result.add(selectAll().get(j));
+			}
+		}
+		
+		return result;
+	}
 	public ArrayList<BaiBao> selectOrderByTime(int size) {
+		ArrayList<BaiBao> temp = new ArrayList<BaiBao>();
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
 		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
@@ -80,9 +96,14 @@ public class BaiBaoDAO {
 				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
 				baiBao.addAllBinhLuan(dsBinhLuan);
 				baiBao.setTheLoai(dsTheLoai);
-				result.add(baiBao);
+				temp.add(baiBao);
 				
 
+				
+			}
+			System.out.println();
+			for (int i = 0; i < (((temp.size()-1)/3)*3)+1; i++) {
+				result.add(temp.get(i));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception

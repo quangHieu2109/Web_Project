@@ -58,6 +58,8 @@ public class UploadServlet extends HttpServlet {
 			String filePath = getServletContext().getRealPath("/img") + "//" + fileName;
 
 			request.getSession().setAttribute("filePath", filePath);
+
+			request.setAttribute("filePath", filePath);
 			request.setAttribute("fileName", fileName);
 			response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 			response.setHeader("Pragma", "no-cache");
@@ -79,6 +81,8 @@ public class UploadServlet extends HttpServlet {
 			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 			BaiBao baiBao = new BaiBao(tieuDe, moTa, filePath, noiDung, nguoiDung, new DSTheLoai());
 			request.getSession().setAttribute("baiBao", baiBao);
+
+			request.setAttribute("bao", baiBao);
 			// Chuyển hướng trở lại trang dangbai.jsp
 			request.getRequestDispatcher("dangBai.jsp").forward(request, response);
 		} else {
@@ -95,6 +99,17 @@ public class UploadServlet extends HttpServlet {
 			newsService.addBaiBao((BaiBao) request.getSession().getAttribute("baiBao"));
 			request.getSession().removeAttribute("filePath");
 			request.getRequestDispatcher("trangChu.jsp").forward(request, response);
+			TheLoai tl = null;
+			String tieuDe = request.getParameter("tieuDe");
+			String moTa = request.getParameter("moTa");
+			String noiDung = request.getParameter("noiDung");
+			Part filePart = request.getPart("file");
+			String link = APISaveImage.uploadImageAndGetLink(filePart.getInputStream(), getFileName(filePart));
+			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
+			BaiBao baiBao = new BaiBao(tieuDe, moTa, link, noiDung, nguoiDung, new DSTheLoai());
+			
+			newsService.addBaiBao((BaiBao) request.getSession().getAttribute("baiBao"));
+			response.sendRedirect("MainServlet");
 		}
 	}
 
