@@ -8,16 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+</style>
 <link rel="stylesheet" type="text/css" href="css/dangBai.css">
 </head>
 <body>
-<%-- 	<jsp:include page="header.jsp" ></jsp:include> --%>
+		<jsp:include page="header.jsp" ></jsp:include>
 	<div>
 		<form method="POST" action="UploadServlet"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 			<%
-			String img = (String)request.getAttribute("fileName");
+			String img = (String) request.getAttribute("fileName");
 			String url1 = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath();
 
@@ -28,13 +31,16 @@
 			String tieuDe = (baiBao.getTieuDe() == null) ? "" : baiBao.getTieuDe();
 			String moTa = (baiBao.getMoTa() == null) ? "" : baiBao.getMoTa();
 			String noiDung = (baiBao.getNoiDung() == null) ? "" : baiBao.getNoiDung();
-			baiBao=(baiBao == null)?new BaiBao():baiBao;
-// 			DSTheLoai theLoai = baiBao.getTheLoai();
-// 			theLoai = (theLoai == null)?new TheLoai():theLoai;
-// 			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
-// 			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();
-// 			String noiDung=(baiBao.getNoiDung() == null)?"":baiBao.getNoiDung();
-			
+			baiBao = (baiBao == null) ? new BaiBao() : baiBao;
+			if(request.getAttribute("filePart")!= null){
+				
+				request.setAttribute("filePart", request.getAttribute("filePart"));
+			}
+			// 			DSTheLoai theLoai = baiBao.getTheLoai();
+			// 			theLoai = (theLoai == null)?new TheLoai():theLoai;
+			// 			String tieuDe = (baiBao.getTieuDe() ==null)?"":baiBao.getTieuDe();
+			// 			String moTa= (baiBao.getMoTa() == null)?"":baiBao.getMoTa();
+			// 			String noiDung=(baiBao.getNoiDung() == null)?"":baiBao.getNoiDung();
 			%>
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>
@@ -193,8 +199,9 @@
 				<label>Tải ảnh lên</label>
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
-					<img alt=""
-						src="<%=baiBao.getFilePath()%>">
+					<img alt="" src="<%=url1%>/img/<%=request.getAttribute("fileName")%>">
+<%-- 					<img alt="" src="<%=request.getAttribute("filePath")%>"> --%>
+<!-- 					<button type="submit">submit</button> -->
 					<button type="button" onclick="submitFormUpAnh()">up anh</button>
 				</div>
 			</div>
@@ -206,7 +213,7 @@
 				<button type="button" onclick="submitForm()">Đăng bài</button>
 			</div>
 		</form>
-
+	
 	</div>
 	<script type="text/javascript">
 		function submitFormUpAnh() {
