@@ -33,11 +33,11 @@ public class TheLoaiDAO extends GeneralDAO {
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, baiBao.getMaBaiBao());
 			ResultSet rs = st.executeQuery();
-			
+
 			while (rs.next()) {
 				String maTheLoai = rs.getString(1);
 				String tenTheLoai = rs.getString(2);
-				
+
 				result.setTheLoaiChinh(new TheLoai(maTheLoai, tenTheLoai));
 			}
 			sql = "SELECT theloai.maTheLoai, theloai.tenTheLoai FROM theloai INNER JOIN danhsachtheloaiphu ON"
@@ -58,33 +58,57 @@ public class TheLoaiDAO extends GeneralDAO {
 		return result;
 	}
 
-	public static int insertTheLoaiByBaiBao(BaiBao baiBao) {
-		int result=0;
+	public static TheLoai selectByMaTheLoai(String maTL) {
+		TheLoai result = null;
+		JDBCUtil.connection();
+		Connection con = JDBCUtil.getConnection();
 		try {
-			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
+			String sql = "select * from theloai where maTheLoai =?";
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, maTL);
+			ResultSet rs = st.executeQuery();
+			rs.next();
+			result = new TheLoai(rs.getString(1), rs.getString(2));
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		JDBCUtil.closeConnection();
+		return result;
+	}
+
+	public static int insertTheLoaiByBaiBao(BaiBao baiBao) {
+		int result = 0;
+		try {
+//			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
 			Connection conn = JDBCUtil.getConnection();
-			String sql ="insert into theloaichinh(maBaiBao, maTheLoai) values (?,?)";
+			String sql = "insert into theloaichinh(maBaiBao, maTheLoai) values (?,?)";
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, baiBao.getMaBaiBao());
 			st.setString(2, baiBao.getTheLoai().getTheLoaiChinh().getMaTheLoai());
 			result += st.executeUpdate();
-			
-			sql="insert into theloaichinh(maBaiBao, maTheLoai) values ('"+baiBao.getMaBaiBao()+"','"+baiBao.getTheLoai().getTheLoaiChinh().getMaTheLoai()+"')";
-			print.println(sql);
-			sql="insert into danhsachtheloaiphu(maBaiBao, maTheLoai) values (?,?)";
-			st = conn.prepareStatement(sql);
-			for(TheLoai tl:baiBao.getTheLoai().getDsTheLoaiPhu()) {
-				st.setString(1, baiBao.getMaBaiBao());
-				st.setString(2, tl.getMaTheLoai());
-				result += st.executeUpdate();
-				sql="insert into danhsachtheloaiphu(maBaiBao, maTheLoai) values ('"+baiBao.getMaBaiBao()+"','"+tl.getMaTheLoai()+"')";
-				print.println(sql);
+
+//			sql = "insert into theloaichinh(maBaiBao, maTheLoai) values ('" + baiBao.getMaBaiBao() + "','"
+//					+ baiBao.getTheLoai().getTheLoaiChinh().getMaTheLoai() + "')";
+//			print.println(sql);
+			if(baiBao.getTheLoai().getDsTheLoaiPhu().size()>0) {
+				sql = "insert into danhsachtheloaiphu(maBaiBao, maTheLoai) values (?,?)";
+				st = conn.prepareStatement(sql);
+				for (TheLoai tl : baiBao.getTheLoai().getDsTheLoaiPhu()) {
+					st.setString(1, baiBao.getMaBaiBao());
+					st.setString(2, tl.getMaTheLoai());
+					result += st.executeUpdate();
+//					sql = "insert into danhsachtheloaiphu(maBaiBao, maTheLoai) values ('" + baiBao.getMaBaiBao() + "','"
+//							+ tl.getMaTheLoai() + "')";
+//					print.println(sql);
+				}
 			}
-			print.close();
+//			print.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
+
 		return result;
 	}
 
@@ -95,10 +119,11 @@ public class TheLoaiDAO extends GeneralDAO {
 	public static void main(String[] args) {
 		JDBCUtil.connection();
 		TheLoaiDAO dao = new TheLoaiDAO();
-		DSTheLoai tl = dao.selectByBaiBao(new BaiBao("bb1", null, null, null, null, null, null, 0, null, null));
-		System.out.println(tl);
-		BaiBao bb = new BaiBao("bb4", "123", null, null, null, null, null, 0);
-		bb.setTheLoai(tl);
-		System.out.println(dao.insertTheLoaiByBaiBao(bb));;
+//		DSTheLoai tl = dao.selectByBaiBao(new BaiBao("bb1", null, null, null, null, null, null, 0, null, null));
+//		System.out.println(tl);
+//		BaiBao bb = new BaiBao("bb4", "123", null, null, null, null, null, 0);
+//		bb.setTheLoai(tl);
+		System.out.println(dao.selectByMaTheLoai("thoisu"));
+		;
 	}
 }

@@ -18,6 +18,10 @@ public class NguoiDung {
 		this.ngaySinh = ngaySinh;
 	}
 
+	public NguoiDung() {
+//		this.tenDangNhap=null;
+	}
+
 	public String getTenDangNhap() {
 		return tenDangNhap;
 	}
@@ -57,11 +61,19 @@ public class NguoiDung {
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
 	}
-
+public String display() {
+	if(this.tenDangNhap == null) {
+		return "none";
+	}else {
+		return "flex";
+	}
+}
 	@Override
 	public String toString() {
 		return "NguoiDung [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + ", hoVaTen=" + hoVaTen + ", email="
 				+ email + ", ngaySinh=" + ngaySinh + "]";
 	}
-
+public static void main(String[] args) {
+	System.out.println(new NguoiDung().getTenDangNhap().equals(""));;
+}
 }

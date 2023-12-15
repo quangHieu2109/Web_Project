@@ -25,18 +25,23 @@
 	display: block;
 }
 
+.label2 label {
+	text-wrap: nowrap;
+}
+
 .div2 {
 	display: none;
 	position: absolute;
 	margin-top: 5px; /* Điều chỉnh khoảng cách giữa .label2 và .div2 */
 	width: max-content;
-	right: -120%;
+	top: 75%; right : -90%;
 	border: 1px solid;
 	border-color: #bebaba;
 	border-radius: 5px;
 	z-index: 2;
 	background-color: white;
 	padding-right: 20px;
+	right: -90%;
 }
 
 .div2::before {
@@ -59,6 +64,7 @@ li {
 	z-index: 2;
 	font-size: 200%;
 }
+
 .nav {
 	padding: 5px 15px;
 	border-radius: 5px;
@@ -73,6 +79,7 @@ li {
 	position: relative;
 	display: flex;
 }
+
 @media ( max-width : 1060px) {
 	.nav {
 		display: none; /* Ẩn khi màn hình có chiều rộng tối đa là 1060px */
@@ -132,16 +139,22 @@ ul {
 	display: block;
 	width: 300px;
 	height: 30px;
-/* 	margin: auto; */
+	/* 	margin: auto; */
 	margin-right: 10px;
 	border-radius: 7px;
 }
+
+.search form {
+	display: flex;
+}
+
 .search i {
-margin-right: 0}
+	margin-right: 0
+}
 </style>
 </head>
 <body>
-
+	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
 
 	<div
 		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
@@ -152,21 +165,24 @@ margin-right: 0}
 				style="max-height: 100px"> </a>
 		</div>
 		<div class="search">
-			<form action="search">
-			<input type="text" name="txtSearch"> <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			<form action="search" id="searchForm">
+				<input type="text" name="txtSearch"> <i
+					class="fa-solid fa-magnifying-glass" id="search" onclick="search()"></i>
 			</form>
 		</div>
-
 		<div
-			style="margin-top: auto; margin-bottom: auto; display:  ${newsService.getIsLogin()?"none":"flex"}; width: max-content; justify-content: space-between;">
+			style="margin-top: auto; margin-bottom: auto; display:  ${nguoiDung.getTenDangNhap() == null ? "
+			flex" : "none"}; width:max-content; justify-content:space-between;">
+
 			<a href="LoginServlet"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;">Đăng
 				nhập</a> <a href="RegisterServlet"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
 				ký</a>
 		</div>
-		<div class="label2" style="display: ${newsService.getIsLogin()?"block":"none"}">
-			<label>Xin chào ...</label>
+		<div class="label2"
+			style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
+			<label style>Xin chào ${nguoiDung.getTenDangNhap() }</label>
 			<div class="div2">
 				<ul>
 					<li><a href="dangBai.jsp"
@@ -179,7 +195,7 @@ margin-right: 0}
 							mật khẩu</a></li>
 					<li style="height: 1px; margin: 0; list-style: none;"><hr
 							class=""></li>
-					<li><a href=""
+					<li><a href="Logout"
 						style="text-decoration: none; color: black; margin-top: 10px">Đăng
 							xuất</a></li>
 				</ul>
@@ -292,5 +308,11 @@ margin-right: 0}
 		</div>
 	</div>
 	<!-- end navbar -->
+	<script type="text/javascript">
+		function search() {
+			var form = document.getElementById('searchForm');
+			form.submit();
+		}
+	</script>
 </body>
 </html>

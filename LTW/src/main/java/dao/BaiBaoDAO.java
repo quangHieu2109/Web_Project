@@ -68,6 +68,67 @@ public class BaiBaoDAO {
 		
 		return result;
 	}
+	public int countAll() {
+		int result =0;
+		JDBCUtil.connection();
+		Connection con = JDBCUtil.getConnection();
+		try {
+			String sql = "select count(*) from baibao";
+			PreparedStatement st = con.prepareStatement(sql);
+			ResultSet rs  = st.executeQuery();
+			rs.next();
+			result = rs.getInt(1);
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		JDBCUtil.closeConnection();
+		return result;
+	}
+	public ArrayList<BaiBao> selectOrderByTime() {
+		int size = ((countAll() -4)/3)*3+4;
+		ArrayList<BaiBao> temp = new ArrayList<BaiBao>();
+		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
+		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
+		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
+		TheLoaiDAO theLoaiDAO = new TheLoaiDAO();
+		try {
+			JDBCUtil.connection();
+			Connection conn = JDBCUtil.getConnection();
+			String sql = "SELECT * FROM baibao ORDER BY ngayDang DESC LIMIT " + size;
+			PreparedStatement st = conn.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String maBaiBao = rs.getString("maBaiBao");
+				String tenBaiBao = rs.getString("tenBaiBao");
+				String moTa = rs.getString("moTa");
+				String filePath = rs.getString("filePath");
+				String noiDung = rs.getString("noiDung");
+				Date ngayDang = rs.getDate("ngayDang");
+				String tenDangNhap = rs.getString("tenDangNhap");
+				int luotXem = rs.getInt("luotXem");
+
+				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
+				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(dsBinhLuan);
+				baiBao.setTheLoai(dsTheLoai);
+				result.add(baiBao);
+				
+
+				
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return result;
+		}
+		JDBCUtil.closeConnection();
+		return result;
+	}
 	public ArrayList<BaiBao> selectOrderByTime(int size) {
 		ArrayList<BaiBao> temp = new ArrayList<BaiBao>();
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
@@ -218,6 +279,7 @@ public class BaiBaoDAO {
 					+ " values('" + baiBao.getMaBaiBao() + "', '" + baiBao.getTieuDe() + "', '" + baiBao.getMoTa()
 					+ "', '" + baiBao.getFilePath() + "', '" + baiBao.getNoiDung() + "', '" + baiBao.getNgayDang()
 					+ "', '" + baiBao.getNguoiDang().getTenDangNhap() + "'," + baiBao.getLuotXem() + ");";
+			TheLoaiDAO.insertTheLoaiByBaiBao(baiBao);
 
 			JDBCUtil.closeConnection();
 			return res==1;

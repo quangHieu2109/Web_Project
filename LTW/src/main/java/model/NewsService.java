@@ -19,6 +19,9 @@ public class NewsService {
 	public ArrayList<BaiBao> getBaiBaoMoiNhat(int size) {
 		return dbBaiBao.selectOrderByTime(size);
 	}
+	public ArrayList<BaiBao> getBaiBaoMoiNhat() {
+		return dbBaiBao.selectOrderByTime();
+	}
 	public NguoiDung checkDangNhap(String tenDangNhap,String matKhau) {
 		return dbNguoiDung.checkNguoiDung(tenDangNhap, matKhau);
 	}

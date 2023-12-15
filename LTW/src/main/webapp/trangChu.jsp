@@ -142,61 +142,28 @@
 				</div>
 				<!-- end top view right -->
 			</div>
-			<c:forEach begin="4" end="4" step="3" varStatus="status">
-
+			
 				<div class="container mt-4">
-					<div class="row">
-						<div class="col-lg-6">
-							<a href="read?index=${status.index}"><div
-									class="row border h-100 mlr-5">
-									<div class="col-md-8">
-										<img src="${news.get(status.index).getFilePath()}"
-											class="card-img-3" alt="Hình ảnh">
-									</div>
-									<div class="col-md-4">
-										<div class="card-body">
-											<h5 class="card-title">${news.get(status.index).getTieuDe()}</h5>
-											<p class="card-text">${news.get(status.index).getMoTa()}</p>
-										</div>
-									</div>
-								</div></a>
-						</div>
-						<div class="col-lg-6">
-							<div class="row">
-								<div class=" border col-lg-6 ">
-									<a href="read?index=${status.index+1}">
-										<div class="col-md-12">
-											<img src="${news.get(status.index+1).getFilePath()}"
-												class="card-img-3" alt="Hình ảnh">
-										</div>
-										<div class="col-md-12">
-											<div class="card-body">
-												<h5 class="card-title">${news.get(status.index+1).getTieuDe()}</h5>
-												<p class="card-text">${news.get(status.index+1).getMoTa()}</p>
-											</div>
-										</div>
-									</a>
+				<div class="row space">
+					<c:forEach var="bao" items="${baos}" begin="4">
+						<div class=" border col-lg-4 mt-15">
+							<a href="read?maBaiBao="${bao.getMaBaiBao() }">
+								<div class="col-md-12">
+									<img src="${bao.getFilePath()}" class="card-img-3"
+										alt="Hình ảnh">
 								</div>
-								<div class=" border col-lg-6">
-									<a href="read?index=${status.index+2}">
-										<div class="col-md-12">
-											<img src="${news.get(status.index+2).getFilePath()}"
-												class="card-img-3" alt="Hình ảnh">
-										</div>
-										<div class="col-md-12">
-											<div class="card-body">
-												<h5 class="card-title">${news.get(status.index+2).getTieuDe()}</h5>
-												<p class="card-text">${news.get(status.index+2).getMoTa()}</p>
-											</div>
-
-										</div>
-									</a>
+								<div class="col-md-12">
+									<div class="card-body">
+										<h5 class="card-title">${bao.getTieuDe()}</h5>
+										<p class="card-text">${bao.getMoTa()}</p>
+									</div>
 								</div>
-							</div>
+							</a>
 						</div>
-					</div>
+					</c:forEach>
 				</div>
-			</c:forEach>
+			</div>
+			
 			<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

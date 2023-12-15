@@ -1,6 +1,7 @@
 <%@page import="model.DSTheLoai"%>
 <%@page import="model.BaiBao"%>
 <%@page import="model.TheLoai"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,6 +17,7 @@
 <body>
 		<jsp:include page="header.jsp" ></jsp:include>
 	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean>
+	<c:set value="${bao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
 		<form method="POST" action="UploadServlet"
 			enctype="multipart/form-data" id="myform">
@@ -44,140 +46,140 @@
 				<div class="theloaiitem">
 					<div class="uls">
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Thời sự"
-								<%=theLoai.name("Thời sự")%>> Thời sự
+							<input type="radio" name="theLoai" id="" value="thoisu"
+								${theLoai.checkTLChinh("") }> Thời sự
 							<div class="li">
-								<li><input type="checkbox" name="Thời sự" value="Chính trị"
-									<%=theLoai.checked("Chính trị")%>>Chính trị</li>
-								<li><input type="checkbox" name="Thời sự" value="Lao động"
-									<%=theLoai.checked("Lao động")%>>Lao động</li>
-								<li><input type="checkbox" name="Thời sự" value="Giáo dục"
-									<%=theLoai.checked("Giáo dục")%>>Giáo dục</li>
-								<li><input type="checkbox" name="Thời sự"
-									value="Giao thông" <%=theLoai.checked("Giao thông")%>>Giao
+								<li><input type="checkbox" name="thoisu" value="chinhtri"
+									${theLoai.checkTLPhu("chinhtri") }>Chính trị</li>
+								<li><input type="checkbox" name="thoisu" value="laodong"
+									${theLoai.checkTLPhu("laodong") }>Lao động</li>
+								<li><input type="checkbox" name="thoisu" value="giaoduc"
+									${theLoai.checkTLPhu("giaoduc") }>Giáo dục</li>
+								<li><input type="checkbox" name="thoisu"
+									value="giaothong" ${theLoai.checkTLPhu("giaothong") } >Giao
 									Thông</li>
 							</div>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Thế giới"
-								<%=theLoai.name("Thế giới")%>> Thế giới
+							<input type="radio" name="theLoai" id="" value="thegioi"
+								${theLoai.checkTLChinh("thegioi") }> Thế giới
 							<div class="li">
-								<li><input type="checkbox" name="Thế giới" value="Tư liệu"
-									<%=theLoai.checked("Tư liệu")%>>Tư liệu</li>
-								<li><input type="checkbox" name="Thế giới"
-									value="Cuộc sống" <%=theLoai.checked("Cuộc sống")%>>Cuộc
+								<li><input type="checkbox" name="thegioi" value="tulieu"
+									${theLoai.checkTLPhu("tulieu") }>Tư liệu</li>
+								<li><input type="checkbox" name="thegioi"
+									value="cuocsong" ${theLoai.checkTLPhu("cuocsong") }>Cuộc
 									sống</li>
-								<li><input type="checkbox" name="Thế giới" value="Quân sự"
-									<%=theLoai.checked("Quân sự")%>>Quân sự</li>
+								<li><input type="checkbox" name="thegioi" value="quansu"
+									${theLoai.checkTLPhu("quansu") }>Quân sự</li>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Kinh doanh"
-								<%=theLoai.name("Kinh doanh")%>> Kinh doanh
+							<input type="radio" name="theLoai" id="" value="kinhdoanh"
+								${theLoai.checkTLChinh("kinhdoanh") }> Kinh doanh
 							<div class="li">
-								<li><input type="checkbox" name="Thế giới" value="Quốc tế"
-									<%=theLoai.checked("Quốc tế")%>>Quốc tế</li>
-								<li><input type="checkbox" name="Thế giới"
-									value="Doanh nghiệp" <%=theLoai.checked("Doanh nghiệp")%>>Doanh
+								<li><input type="checkbox" name="kinhdoanh" value="quocte"
+									${theLoai.checkTLPhu("quocte") }>Quốc tế</li>
+								<li><input type="checkbox" name="kinhdoanh"
+									value="doanhnghiep" ${theLoai.checkTLPhu("doanhnghiep") }>Doanh
 									nghiệp</li>
-								<li><input type="checkbox" name="Thế giới"
-									value="Chứng khoáng" <%=theLoai.checked("Chứng khoáng")%>>Chứng
+								<li><input type="checkbox" name="kinhdoanh"
+									value="chungkhoang" ${theLoai.checkTLPhu("chungkhoang") }>Chứng
 									khoáng</li>
-								<li><input type="checkbox" name="Thế giới" value="Bảo hiểm"
-									<%=theLoai.checked("Bảo hiểm")%>>Bảo hiểm</li>
+								<li><input type="checkbox" name="kinhdoanh" value="baohiem"
+									${theLoai.checkTLPhu("baohiem") }>Bảo hiểm</li>
 							</div>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Bất động sản"
-								<%=theLoai.name("Bất động sản")%>> Bất động sản
+							<input type="radio" name="theLoai" id="" value="batdongsan"
+								${theLoai.checkTLChinh("batdongsan") }> Bất động sản
 							<div class="li">
-								<li><input type="checkbox" name="Bất động sản"
-									value="Chính sách" <%=theLoai.checked("Chính sách")%>>Chính
+								<li><input type="checkbox" name="batdongsan"
+									value="chinhsach" ${theLoai.checkTLPhu("chinhsach") }>Chính
 									sách</li>
-								<li><input type="checkbox" name="Bất động sản"
-									value="Thị trường" <%=theLoai.checked("Thị trường")%>>Thị
+								<li><input type="checkbox" name="batdongsan"
+									value="thitruong" ${theLoai.checkTLPhu("thitruong") }>Thị
 									trường</li>
-								<li><input type="checkbox" name="Bất động sản"
-									value="Dự án" <%=theLoai.checked("Dự án")%>>Dự án</li>
-								<li><input type="checkbox" name="Bất động sản"
-									value="Tư vấn" <%=theLoai.checked("Tư vấn")%>>Tư vấn</li>
+								<li><input type="checkbox" name="batdongsan"
+									value="duan" ${theLoai.checkTLPhu("duan") }>Dự án</li>
+								<li><input type="checkbox" name="batdongsan"
+									value="tuvan" ${theLoai.checkTLPhu("tuvan") }>Tư vấn</li>
 							</div>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Thể thao"
-								<%=theLoai.name("Thể thao")%>>Thể thao
+							<input type="radio" name="theLoai" id="" value="thethao"
+								${theLoai.checkTLChinh("thethao") }>Thể thao
 							<div class="li">
-								<li><input type="checkbox" name="Thể thao" value="Bóng đá"
-									<%=theLoai.checked("Bóng đá")%>>Bóng đá</li>
-								<li><input type="checkbox" name="Thể thao"
-									value="Lịch thi đấu" <%=theLoai.checked("Lịch thi đấu")%>>Lịch
+								<li><input type="checkbox" name="thethao" value="bongda"
+									${theLoai.checkTLPhu("bongda") }>Bóng đá</li>
+								<li><input type="checkbox" name="thethao"
+									value="lichthidau" ${theLoai.checkTLPhu("thethao") }>Lịch
 									thi đâu</li>
-								<li><input type="checkbox" name="Thể thao" value="Tennis"
-									<%=theLoai.checked("Tennis")%>>Tennis</li>
-								<li><input type="checkbox" name="Thể thao" value="Marathon"
-									<%=theLoai.checked("Marathon")%>>Marathon</li>
+								<li><input type="checkbox" name="thethao" value="tennis"
+									${theLoai.checkTLPhu("tennis") }>Tennis</li>
+								<li><input type="checkbox" name="thethao" value="marathon"
+									${theLoai.checkTLPhu("marathon") }>Marathon</li>
 							</div>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Giáo dục"
-								<%=theLoai.name("Giáo dục")%>> Giáo dục
+							<input type="radio" name="theLoai" id="" value="giaoduc"
+								${theLoai.checkTLChinh("giaoduc") }> Giáo dục
 							<div class="li">
-								<li><input type="checkbox" name="Giáo dục" value="Tin tức"
-									<%=theLoai.checked("Tin tức")%>>Tin tức</li>
-								<li><input type="checkbox" name="Giáo dục"
-									value="Tuyển sinh" <%=theLoai.checked("Tuyển sinh")%>>Tuyển
+								<li><input type="checkbox" name="giaoduc" value="tintuc"
+									${theLoai.checkTLPhu("tintuc") }>Tin tức</li>
+								<li><input type="checkbox" name="giaoduc"
+									value="tuyensinh" ${theLoai.checkTLPhu("giaoduc") }>Tuyển
 									sinh</li>
-								<li><input type="checkbox" name="Giáo dục" value="Du học"
-									<%=theLoai.checked("Du học")%>>Du học</li>
-								<li><input type="checkbox" name="Giáo dục"
-									value="Học tiếng Anh" <%=theLoai.checked("Học tiếng Anh")%>>Học
+								<li><input type="checkbox" name="giaoduc" value="duhoc"
+									${theLoai.checkTLPhu("duhoc") }>Du học</li>
+								<li><input type="checkbox" name="giaoduc"
+									value="hoctienganh" ${theLoai.checkTLPhu("giaoduc") }>Học
 									tiếng Anh</li>
-								<li><input type="checkbox" name="Giáo dục"
-									value="Giáo dục 4.0" <%=theLoai.checked("Giáo dục 4.0")%>>Giáo
+								<li><input type="checkbox" name="giaoduc"
+									value="giaoduc40" ${theLoai.checkTLPhu("giaoduc") }>Giáo
 									dục 4.0</li>
 							</div>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Đời sống"
-								<%=theLoai.name("Đời sống")%>> Đời sống
+							<input type="radio" name="theLoai" id="" value="doisong"
+								${theLoai.checkTLChinh("doisong") }> Đời sống
 							<div class="li">
-								<li><input type="checkbox" name="Đời sống"
-									value="Nhịp sống" <%=theLoai.checked("Nhịp sống")%>>Nhịp
+								<li><input type="checkbox" name="doisong"
+									value="nhipsong" ${theLoai.checkTLPhu("") }>Nhịp
 									sống</li>
-								<li><input type="checkbox" name="Đời sống" value="Tổ ấm"
-									<%=theLoai.checked("Tổ ấm")%>>Tổ ấm</li>
-								<li><input type="checkbox" name="Đời sống" value="Cooking"
-									<%=theLoai.checked("Cooking")%>>Cooking</li>
-								<li><input type="checkbox" name="Đời sống"
-									value="Tiêu dùng" <%=theLoai.checked("Tiêu dùng")%>>Tiêu
+								<li><input type="checkbox" name="doisong" value="toam"
+									${theLoai.checkTLPhu("toam") }>Tổ ấm</li>
+								<li><input type="checkbox" name="doisong" value="cooking"
+									${theLoai.checkTLPhu("cooking") }>Cooking</li>
+								<li><input type="checkbox" name="doisong"
+									value="tieudung" ${theLoai.checkTLPhu("doisong") }>Tiêu
 									dùng</li>
 							</div>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Du lịch"
-								<%=theLoai.name("Du lịch")%>>Du lịch
+							<input type="radio" name="theLoai" id="" value="dulich"
+								${theLoai.checkTLChinh("dulich") }>Du lịch
 							<div class="li">
-								<li><input type="checkbox" name="Du lịch" value="Điểm đến"
-									<%=theLoai.checked("Điểm đến")%>>Điểm đến</li>
-								<li><input type="checkbox" name="Du lịch" value="Ẩm thực"
-									<%=theLoai.checked("Ẩm thực")%>>Ẩm thực</li>
-								<li><input type="checkbox" name="Du lịch" value="Cẩm nang"
-									<%=theLoai.checked("Cẩm nang")%>>Cẩm nang</li>
-								<li><input type="checkbox" name="Du lịch" value="Tư vấn"
-									<%=theLoai.checked("Tư vấn")%>>Tư vấn</li>
+								<li><input type="checkbox" name="dulich" value="diemden"
+									${theLoai.checkTLPhu("diemden") }>Điểm đến</li>
+								<li><input type="checkbox" name="dulich" value="amthuc"
+									${theLoai.checkTLPhu("amthuc") }>Ẩm thực</li>
+								<li><input type="checkbox" name="dulich" value="camnang"
+									${theLoai.checkTLPhu("camnang") }>Cẩm nang</li>
+								<li><input type="checkbox" name="dulich" value="tuvan"
+									${theLoai.checkTLPhu("tuvan") }>Tư vấn</li>
 							</div>
 						</ul>
 						<ul class="ul">
-							<input type="radio" name="theLoai" id="" value="Xe"
-								<%=theLoai.name("Xe")%>> Xe
+							<input type="radio" name="theLoai" id="" value="xe"
+								${theLoai.checkTLChinh("xe") }> Xe
 							<div class="li">
-								<li><input type="checkbox" name="Xe" value="Thị trường"
-									<%=theLoai.checked("Thị trường")%>>Thị trường</li>
-								<li><input type="checkbox" name="Xe" value="Diễn đàn"
-									<%=theLoai.checked("Diễn đàn")%>>Diễn đàn</li>
-								<li><input type="checkbox" name="Xe" value="Thi bằng lái"
-									<%=theLoai.checked("Thi bằng lái")%>>Thi bằng lái</li>
-								<li><input type="checkbox" name="Xe" value="Mua bán"
-									<%=theLoai.checked("Mua bán")%>>Mua bán</li>
+								<li><input type="checkbox" name="xe" value="thitruong"
+									${theLoai.checkTLPhu("thitruong") }>Thị trường</li>
+								<li><input type="checkbox" name="xe" value="diendang"
+									${theLoai.checkTLPhu("diendang") }>Diễn đàn</li>
+								<li><input type="checkbox" name="xe" value="thibanglai"
+									${theLoai.checkTLPhu("thibanglai") }>Thi bằng lái</li>
+								<li><input type="checkbox" name="xe" value="muaban"
+									${theLoai.checkTLPhu("muaban") }>Mua bán</li>
 							</div>
 						</ul>
 					</div>

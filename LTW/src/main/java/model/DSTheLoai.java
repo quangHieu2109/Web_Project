@@ -48,6 +48,22 @@ public class DSTheLoai {
 		this.dsTheLoaiPhu = dsTheLoaiPhu;
 	}
 
+	public String checkTLChinh(String tl) {
+		if (theLoaiChinh.getMaTheLoai().equals(tl)) {
+			return "checked=\"checked\"";
+		}
+		return "";
+	}
+
+	public String checkTLPhu(String tl) {
+		for (TheLoai theLoai : dsTheLoaiPhu) {
+			if (theLoai.getMaTheLoai().equals(tl)) {
+				return "checked=\"checked\"";
+			}
+		}
+		return "";
+	}
+
 	@Override
 	public String toString() {
 		return "DSTheLoai [theLoaiChinh=" + theLoaiChinh + ", dsTheLoaiPhu=" + dsTheLoaiPhu + "]";
