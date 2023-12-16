@@ -327,6 +327,36 @@ public class BaiBaoDAO {
 			return false;
 		}
 	}
+	public static ArrayList<BaiBao> getBaiBaoByTheLoai(String theLoaiChinh,String theLoaiPhu){
+		ArrayList<BaiBao> res = new ArrayList<BaiBao>();
+		String sql = "";
+		PreparedStatement ps =null;
+		try {
+		if(theLoaiPhu!=null) {
+			sql = "Select * From (baibao inner join danhsachtheloaiphu on baibao.maBaiBao = danhsachtheloaiphu.maBaiBao) Where danhsachtheloaiphu.maTheLoai = '"+theLoaiPhu+"';";
+			ps = JDBCUtil.getConnection().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				BaiBao baiBao = new BaiBao(rs.getString("maBaiBao"), rs.getString("tenBaiBao"), rs.getString("moTa"), rs.getString("filePath"), rs.getString("noiDung"), rs.getDate("ngayDang"), new NguoiDung(), rs.getInt("luotXem"), new DSTheLoai(), new ArrayList<BinhLuan>());
+				res.add(baiBao);
+				
+			}
+		}else {
+			sql = "Select * From (baibao inner join theloaiChinh on baibao.maBaiBao = theloaiChinh.maBaiBao) Where theloaichinh.maTheLoai = '"+theLoaiChinh+"'";
+			ps = JDBCUtil.getConnection().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				BaiBao baiBao = new BaiBao(rs.getString("maBaiBao"), rs.getString("tenBaiBao"), rs.getString("moTa"), rs.getString("filePath"), rs.getString("noiDung"), rs.getDate("ngayDang"), new NguoiDung(), rs.getInt("luotXem"), new DSTheLoai(), new ArrayList<BinhLuan>());
+				res.add(baiBao);
+				
+			}
+		}
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return res;
+	}
 
 	public static void removeBaiBao(BaiBao baiBao) {
 

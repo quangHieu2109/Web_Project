@@ -1,5 +1,7 @@
 package model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +56,12 @@ public class NewsService {
 		BaiBao reuslt = BaiBaoDAO.selectByMaBaiBao(mabb);
 		JDBCUtil.closeConnection();
 		return reuslt;
+	}
+
+	public ArrayList<BaiBao> getBaiBaoByTheLoai(String theLoaiChinh, String theLoaiPhu) {
+		JDBCUtil.connection();
+		ArrayList<BaiBao> baos = BaiBaoDAO.getBaiBaoByTheLoai(theLoaiChinh, theLoaiPhu);
+		return baos;
 	}
 
 	public ArrayList<BaiBao> searchBaiBao(String search) {

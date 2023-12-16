@@ -225,13 +225,13 @@ ul {
 			<a href="MainServlet" style="padding: 15px;"><i class="fa-solid fa-house"></i></a>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai?theLoaiChinh=thoisu">Thời sự</a>
+			<a href="search?type=searchByTheLoai&theLoaiChinh=thoisu">Thời sự</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=chinhtri">Chính trị</a></li>
-					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=laodong">Lao động</a></li>
-					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=giaoduc">Giáo dục</a></li>
-					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=giaothong">Giao thông</a></li>
+					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=chinhtri">Chính trị</a></li>
+					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao động</a></li>
+					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaoduc">Giáo dục</a></li>
+					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao thông</a></li>
 				</ul>
 			</div>
 		</div>
