@@ -55,6 +55,44 @@ public class BaiBaoDAO {
 		//
 		return result;
 	}
+	
+	public static BaiBao selectByMaBaiBao(String mabb) {
+		BaiBao result = null;
+		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
+		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
+		TheLoaiDAO theLoaiDAO = new TheLoaiDAO();
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			String sql = "select * from baibao where maBaiBao =?";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, mabb);
+			ResultSet rs = st.executeQuery();
+			while (rs.next()) {
+				String maBaiBao = rs.getString("maBaiBao");
+				String tenBaiBao = rs.getString("tenBaiBao");
+				String moTa = rs.getString("moTa");
+				String filePath = rs.getString("filePath");
+				String noiDung = rs.getString("noiDung");
+				Date ngayDang = rs.getDate("ngayDang");
+				String tenDangNhap = rs.getString("tenDangNhap");
+				int luotXem = rs.getInt("luotXem");
+
+				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
+				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(dsBinhLuan);
+				baiBao.setTheLoai(dsTheLoai);
+				result=baiBao;
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		//
+		return result;
+	}
 	public ArrayList<BaiBao> select(){
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		
@@ -297,16 +335,17 @@ public class BaiBaoDAO {
 	public static void main(String[] args) {
 		JDBCUtil.connection();
 		BaiBaoDAO dao = new BaiBaoDAO();
-		DSTheLoai dsTheLoai = new DSTheLoai(new TheLoai("tl1", null));
-
-		for (BaiBao bb : dao.selectByTheLoai(dsTheLoai)) {
+//		DSTheLoai dsTheLoai = new DSTheLoai(new TheLoai("tl1", null));
+//
+//		for (BaiBao bb : dao.selectByTheLoai(dsTheLoai)) {
+//			System.out.println(bb);
+//		}
+//		System.out.println("\n");
+//		dsTheLoai.addTheLoai(new TheLoai("tl3", null));
+		for (BaiBao bb : dao.selectByTen("234")) {
 			System.out.println(bb);
 		}
-		System.out.println("\n");
-		dsTheLoai.addTheLoai(new TheLoai("tl3", null));
-		for (BaiBao bb : dao.selectByTheLoai(dsTheLoai)) {
-			System.out.println(bb);
-		}
+		
 		JDBCUtil.closeConnection();
 		
 	}

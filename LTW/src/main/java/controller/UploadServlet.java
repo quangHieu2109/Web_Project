@@ -137,7 +137,8 @@ public class UploadServlet extends HttpServlet {
 			BaiBao baiBao = new BaiBao(tieuDe, moTa, link, noiDung, nguoiDung, dsTheLoai);
 
 			newsService.addBaiBao(baiBao);
-			request.getRequestDispatcher("trangChu.jsp").forward(request, response);
+			response.sendRedirect("MainServlet");
+//			request.getRequestDispatcher("trangChu.jsp").forward(request, response);
 		}
 		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		response.setHeader("Pragma", "no-cache");

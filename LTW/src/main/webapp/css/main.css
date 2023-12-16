@@ -181,12 +181,15 @@ ul {
 .text-danger {
 	color: red;
 }
-
+ 
 .mt-15 {
 	margin-top: 15px;
 
 }
+.mt-30 {
+	margin-top: 30px;
 
+}
 .border {
 	border: 1px solid #dee2e6;
 	border-radius: 5px;

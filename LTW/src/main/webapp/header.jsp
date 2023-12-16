@@ -11,18 +11,30 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <style type="text/css">
+.rounded-circle {
+	border-radius: 50%;
+}
+
+.user {
+	display: flex;
+	cursor: pointer;
+}
+
+.user i {
+	display: block;
+	margin-top: auto;
+	margin-bottom: auto;
+	margin-left: 5px;
+}
+
 .label2 {
-	font-size: 25px;
+ 	font-size: 15px; 
 	font-weight: 600;
 	position: relative;
 	height: max-content;
 	margin-top: auto;
 	margin-bottom: auto;
 	z-index: 4;
-}
-
-.label2:hover .div2 {
-	display: block;
 }
 
 .label2 label {
@@ -34,14 +46,15 @@
 	position: absolute;
 	margin-top: 5px; /* Điều chỉnh khoảng cách giữa .label2 và .div2 */
 	width: max-content;
-	top: 75%; right : -90%;
+	top: 100%;
+/* 	right: -90%; */
 	border: 1px solid;
 	border-color: #bebaba;
 	border-radius: 5px;
 	z-index: 2;
 	background-color: white;
 	padding-right: 20px;
-	right: -90%;
+	
 }
 
 .div2::before {
@@ -159,20 +172,20 @@ ul {
 	<div
 		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
 		<div>
-			<a href="" style="display: block; height: max_content;"><img
+			<a href="MainServlet" style="display: block; height: max_content;"><img
 				alt="logo"
 				src="https://tse4.mm.bing.net/th?id=OIP._IfEaUssjZQwZ1u92b1_GgHaEK&pid=Api&P=0&h=180"
 				style="max-height: 100px"> </a>
 		</div>
 		<div class="search">
 			<form action="search" id="searchForm">
+			<input type="hidden" name ="type" value="seachByTen">
 				<input type="text" name="txtSearch"> <i
 					class="fa-solid fa-magnifying-glass" id="search" onclick="search()"></i>
 			</form>
 		</div>
 		<div
-			style="margin-top: auto; margin-bottom: auto; display:  ${nguoiDung.getTenDangNhap() == null ? "
-			flex" : "none"}; width:max-content; justify-content:space-between;">
+			style="margin-top: auto; margin-bottom: auto; display:  ${nguoiDung.getTenDangNhap() == null ? "flex" : "none"}; width:max-content; justify-content:space-between;">
 
 			<a href="LoginServlet"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;">Đăng
@@ -180,10 +193,12 @@ ul {
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
 				ký</a>
 		</div>
-		<div class="label2"
-			style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
-			<label style>Xin chào ${nguoiDung.getTenDangNhap() }</label>
-			<div class="div2">
+		<div class="user label2" onclick="toggleDropdown('div2')" style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
+			<img src="https://github.com/mdo.png" alt="mdo" width="32"
+				height="32" class="rounded-circle"> <i
+				class="fa-solid fa-angle-down"></i>
+
+			<div class="div2" id="div2">
 				<ul>
 					<li><a href="dangBai.jsp"
 						style="text-decoration: none; color: black;">Đăng bài</a></li>
@@ -199,40 +214,42 @@ ul {
 						style="text-decoration: none; color: black; margin-top: 10px">Đăng
 							xuất</a></li>
 				</ul>
+				</ul>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!-- Navbar -->
 	<div class="nav">
 		<div class="nav-item">
-			<a href="" style="padding: 15px;"><i class="fa-solid fa-house"></i></a>
+			<a href="MainServlet" style="padding: 15px;"><i class="fa-solid fa-house"></i></a>
 		</div>
 		<div class="nav-item">
-			<a href="">Thời sự</a>
+			<a href="search?type=searchByTheLoai?theLoaiChinh=thoisu">Thời sự</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="">Chính trị</a></li>
-					<li><a href="">Lao động</a></li>
-					<li><a href="">Giáo dục</a></li>
-					<li><a href="">Giao thông</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=chinhtri">Chính trị</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=laodong">Lao động</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=giaoduc">Giáo dục</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thoisu?theLoaiPhu=giaothong">Giao thông</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="">Thế giới</a>
+			<a href="search?type=searchByTheLoai?theLoaiChinh=thegioi">Thế giới</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="">Tư liệu</a></li>
-					<li><a href="">Cuộc sống</a></li>
-					<li><a href="">Quân sự</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thegioi?theLoaiPhu=tulieu">Tư liệu</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thegioi?theLoaiPhu=cuocsong">Cuộc sống</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thegioi?theLoaiPhu=quansu">Quân sự</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="">Kinh doanh</a>
+			<a href="search?type=searchByTheLoai?theLoaiChinh=kinhdoanh">Kinh doanh</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="">Quốc tế</a></li>
+					<li><a href="search?type=searchByTheLoai?theLoaiChinh=thegioi?theLoaiPhu=tulieu">Quốc tế</a></li>
 					<li><a href="">Doanh nghiệp</a></li>
 					<li><a href="">Chứng khoáng</a></li>
 					<li><a href="">Bảo hiểm</a></li>
@@ -313,6 +330,26 @@ ul {
 			var form = document.getElementById('searchForm');
 			form.submit();
 		}
+		function toggleDropdown(divId) {
+			var dropdown = document.getElementById(divId);
+			if (dropdown.style.display === "none"
+					|| dropdown.style.display === "") {
+				dropdown.style.display = "block";
+			} else {
+				dropdown.style.display = "none";
+			}
+		}
+
+		// Ẩn dropdown khi nhấp vào bất kỳ nơi nào trên trang
+		document.addEventListener("click", function(event) {
+			var dropdowns = document.querySelectorAll('.div2');
+			dropdowns.forEach(function(dropdown) {
+				if (event.target !== dropdown.previousElementSibling
+						&& !dropdown.contains(event.target)) {
+					dropdown.style.display = "none";
+				}
+			});
+		});
 	</script>
 </body>
 </html>

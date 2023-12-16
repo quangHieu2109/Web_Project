@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import database.JDBCUtil;
 import model.BaiBao;
 import model.NewsService;
 
@@ -33,13 +34,20 @@ public class ReadNewsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		JDBCUtil.connection();
 		List<BaiBao> baos = (ArrayList<BaiBao>) request.getSession().getAttribute("baos");
-		BaiBao bao=baos.get(Integer.valueOf(request.getParameter("index")));
-		bao.setLuotXem(bao.getLuotXem()+1);
-		request.getSession().setAttribute("bao", bao);
+		
 		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+		System.out.println(request.getParameter("maBaiBao"));
+		BaiBao bao=newsService.getBaiBaoByMaBB(request.getParameter("maBaiBao")+"");
+		bao.setLuotXem(bao.getLuotXem()+1);
+		if(request.getSession().getAttribute("bao") != null) {
+			request.getSession().removeAttribute("bao");
+		}
+		request.getSession().setAttribute("bao", bao);
 		newsService.updateBaiBao(bao);
 		request.getRequestDispatcher("docBao.jsp").forward(request, response);
+		JDBCUtil.closeConnection();
 	}
 
 	/**

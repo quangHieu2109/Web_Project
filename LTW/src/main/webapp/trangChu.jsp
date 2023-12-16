@@ -46,7 +46,7 @@
 					<!-- 				ô lớn ở giữa -->
 					<div class="col-lg-12 col-md-6 mb-4">
 						<div class="card h-200" style="width: 100%;">
-							<a href="read?index=0"><div class="row no-gutters">
+							<a href="read?maBaiBao=${news[0].getMaBaiBao() }"><div class="row no-gutters">
 									<div class="col-md-8">
 										<img src="${news[0].getFilePath()}" class="card-img"
 											alt="Hình ảnh">
@@ -64,7 +64,7 @@
 					<!-- 						3 ô nhỏ ở dưới -->
 					<div class="row  mt-15">
 						<div class="card h-200 " style="width: 31%;">
-								<a href="read?index=1"><div class="row no-gutters">
+								<a href="read?maBaiBao=${news[1].getMaBaiBao() }"><div class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(1).getFilePath()}" class=" card-img-3"
 											alt="Hình ảnh">
@@ -79,7 +79,7 @@
 							</div>
 						<div class="card h-200 ml-3"
 							style="width: 31%; margin-left: 3.5%; margin-right: 3.5%">
-							<a href="read?index=2"><div class="row no-gutters">
+							<a href="read?maBaiBao=${news[2].getMaBaiBao() }"><div class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(2).getFilePath()}" class="card-img-3"
 											alt="Hình ảnh">
@@ -94,7 +94,7 @@
 								</div></a>
 						</div>
 						<div class="card h-200 " style="width: 31%;">
-							<a href="read?index=3"><div class="row no-gutters">
+							<a href="read?maBaiBao=${news[3].getMaBaiBao() }"><div class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(3).getFilePath()}" class="card-img-3"
 											alt="Hình ảnh">
@@ -143,10 +143,10 @@
 				<!-- end top view right -->
 			</div>
 			
-				<div class="container mt-4">
-				<div class="row space">
+				<div class="container mt-4 w-80">
+				<div class="row space w-80">
 					<c:forEach var="bao" items="${baos}" begin="4">
-						<div class=" border col-lg-4 mt-15">
+						<div class=" border col-lg-4 mt-30">
 							<a href="read?maBaiBao="${bao.getMaBaiBao() }">
 								<div class="col-md-12">
 									<img src="${bao.getFilePath()}" class="card-img-3"

@@ -47,7 +47,7 @@
 					<div class="uls">
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="thoisu"
-								${theLoai.checkTLChinh("") }> Thời sự
+								${theLoai.checkTLChinh("thoisu") }> Thời sự
 							<div class="li">
 								<li><input type="checkbox" name="thoisu" value="chinhtri"
 									${theLoai.checkTLPhu("chinhtri") }>Chính trị</li>
@@ -126,15 +126,15 @@
 								<li><input type="checkbox" name="giaoduc" value="tintuc"
 									${theLoai.checkTLPhu("tintuc") }>Tin tức</li>
 								<li><input type="checkbox" name="giaoduc"
-									value="tuyensinh" ${theLoai.checkTLPhu("giaoduc") }>Tuyển
+									value="tuyensinh" ${theLoai.checkTLPhu("tuyensinh") }>Tuyển
 									sinh</li>
 								<li><input type="checkbox" name="giaoduc" value="duhoc"
 									${theLoai.checkTLPhu("duhoc") }>Du học</li>
 								<li><input type="checkbox" name="giaoduc"
-									value="hoctienganh" ${theLoai.checkTLPhu("giaoduc") }>Học
+									value="hoctienganh" ${theLoai.checkTLPhu("hoctienganh") }>Học
 									tiếng Anh</li>
 								<li><input type="checkbox" name="giaoduc"
-									value="giaoduc40" ${theLoai.checkTLPhu("giaoduc") }>Giáo
+									value="giaoduc40" ${theLoai.checkTLPhu("giaoduc40") }>Giáo
 									dục 4.0</li>
 							</div>
 						</ul>
@@ -150,7 +150,7 @@
 								<li><input type="checkbox" name="doisong" value="cooking"
 									${theLoai.checkTLPhu("cooking") }>Cooking</li>
 								<li><input type="checkbox" name="doisong"
-									value="tieudung" ${theLoai.checkTLPhu("doisong") }>Tiêu
+									value="tieudung" ${theLoai.checkTLPhu("tieudung") }>Tiêu
 									dùng</li>
 							</div>
 						</ul>
@@ -174,8 +174,8 @@
 							<div class="li">
 								<li><input type="checkbox" name="xe" value="thitruong"
 									${theLoai.checkTLPhu("thitruong") }>Thị trường</li>
-								<li><input type="checkbox" name="xe" value="diendang"
-									${theLoai.checkTLPhu("diendang") }>Diễn đàn</li>
+								<li><input type="checkbox" name="xe" value="diendan"
+									${theLoai.checkTLPhu("diendan") }>Diễn đàn</li>
 								<li><input type="checkbox" name="xe" value="thibanglai"
 									${theLoai.checkTLPhu("thibanglai") }>Thi bằng lái</li>
 								<li><input type="checkbox" name="xe" value="muaban"
