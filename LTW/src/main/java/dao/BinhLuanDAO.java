@@ -17,13 +17,13 @@ import model.NguoiDung;
 import model.TheLoai;
 
 public class BinhLuanDAO extends GeneralDAO {
-	public List<BinhLuan> selectAll(String id) {
+	public  static List<BinhLuan> selectAll(String id) {
 		List<BinhLuan> result = new ArrayList<BinhLuan>();
 		//
 		return result;
 	}
 
-	public ArrayList<BinhLuan> selectByBaiBao(BaiBao baiBao) {
+	public  static ArrayList<BinhLuan> selectByBaiBao(BaiBao baiBao) {
 		ArrayList<BinhLuan> result = new ArrayList<BinhLuan>();
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -47,7 +47,7 @@ public class BinhLuanDAO extends GeneralDAO {
 		return result;
 	}
 
-	public int insertBinhLuan(BinhLuan binhLuan) {
+	public  static int insertBinhLuan(BinhLuan binhLuan) {
 		int result = 0;
 		try {
 			PrintWriter print = new PrintWriter(new FileWriter("data.txt", true));
@@ -78,7 +78,7 @@ public class BinhLuanDAO extends GeneralDAO {
 
 	}
 
-	public int removeBinhLuan(BinhLuan binhLuan) {
+	public static  int removeBinhLuan(BinhLuan binhLuan) {
 		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();

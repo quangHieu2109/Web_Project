@@ -250,9 +250,12 @@ ul {
 
 
 .card-img-3 {
-	width: 100%;
+	display: block;
+	margin: auto;
+	max-height: 250px;
+	max-width: 100%;
 	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	border-top-right-radius: 5px; 
 	/*	margin-left:5%;*/
 
 }
@@ -413,4 +416,42 @@ p {
 
 hr {
 	margin: 20px 0;
+}
+.btn {
+	 display: inline-block;
+	 width: max-content ;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 600;  
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #363628ed;
+        color: #fff;
+
+}
+.flex{
+	display: flex; 
+}
+.button {
+	
+	display: flex;
+	justify-content: space-between;
+	font-size: 20px;
+	margin: auto;
+
+} 
+.bl{
+	border-left: 1px solid #dee2e6;
+}
+.br{
+	border-right: 1px solid #dee2e6;
+}
+.ma{
+	margin: auto ;
+}
+.fs-25{
+	font-size: 25px;
 }

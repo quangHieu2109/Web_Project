@@ -11,6 +11,8 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="baos" class="java.util.ArrayList" scope="session"></jsp:useBean>
+	<jsp:useBean id="xuHuong" class="java.util.ArrayList" scope="session"></jsp:useBean>
+	<jsp:useBean id="topView" class="java.util.ArrayList" scope="session"></jsp:useBean>
 	<c:set value="${baos}" var="news"></c:set>
 	<div class="container">
 		<div class="row">
@@ -18,23 +20,14 @@
 			<!-- Menu left -->
 			<div class="col-lg-2">
 				<div class="list-group border">
+
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Xu
-						hướng</span> <a href="#" class="list-group-item"> <span
-						class="text-danger " style="font-size: 18px; font-weight: bold;">Viễn
-							cảnh ảm đạm</span> / Giấc mơ chủ nhà trọ tan vỡ ở Đà Lạt
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Một chiều</span> /
-						Thời đại mạng xã hội, giáo viên ngày càng sợ phụ huynh
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Nhận con nuôi</span> /
-						Bà mẹ Mỹ nuôi hai đứa trẻ mồ côi song sinh người Việt
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Nhu cầu tăng</span> /
-						Giá gạo tăng cao kỷ lục
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Chuyển mình</span> /
-						Tân Hòa: Vươn lên từ nông thôn khó khăn đến du lịch xuất sắc
-					</a>
+						hướng</span>
+					<c:forEach items="${xuHuong }" var="baoXH">
+						<a href="read?maBaiBao=${baoXH.getMaBaiBao() }" class="list-group-item"> <span
+							class="text-danger " style="font-size: 18px; font-weight: bold;">${baoXH.getTieuDe() }</span>
+						</a>
+					</c:forEach>
 				</div>
 
 			</div>
@@ -46,7 +39,8 @@
 					<!-- 				ô lớn ở giữa -->
 					<div class="col-lg-12 col-md-6 mb-4">
 						<div class="card h-200" style="width: 100%;">
-							<a href="read?maBaiBao=${news[0].getMaBaiBao() }"><div class="row no-gutters">
+							<a href="read?maBaiBao=${news[0].getMaBaiBao() }"><div
+									class="row no-gutters">
 									<div class="col-md-8">
 										<img src="${news[0].getFilePath()}" class="card-img"
 											alt="Hình ảnh">
@@ -64,7 +58,8 @@
 					<!-- 						3 ô nhỏ ở dưới -->
 					<div class="row  mt-15">
 						<div class="card h-200 " style="width: 31%;">
-								<a href="read?maBaiBao=${news[1].getMaBaiBao() }"><div class="row no-gutters">
+							<a href="read?maBaiBao=${news[1].getMaBaiBao() }"><div
+									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(1).getFilePath()}" class=" card-img-3"
 											alt="Hình ảnh">
@@ -76,10 +71,11 @@
 										</div>
 									</div>
 								</div></a>
-							</div>
+						</div>
 						<div class="card h-200 ml-3"
 							style="width: 31%; margin-left: 3.5%; margin-right: 3.5%">
-							<a href="read?maBaiBao=${news[2].getMaBaiBao() }"><div class="row no-gutters">
+							<a href="read?maBaiBao=${news[2].getMaBaiBao() }"><div
+									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(2).getFilePath()}" class="card-img-3"
 											alt="Hình ảnh">
@@ -94,7 +90,8 @@
 								</div></a>
 						</div>
 						<div class="card h-200 " style="width: 31%;">
-							<a href="read?maBaiBao=${news[3].getMaBaiBao() }"><div class="row no-gutters">
+							<a href="read?maBaiBao=${news[3].getMaBaiBao() }"><div
+									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(3).getFilePath()}" class="card-img-3"
 											alt="Hình ảnh">
@@ -123,27 +120,17 @@
 			<div class="col-lg-3">
 				<div class="list-group border">
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Top
-						view</span> <a href="#" class="list-group-item"> <span
-						class="text-danger " style="font-size: 18px; font-weight: bold;">Viễn
-							cảnh ảm đạm</span> / Giấc mơ chủ nhà trọ tan vỡ ở Đà Lạt
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Một chiều</span> /
-						Thời đại mạng xã hội, giáo viên ngày càng sợ phụ huynh
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Nhận con nuôi</span> /
-						Bà mẹ Mỹ nuôi hai đứa trẻ mồ côi song sinh người Việt
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Nhu cầu tăng</span> /
-						Giá gạo tăng cao kỷ lục
-					</a> <a href="#" class="list-group-item"> <span class="text-danger"
-						style="font-size: 18px; font-weight: bold;">Chuyển mình</span> /
-						Tân Hòa: Vươn lên từ nông thôn khó khăn đến du lịch xuất sắc
-					</a>
+						view</span> <c:forEach items="${topView }" var="baoTV">
+						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }" class="list-group-item">
+						<span
+						class="text-danger " style="font-size: 18px; font-weight: bold;">${baoTV.getTieuDe() }</span> 
+					</a> 
+						</c:forEach>
 				</div>
 				<!-- end top view right -->
 			</div>
-			
-				<div class="container mt-4 w-80">
+
+			<div class="container mt-4 w-80">
 				<div class="row space w-80">
 					<c:forEach var="bao" items="${baos}" begin="4">
 						<div class=" border col-lg-4 mt-30">
@@ -163,7 +150,7 @@
 					</c:forEach>
 				</div>
 			</div>
-			
+
 			<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

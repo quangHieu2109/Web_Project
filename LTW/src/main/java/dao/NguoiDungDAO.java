@@ -19,7 +19,7 @@ import model.NguoiDung;
 import model.TheLoai;
 
 public class NguoiDungDAO {
-	public List<NguoiDung> selectAll() {
+	public static  List<NguoiDung> selectAll() {
 		List<NguoiDung> result = new ArrayList<NguoiDung>();
 		//
 		try {
@@ -43,7 +43,7 @@ public class NguoiDungDAO {
 		return result;
 	}
 
-	public NguoiDung selectByTenDangNhap(String tenDN) {
+	public static NguoiDung selectByTenDangNhap(String tenDN) {
 		NguoiDung result = null;
 		//
 		try {
@@ -68,7 +68,7 @@ public class NguoiDungDAO {
 		return result;
 	}
 
-	public int insertNguoiDung(NguoiDung nguoiDung) {
+	public  static int insertNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {
 			
@@ -96,7 +96,7 @@ public class NguoiDungDAO {
 		return result; // so dong thay doi
 	}
 
-	public int removeNguoiDung(NguoiDung nguoiDung) {
+	public  static int removeNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -111,7 +111,7 @@ public class NguoiDungDAO {
 		return result; // so dong thay doi
 	}
 
-	public int updateNguoiDung(NguoiDung nguoiDung) {
+	public  static int updateNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -131,7 +131,7 @@ public class NguoiDungDAO {
 		return result; // so dong thay doi
 	}
 
-	public NguoiDung checkNguoiDung(String tenDangNhap, String matKhau) {
+	public  static NguoiDung checkNguoiDung(String tenDangNhap, String matKhau) {
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "SELECT * FROM nguoidung WHERE tenDangNhap = ? AND matKhau = ?";

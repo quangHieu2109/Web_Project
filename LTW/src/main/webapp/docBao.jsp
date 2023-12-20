@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +12,7 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="bao" class="model.BaiBao" scope="session"></jsp:useBean>
+	<jsp:useBean id="topView" class="java.util.ArrayList" scope="session"></jsp:useBean>
 	<div class="container">
 		<div class="row space  w-80">
 			<div class="col-lg-8">
@@ -23,9 +26,7 @@
 					<label>${bao.getMoTa()}</label>
 				</div>
 				<div>
-					<img alt=""
-						src="${bao.getFilePath()}"
-						class="card-img">
+					<img alt="" src="${bao.getFilePath()}" class="card-img">
 				</div>
 				<div class="content">
 					<label>${bao.getNoiDung()}</label>
@@ -36,100 +37,39 @@
 				<div class="list-group border sticky">
 					<span
 						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px">Xem
-						nhiều</span> <a href="#" class="list-group-item">
-						<div class="row">
-							<div class="col-md-4">
-								<img alt=""
-									src="https://i1-vnexpress.vnecdn.net/2023/12/06/VNEPlan-1701832660-8253-1701832713.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=VKgb_lY8XxyD6S-QVwdIAw"
-									class="card-img">
+						nhiều</span>
+					<c:forEach items="${topView }" var="baoTV">
+						<a href="read?maBaiBao="${baoTV.getMaBaiBao() }" class="list-group-item">
+							<div class="row">
+								<div class="col-md-4">
+									<img alt=""
+										src="${baoTV.getFilePath() }"
+										class="card-img">
+								</div>
+								<div class="col-md-8">
+									<label class="center">${baoTV.getTieuDe() }</label>
+								</div>
 							</div>
-							<div class="col-md-8">
-								<label class="center">Siêu tàu container chạy bằng lò
-									phản ứng muối nóng chảy</label>
-							</div>
-						</div>
-					</a> <a href="#" class="list-group-item">
-						<div class="row">
-							<div class="col-md-4">
-								<img alt=""
-									src="https://i1-vnexpress.vnecdn.net/2023/12/06/VNEPlan-1701832660-8253-1701832713.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=VKgb_lY8XxyD6S-QVwdIAw"
-									class="card-img">
-							</div>
-							<div class="col-md-8">
-								<label class="center">Siêu tàu container chạy bằng lò
-									phản ứng muối nóng chảy</label>
-							</div>
-						</div>
-					</a> <a href="#" class="list-group-item">
-						<div class="row">
-							<div class="col-md-4">
-								<img alt=""
-									src="https://i1-vnexpress.vnecdn.net/2023/12/06/VNEPlan-1701832660-8253-1701832713.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=VKgb_lY8XxyD6S-QVwdIAw"
-									class="card-img">
-							</div>
-							<div class="col-md-8">
-								<label class="center">Siêu tàu container chạy bằng lò
-									phản ứng muối nóng chảy</label>
-							</div>
-						</div>
-					</a> <a href="#" class="list-group-item">
-						<div class="row">
-							<div class="col-md-4">
-								<img alt=""
-									src="https://i1-vnexpress.vnecdn.net/2023/12/06/VNEPlan-1701832660-8253-1701832713.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=VKgb_lY8XxyD6S-QVwdIAw"
-									class="card-img">
-							</div>
-							<div class="col-md-8">
-								<label class="center">Siêu tàu container chạy bằng lò
-									phản ứng muối nóng chảy</label>
-							</div>
-						</div>
-					</a>
+						</a>
+					</c:forEach>
 
-				<a href="#" class="list-group-item">
-						<div class="row">
-							<div class="col-md-4">
-								<img alt=""
-									src="https://i1-vnexpress.vnecdn.net/2023/12/06/VNEPlan-1701832660-8253-1701832713.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=VKgb_lY8XxyD6S-QVwdIAw"
-									class="card-img">
-							</div>
-							<div class="col-md-8">
-								<label class="center">Siêu tàu container chạy bằng lò
-									phản ứng muối nóng chảy</label>
-							</div>
-						</div>
-					</a>
-				<a href="#" class="list-group-item">
-						<div class="row">
-							<div class="col-md-4">
-								<img alt=""
-									src="https://i1-vnexpress.vnecdn.net/2023/12/06/VNEPlan-1701832660-8253-1701832713.jpg?w=300&h=180&q=100&dpr=1&fit=crop&s=VKgb_lY8XxyD6S-QVwdIAw"
-									class="card-img">
-							</div>
-							<div class="col-md-8">
-								<label class="center">Siêu tàu container chạy bằng lò
-									phản ứng muối nóng chảy</label>
-							</div>
-						</div>
-					</a>
-				
 				</div>
 			</div>
+		</div>
+		<div class="row space w-80">
+			<div class="col-lg-8">
+				<div class="comment">
+					<h3>Bình luận</h3>
+					<textarea rows="7" cols="" wrap="soft"></textarea>
+					<button>Bình luận</button>
+				</div>
+
 			</div>
-	<div class="row space w-80">
-	<div class="col-lg-8">
-	<div class="comment">
-	<h3>Bình luận</h3>
-	<textarea rows="7" cols="" wrap="soft"></textarea>
-	<button>Bình luận</button>
-	 </div>
-	
-	</div>
-	
-	</div>
-		
+
+		</div>
+
 	</div>
 
-		<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

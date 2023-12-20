@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.tomcat.util.digester.SystemPropertySource;
+
 import database.JDBCUtil;
 import model.BaiBao;
 import model.DSTheLoai;
@@ -57,7 +59,10 @@ public class TheLoaiDAO extends GeneralDAO {
 
 		return result;
 	}
-
+	public static void updateTheLoai(BaiBao baiBao) {
+		removeTheLoai(baiBao);
+		insertTheLoaiByBaiBao(baiBao);
+	}
 	public static TheLoai selectByMaTheLoai(String maTL) {
 		TheLoai result = null;
 		JDBCUtil.connection();
@@ -113,7 +118,21 @@ public class TheLoaiDAO extends GeneralDAO {
 	}
 
 	public static void removeTheLoai(BaiBao baiBao) {
-
+		Connection con = JDBCUtil.getConnection();
+		try {
+			String sql = "delete from theloaichinh where maBaiBao = ?;";
+					
+			PreparedStatement st = con.prepareStatement(sql);
+			st.setString(1, baiBao.getMaBaiBao());
+			
+			int x = st.executeUpdate();
+			sql="delete from danhsachtheloaiphu where maBaiBao = ?";
+			st = con.prepareStatement(sql);
+			st.setString(1, baiBao.getMaBaiBao());
+			x = st.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	public static void main(String[] args) {

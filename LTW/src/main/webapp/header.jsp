@@ -28,7 +28,7 @@
 }
 
 .label2 {
- 	font-size: 15px; 
+	font-size: 15px;
 	font-weight: 600;
 	position: relative;
 	height: max-content;
@@ -47,14 +47,13 @@
 	margin-top: 5px; /* Điều chỉnh khoảng cách giữa .label2 và .div2 */
 	width: max-content;
 	top: 100%;
-/* 	right: -90%; */
+	/* 	right: -90%; */
 	border: 1px solid;
 	border-color: #bebaba;
 	border-radius: 5px;
 	z-index: 2;
 	background-color: white;
 	padding-right: 20px;
-	
 }
 
 .div2::before {
@@ -179,8 +178,8 @@ ul {
 		</div>
 		<div class="search">
 			<form action="search" id="searchForm">
-			<input type="hidden" name ="type" value="seachByTen">
-				<input type="text" name="txtSearch"> <i
+				<input type="hidden" name="type" value="seachByTen"> <input
+					type="text" name="txtSearch"> <i
 					class="fa-solid fa-magnifying-glass" id="search" onclick="search()"></i>
 			</form>
 		</div>
@@ -193,7 +192,8 @@ ul {
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
 				ký</a>
 		</div>
-		<div class="user label2" onclick="toggleDropdown('div2')" style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
+		<div class="user label2" onclick="toggleDropdown('div2')"
+			style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
 			<img src="https://github.com/mdo.png" alt="mdo" width="32"
 				height="32" class="rounded-circle"> <i
 				class="fa-solid fa-angle-down"></i>
@@ -202,6 +202,8 @@ ul {
 				<ul>
 					<li><a href="dangBai.jsp"
 						style="text-decoration: none; color: black;">Đăng bài</a></li>
+					<li><a href="ShowListServlet?tenDangNhap=${nguoiDung.getTenDangNhap() }"
+						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>
 					<li><a href="" style="text-decoration: none; color: black;">Thông
 							tin tài khoản</a></li>
 					<li><a href="" style="text-decoration: none; color: black;">Thay
@@ -222,82 +224,142 @@ ul {
 	<!-- Navbar -->
 	<div class="nav">
 		<div class="nav-item">
-			<a href="MainServlet" style="padding: 15px;"><i class="fa-solid fa-house"></i></a>
+			<a href="MainServlet" style="padding: 15px;"><i
+				class="fa-solid fa-house"></i></a>
 		</div>
 		<div class="nav-item">
 			<a href="search?type=searchByTheLoai&theLoaiChinh=thoisu">Thời sự</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=chinhtri">Chính trị</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao động</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaoduc">Giáo dục</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao thông</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=chinhtri">Chính
+							trị</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao
+							động</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaoduc">Giáo
+							dục</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao
+							thông</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=thegioi">Thế giới</a>
+			<a href="search?type=searchByTheLoai&theLoaiChinh=thegioi">Thế
+				giới</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=tulieu">Tư liệu</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=cuocsong">Cuộc sống</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=quansu">Quân sự</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=tulieu">Tư
+							liệu</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=cuocsong">Cuộc
+							sống</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=quansu">Quân
+							sự</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh">Kinh doanh</a>
+			<a href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh">Kinh
+				doanh</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=quocte">Quốc tế</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=doanhnghiep">Doanh nghiệp</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoang">Chứng khoáng</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=baohiem">Bảo hiểm</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=quocte">Quốc
+							tế</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=doanhnghiep">Doanh
+							nghiệp</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoang">Chứng
+							khoáng</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=baohiem">Bảo
+							hiểm</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=batdongsan">Bất động sản</a>
+			<a href="search?type=searchByTheLoai&theLoaiChinh=batdongsan">Bất
+				động sản</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=chinhsach">Chính sách</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=thitruong">Thị trường</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=duan">Dự án</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=tuvan">Tư vấn</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=chinhsach">Chính
+							sách</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=thitruong">Thị
+							trường</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=duan">Dự
+							án</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=tuvan">Tư
+							vấn</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=thethao">Thể thao</a>
+			<a href="search?type=searchByTheLoai&theLoaiChinh=thethao">Thể
+				thao</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=bongda">Bóng đá</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=lichthidau">Lịch thi đấu</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=tennis">Tennis</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=marathon">Marathon</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=bongda">Bóng
+							đá</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=lichthidau">Lịch
+							thi đấu</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=tennis">Tennis</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=marathon">Marathon</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc">Giáo dục</a>
+			<a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc">Giáo
+				dục</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tintuc">Tin tức</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Tuyển sinh</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Du học</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=hoctienganh">Học tiếng Anh</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=giaoduc40">Giáo dục 4.0</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tintuc">Tin
+							tức</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Tuyển
+							sinh</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Du
+							học</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=hoctienganh">Học
+							tiếng Anh</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=giaoduc40">Giáo
+							dục 4.0</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=doisong">Đời sống</a>
+			<a href="search?type=searchByTheLoai&theLoaiChinh=doisong">Đời
+				sống</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=nhipsong">Nhịp sống</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=toam">Tổ ấm</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=cooking">Cooking</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=tieudung">Tiêu dùng</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=nhipsong">Nhịp
+							sống</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=toam">Tổ
+							ấm</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=cooking">Cooking</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=tieudung">Tiêu
+							dùng</a></li>
 				</ul>
 			</div>
 		</div>
@@ -305,10 +367,18 @@ ul {
 			<a href="search?type=searchByTheLoai&theLoaiChinh=dulich">Du lịch</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=diemden">Điểm đến</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=amthuc">Ăm thực</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=camnang">Cẩm nang</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=tuvan">Tư vấn</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=diemden">Điểm
+							đến</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=amthuc">Ăm
+							thực</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=camnang">Cẩm
+							nang</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=tuvan">Tư
+							vấn</a></li>
 				</ul>
 			</div>
 		</div>
@@ -316,10 +386,18 @@ ul {
 			<a href="search?type=searchByTheLoai&theLoaiChinh=xe">Xe</a>
 			<div class="nav-itemlist">
 				<ul>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thitruong">Thị trường</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=diendan">Diễn đàn</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thibanglai">Thi bằng lái</a></li>
-					<li><a href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=muaban">Mua bán</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thitruong">Thị
+							trường</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=diendan">Diễn
+							đàn</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thibanglai">Thi
+							bằng lái</a></li>
+					<li><a
+						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=muaban">Mua
+							bán</a></li>
 				</ul>
 			</div>
 		</div>

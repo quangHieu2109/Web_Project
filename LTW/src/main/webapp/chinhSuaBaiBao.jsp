@@ -16,17 +16,20 @@
 </head>
 <body>
 		<jsp:include page="header.jsp" ></jsp:include>
-	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean>
-	<c:set value="${bao.getTheLoai()}" var="theLoai"></c:set>
+	<jsp:useBean id="baiBao" class="model.BaiBao" scope="session"></jsp:useBean>
+	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean>
+<%-- 	<c:set  value="${newService.getBaiBaoByMaBB(request.getParameter(maBaiBao))}" var="bao"></c:set> --%>
+<%-- <% BaiBao bao = newService.getBaiBaoByMaBB(request.getParameter("maBaiBao")); %> --%>
+	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="UploadServlet"
+		<form method="POST" action="EditServlet"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
-			
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>
 				<textarea rows="1" cols="" wrap="soft" class="tieude" name="tieuDe"
-					value="">${bao.getTieuDe()}</textarea>
+					value="">${baiBao.getTieuDe()}</textarea>
+					
 			</div>
 			<div class="div TheLoai">
 				<label>Thể loại</label>
@@ -174,22 +177,22 @@
 			</div>
 			<div class="div MoTa">
 				<label>Mô tả</label>
-				<textarea rows="5" cols="" wrap="soft" name="moTa">${bao.getMoTa()}</textarea>
+				<textarea rows="5" cols="" wrap="soft" name="moTa">${baiBao.getMoTa()}</textarea>
 			</div>
 			<div class="div TaiAnh">
 				<label>Tải ảnh lên</label>
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
-					<img alt="" src="${bao.getFilePath()}">
+					<img alt="" src="${baiBao.getFilePath()}">
 					<button type="button" onclick="submitFormUpAnh()">up anh</button>
 				</div>
 			</div>
 			<div class="div NoiDung">
 				<label>Nội dung</label>
-				<textarea rows="20" cols="" wrap="soft" name="noiDung">${bao.getNoiDung()}</textarea>
+				<textarea rows="20" cols="" wrap="soft" name="noiDung">${baiBao.getNoiDung()}</textarea>
 			</div>
 			<div class="divBtn Button">
-				<button type="button" onclick="submitForm()">Đăng bài</button>
+				<button type="button" onclick="submitForm()">Cập nhật</button>
 			</div>
 		</form>
 	
