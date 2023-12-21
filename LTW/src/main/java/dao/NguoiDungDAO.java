@@ -19,7 +19,7 @@ import model.NguoiDung;
 import model.TheLoai;
 
 public class NguoiDungDAO {
-	public static  List<NguoiDung> selectAll() {
+	public static List<NguoiDung> selectAll() {
 		List<NguoiDung> result = new ArrayList<NguoiDung>();
 		//
 		try {
@@ -37,6 +37,7 @@ public class NguoiDungDAO {
 			}
 			rs.close();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -62,16 +63,17 @@ public class NguoiDungDAO {
 			}
 			rs.close();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return result;
 	}
 
-	public  static int insertNguoiDung(NguoiDung nguoiDung) {
+	public static int insertNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {
-			
+
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh)"
 					+ " values (?,?,?,?,?)";
@@ -82,21 +84,20 @@ public class NguoiDungDAO {
 			st.setString(4, nguoiDung.getEmail());
 			st.setDate(5, nguoiDung.getNgaySinh());
 			result = st.executeUpdate();
-			
 
 //			sql="insert into nguoidung (tenDangNhap, matKhau, hoVaTen, email, ngaySinh) "
 //					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
 
 			st.close();
-			
-			
+			conn.close();
+
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return result; // so dong thay doi
 	}
 
-	public  static int removeNguoiDung(NguoiDung nguoiDung) {
+	public static int removeNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -105,13 +106,14 @@ public class NguoiDungDAO {
 			st.setString(1, nguoiDung.getTenDangNhap());
 			result = st.executeUpdate();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return result; // so dong thay doi
 	}
 
-	public  static int updateNguoiDung(NguoiDung nguoiDung) {
+	public static int updateNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -125,13 +127,14 @@ public class NguoiDungDAO {
 			st.setString(5, nguoiDung.getTenDangNhap());
 			result = st.executeUpdate();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 		return result; // so dong thay doi
 	}
 
-	public  static NguoiDung checkNguoiDung(String tenDangNhap, String matKhau) {
+	public static NguoiDung checkNguoiDung(String tenDangNhap, String matKhau) {
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "SELECT * FROM nguoidung WHERE tenDangNhap = ? AND matKhau = ?";
@@ -141,12 +144,15 @@ public class NguoiDungDAO {
 			ResultSet rs = st.executeQuery();
 
 			if (rs.next()) {
+				
 				return new NguoiDung(rs.getString("tenDangNhap"), rs.getString("matKhau"), rs.getString("hoVaTen"),
 						rs.getString("email"), rs.getDate("ngaySinh"));
-			}else {
+//				conn.close();
+			} else {
+				conn.close();
 				return null;
 			}
-
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -157,7 +163,8 @@ public class NguoiDungDAO {
 	public static void main(String[] args) {
 		JDBCUtil.connection();
 		NguoiDungDAO dao = new NguoiDungDAO();
-		System.out.println(dao.insertNguoiDung(new NguoiDung("123123", null, null, null, null)));;
+		System.out.println(dao.insertNguoiDung(new NguoiDung("123123", null, null, null, null)));
+		;
 //		for(NguoiDung ng : dao.getDSNguoiDung()) {
 //			System.out.println(ng);
 //		}

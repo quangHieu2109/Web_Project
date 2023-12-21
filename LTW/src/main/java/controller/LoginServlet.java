@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 			service = new NewsService();
 
 		}
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		NguoiDung nguoiDung = service.checkDangNhap(tenDangNhap, matKhau);
 		if(req.getSession().getAttribute("nguoiDung") != null) {
 			req.getSession().removeAttribute("nguoiDung");
@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
 		} else {
 			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
 		}
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 	}
 
 	@Override

@@ -40,6 +40,9 @@ public class BinhLuanDAO extends GeneralDAO {
 				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
 				result.add(new BinhLuan(maBinhLuan, nguoiDung, ngayBinhLuan, noiDung, baiBao));
 			}
+			rs.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -70,6 +73,7 @@ public class BinhLuanDAO extends GeneralDAO {
 			print.println(sql);
 			st.close();
 			print.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -87,6 +91,7 @@ public class BinhLuanDAO extends GeneralDAO {
 			st.setString(1, binhLuan.getMaBinhLuan());
 			result = st.executeUpdate();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

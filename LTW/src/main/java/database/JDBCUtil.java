@@ -6,8 +6,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
 public class JDBCUtil {
 	private static Connection conn = null;
+	private static DataSource dataSource ;;
 
 	public static void connection() {
 		try {
@@ -32,32 +37,20 @@ public class JDBCUtil {
 	}
 
 	public static Connection getConnection() {
-		return conn;
-	}
-
-	public static void backup() {
+//		return conn;
 		try {
-			// Đọc mật khẩu từ một nguồn an toàn hơn, ví dụ như tệp cấu hình
-			String password = "your_password";
-
-			// Xây dựng lệnh mysqldump với mật khẩu
-			String command = String.format("mysqldump -u root -p%s web > backup.sql", password);
-
-			// Thực thi lệnh và chờ kết quả
-			Process process = Runtime.getRuntime().exec(command);
-			int exitCode = process.waitFor();
-
-			// Kiểm tra và in thông báo tương ứng
-			if (exitCode == 0) {
-				System.out.println("Backup successful");
-			} else {
-				System.out.println("Backup failed");
-			}
-		} catch (IOException | InterruptedException e) {
-			// Ghi log nếu có lỗi
-			e.printStackTrace();
-		}
+	         // Look up the DataSource
+	         Context initContext = new InitialContext();
+	         Context envContext = (Context) initContext.lookup("java:/comp/env"); 
+	         dataSource = (DataSource) envContext.lookup("jdbc/yourDB");
+	         return dataSource.getConnection();
+	     } catch (Exception e) {
+	         e.printStackTrace();
+	     }
+		return null;
 	}
+
+
 
 	public static void closeConnection() {
 		try {

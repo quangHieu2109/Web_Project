@@ -48,53 +48,53 @@ public class NewsService {
 	}
 
 	public void updateBaiBao(BaiBao baiBao) {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		BaiBaoDAO.updateBaiBao(baiBao);
 		TheLoaiDAO.updateTheLoai(baiBao);
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 	}
 
 	public BaiBao getBaiBaoByMaBB(String mabb) {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		BaiBao reuslt = BaiBaoDAO.selectByMaBaiBao(mabb);
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 		return reuslt;
 	}
 	public void removeBaiBao(BaiBao baiBao) {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		TheLoaiDAO.removeTheLoai(baiBao);
 		BaiBaoDAO.removeBaiBaoByMaBaiBao(baiBao);
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 	}
 	public ArrayList<BaiBao> getBaiBaoByTheLoai(String theLoaiChinh, String theLoaiPhu) {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		ArrayList<BaiBao> baos = BaiBaoDAO.getBaiBaoByTheLoai(theLoaiChinh, theLoaiPhu);
 		return baos;
 	}
 	public ArrayList<BaiBao> getBaiBaoByTenDanhNap(String tenDangNhap) {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		ArrayList<BaiBao> baos = BaiBaoDAO.selectByTenDangNhap(tenDangNhap);
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 		return baos;
 	}
 	public ArrayList<BaiBao> searchBaiBao(String search) {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		ArrayList<BaiBao> res = BaiBaoDAO.selectByTen(search);
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 
 		return res;
 	}
 	public ArrayList<BaiBao> getXuHuong() {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		ArrayList<BaiBao> res = BaiBaoDAO.selectXuHuong();
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 
 		return res;
 	}
 	public ArrayList<BaiBao> getTopView() {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		ArrayList<BaiBao> res = BaiBaoDAO.selectTopView();
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 
 		return res;
 	}

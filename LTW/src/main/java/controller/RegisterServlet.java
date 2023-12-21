@@ -46,14 +46,14 @@ public class RegisterServlet extends HttpServlet {
 			service = new NewsService();
 			
 		}
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		if(service.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh)))!=0) {
 			
 			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
 		}else {
 			req.getRequestDispatcher("dangKy.jsp").forward(req, resp);
 		}
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 	}
 
 	@Override
