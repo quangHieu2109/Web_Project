@@ -62,7 +62,6 @@ public class UploadServlet extends HttpServlet {
 			// Lấy tệp tin được tải lên từ yêu cầu
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
-			System.out.println(getServletContext().getRealPath("/img") + "//" + fileName);
 			filePart.write(getServletContext().getRealPath("/img") + "//" + fileName);
 			String filePath = getServletContext().getRealPath("/img") + "//" + fileName;
 

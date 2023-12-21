@@ -51,7 +51,6 @@ public class MainServlet extends HttpServlet {
 		roles.add(SecurityConfig.ADMIN);
     	if(req.getSession().getAttribute("nguoiDung") == null) {
     		NguoiDung nd = new NguoiDung();
-    		nd.setRoles(roles);
     		req.getSession().setAttribute("nguoiDung", nd);
     	}
     	((NguoiDung)req.getSession().getAttribute("nguoiDung")).setRoles(roles);

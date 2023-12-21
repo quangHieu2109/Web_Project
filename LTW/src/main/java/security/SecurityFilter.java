@@ -26,16 +26,18 @@ public class SecurityFilter implements Filter {
 		String path = req.getServletPath();
 		NguoiDung nguoiDung = (NguoiDung) req.getSession().getAttribute("nguoiDung");
 //		System.out.println(nguoiDung);
+		System.out.println();
 		
 		
 		if (SecurityUltils.isSecurityPage(req,path)) {// coi xem có phải trang cần đăng nhập không
 			if(nguoiDung==null) {
 				
-				res.sendRedirect("/LTW/MainServlet");
+				
+				res.sendRedirect(req.getContextPath()+"/MainServlet");
 				return;
 			}
 			if(nguoiDung.getRoles()==null) {// nếu chưa đăng nhập
-				res.sendRedirect("/LTW/LoginServlet");
+				res.sendRedirect(req.getContextPath()+"/LoginServlet");
 				return ;
 			}
 			if(!SecurityUltils.hasPermission(req,nguoiDung)) {// nếu không đủ quyền 
@@ -45,7 +47,7 @@ public class SecurityFilter implements Filter {
 			
 		}
 		
-		chain.doFilter(request, response);
+		chain.doFilter(req, res);
 	}
 
 }

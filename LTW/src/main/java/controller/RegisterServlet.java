@@ -44,6 +44,7 @@ public class RegisterServlet extends HttpServlet {
 		NewsService service = (NewsService) req.getSession().getAttribute("newsService");
 		if (service == null) {
 			service = new NewsService();
+			req.getSession().setAttribute("newsService", service);
 			
 		}
 //		JDBCUtil.connection();
