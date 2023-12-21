@@ -44,20 +44,25 @@ public class UploadServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 
-		// Cấu hình
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
 		// Lấy kiểu form
 		String type = request.getParameter("type") + "";
+		System.out.println(type);
 		if (type.equals("upAnh")) {
 			// Lấy tệp tin được tải lên từ yêu cầu
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
+			System.out.println(getServletContext().getRealPath("/img") + "//" + fileName);
 			filePart.write(getServletContext().getRealPath("/img") + "//" + fileName);
 			String filePath = getServletContext().getRealPath("/img") + "//" + fileName;
 
@@ -85,7 +90,8 @@ public class UploadServlet extends HttpServlet {
 					dsTLPhu.add(TheLoaiDAO.selectByMaTheLoai(s));
 				}
 			}
-			DSTheLoai dsTheLoai = new DSTheLoai(TheLoaiDAO.selectByMaTheLoai(theLoai), dsTLPhu);
+			TheLoai tlChinh = (TheLoaiDAO.selectByMaTheLoai(theLoai) == null)?new TheLoai():TheLoaiDAO.selectByMaTheLoai(theLoai);
+			DSTheLoai dsTheLoai = new DSTheLoai(tlChinh, dsTLPhu);
 
 			String tieuDe = request.getParameter("tieuDe");
 			String moTa = request.getParameter("moTa");
@@ -95,13 +101,15 @@ public class UploadServlet extends HttpServlet {
 			BaiBao baiBao = new BaiBao(tieuDe, moTa, link, noiDung, nguoiDung, dsTheLoai);
 			request.getSession().setAttribute("baiBao", baiBao);
 			System.out.println(baiBao);
-			request.setAttribute("bao", baiBao);
+			request.getSession().setAttribute("bao", baiBao);
 			// Chuyển hướng trở lại trang dangbai.jsp
-			request.getRequestDispatcher("dangBai.jsp").forward(request, response);
-		} else {
+			response.sendRedirect("UploadServlet");
+//			request.getRequestDispatcher("UploadServlet").forward(request, response);
+		} else if(type.equals("dangBai")){
 			// thêm bài báo ở đây
 			File file = new File(request.getSession().getAttribute("filePath") + "");
-			InputStream is = new FileInputStream(file);
+			Part filePart = request.getPart("file");
+			InputStream is = filePart.getInputStream();
 			String fileName = request.getSession().getAttribute("fileName") + "";
 			String link = APISaveImage.uploadImageAndGetLink(is, fileName);
 			file.delete();
@@ -109,7 +117,7 @@ public class UploadServlet extends HttpServlet {
 			NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 			request.getSession().removeAttribute("filePath");
 //			TheLoai tl = null;
-			
+
 			String theLoai = request.getParameter("theLoai");
 			List<String> values = null;
 			if (theLoai != null) {
@@ -121,13 +129,13 @@ public class UploadServlet extends HttpServlet {
 				values = new ArrayList<String>();
 			}
 			ArrayList<TheLoai> dsTLPhu = new ArrayList<TheLoai>();
-			if(values != null) {
-				for(String s : values) {
-				dsTLPhu.add(TheLoaiDAO.selectByMaTheLoai(s));	
+			if (values != null) {
+				for (String s : values) {
+					dsTLPhu.add(TheLoaiDAO.selectByMaTheLoai(s));
 				}
 			}
 			DSTheLoai dsTheLoai = new DSTheLoai(TheLoaiDAO.selectByMaTheLoai(theLoai), dsTLPhu);
-			
+
 			String tieuDe = request.getParameter("tieuDe");
 			String moTa = request.getParameter("moTa");
 			String noiDung = request.getParameter("noiDung");
@@ -139,6 +147,8 @@ public class UploadServlet extends HttpServlet {
 			newsService.addBaiBao(baiBao);
 			response.sendRedirect("MainServlet");
 //			request.getRequestDispatcher("trangChu.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("pageJournalist/dangBai.jsp").forward(request, response);
 		}
 		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 		response.setHeader("Pragma", "no-cache");
@@ -153,15 +163,14 @@ public class UploadServlet extends HttpServlet {
 			}
 		}
 		return null;
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		doPost(request, response);
+
+		// Cấu hình
 
 	}
 }

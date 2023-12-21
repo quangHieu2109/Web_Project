@@ -29,14 +29,18 @@ public class SecurityUltils {
 	public static boolean hasPermission(HttpServletRequest req, NguoiDung user) {
 
 		String urlPattern = UrlPatternUtils.getUrlPattern(req);
-
+		if(user.getRoles()!=null) {
 		for (String role : user.getRoles()) {
 
 			List<String> urlPatterns = SecurityConfig.getUrlPatternsForRole(role);
-			if (urlPatterns != null && urlPatterns.contains(urlPattern)) {
-				return true;
+			if (urlPatterns != null ) {
+				for (String string : urlPatterns) {
+					string.contains(urlPattern);
+					return true;
+				}
+				
 			}
-		}
+		}}
 		return false;
 	}
 }

@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.BaiBao;
 import model.NewsService;
 import model.NguoiDung;
+import security.SecurityConfig;
 
 /**
  * Servlet implementation class MainServlet
@@ -42,10 +45,17 @@ public class MainServlet extends HttpServlet {
     	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat());
     	req.getSession().setAttribute("xuHuong", newsService.getXuHuong());
     	req.getSession().setAttribute("topView", newsService.getTopView());
+    	
+		List<String> roles = new ArrayList<String>();
+		roles.add(SecurityConfig.JOURNALIST);
+		roles.add(SecurityConfig.ADMIN);
     	if(req.getSession().getAttribute("nguoiDung") == null) {
-    		req.getSession().setAttribute("nguoiDung", new NguoiDung());
+    		NguoiDung nd = new NguoiDung();
+    		nd.setRoles(roles);
+    		req.getSession().setAttribute("nguoiDung", nd);
     	}
-    	req.getRequestDispatcher("trangChu.jsp").forward(req, resp);
+    	((NguoiDung)req.getSession().getAttribute("nguoiDung")).setRoles(roles);
+    	req.getRequestDispatcher("/trangChu.jsp").forward(req, resp);
     }
 
 	/**

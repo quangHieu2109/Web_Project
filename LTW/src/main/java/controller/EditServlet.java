@@ -94,13 +94,15 @@ public class EditServlet extends HttpServlet {
 				theLoai = "";
 				values = new ArrayList<String>();
 			}
+			
 			ArrayList<TheLoai> dsTLPhu = new ArrayList<TheLoai>();
 			if (values != null) {
 				for (String s : values) {
 					dsTLPhu.add(TheLoaiDAO.selectByMaTheLoai(s));
 				}
 			}
-			DSTheLoai dsTheLoai = new DSTheLoai(TheLoaiDAO.selectByMaTheLoai(theLoai), dsTLPhu);
+			TheLoai tlChinh = (TheLoaiDAO.selectByMaTheLoai(theLoai) == null)?new TheLoai():TheLoaiDAO.selectByMaTheLoai(theLoai);
+			DSTheLoai dsTheLoai = new DSTheLoai(tlChinh, dsTLPhu);
 
 			String tieuDe = request.getParameter("tieuDe");
 			String moTa = request.getParameter("moTa");

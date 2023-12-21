@@ -16,7 +16,7 @@
 </head>
 <body>
 		<jsp:include page="/header.jsp" ></jsp:include>
-	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean>
+	<jsp:useBean id="bao" class="model.BaiBao" scope="session"></jsp:useBean>
 	<c:set value="${bao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
 		<form method="POST" action="UploadServlet"
