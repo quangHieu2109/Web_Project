@@ -45,14 +45,16 @@ public class MainServlet extends HttpServlet {
     	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat());
     	req.getSession().setAttribute("xuHuong", newsService.getXuHuong());
     	req.getSession().setAttribute("topView", newsService.getTopView());
+    	
+		List<String> roles = new ArrayList<String>();
+		roles.add(SecurityConfig.JOURNALIST);
+		roles.add(SecurityConfig.ADMIN);
     	if(req.getSession().getAttribute("nguoiDung") == null) {
     		NguoiDung nd = new NguoiDung();
-    		List<String> roles = new ArrayList<String>();
-    		roles.add(SecurityConfig.JOURNALIST);
-    		roles.add(SecurityConfig.ADMIN);
     		nd.setRoles(roles);
     		req.getSession().setAttribute("nguoiDung", nd);
     	}
+    	((NguoiDung)req.getSession().getAttribute("nguoiDung")).setRoles(roles);
     	req.getRequestDispatcher("trangChu.jsp").forward(req, resp);
     }
 

@@ -42,6 +42,7 @@ public class SecurityFilter implements Filter {
 				request.getRequestDispatcher("MainServlet").forward(req, response);
 				return;
 			}
+			
 		}
 		
 		chain.doFilter(request, response);
