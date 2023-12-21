@@ -200,7 +200,7 @@ ul {
 
 			<div class="div2" id="div2">
 				<ul>
-					<li><a href="dangBai.jsp"
+					<li><a href="UploadServlet"
 						style="text-decoration: none; color: black;">Đăng bài</a></li>
 					<li><a href="ShowListServlet?tenDangNhap=${nguoiDung.getTenDangNhap() }"
 						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>

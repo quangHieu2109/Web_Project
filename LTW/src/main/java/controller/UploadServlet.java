@@ -44,10 +44,13 @@ public class UploadServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 
-		// Cấu hình
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
@@ -97,7 +100,7 @@ public class UploadServlet extends HttpServlet {
 			System.out.println(baiBao);
 			request.setAttribute("bao", baiBao);
 			// Chuyển hướng trở lại trang dangbai.jsp
-			request.getRequestDispatcher("dangBai.jsp").forward(request, response);
+			request.getRequestDispatcher("UploadServlet").forward(request, response);
 		} else {
 			// thêm bài báo ở đây
 			File file = new File(request.getSession().getAttribute("filePath") + "");
@@ -109,7 +112,7 @@ public class UploadServlet extends HttpServlet {
 			NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 			request.getSession().removeAttribute("filePath");
 //			TheLoai tl = null;
-			
+
 			String theLoai = request.getParameter("theLoai");
 			List<String> values = null;
 			if (theLoai != null) {
@@ -121,13 +124,13 @@ public class UploadServlet extends HttpServlet {
 				values = new ArrayList<String>();
 			}
 			ArrayList<TheLoai> dsTLPhu = new ArrayList<TheLoai>();
-			if(values != null) {
-				for(String s : values) {
-				dsTLPhu.add(TheLoaiDAO.selectByMaTheLoai(s));	
+			if (values != null) {
+				for (String s : values) {
+					dsTLPhu.add(TheLoaiDAO.selectByMaTheLoai(s));
 				}
 			}
 			DSTheLoai dsTheLoai = new DSTheLoai(TheLoaiDAO.selectByMaTheLoai(theLoai), dsTLPhu);
-			
+
 			String tieuDe = request.getParameter("tieuDe");
 			String moTa = request.getParameter("moTa");
 			String noiDung = request.getParameter("noiDung");
@@ -153,15 +156,14 @@ public class UploadServlet extends HttpServlet {
 			}
 		}
 		return null;
+
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		request.getRequestDispatcher("pageJournalist/dangBai.jsp").forward(request, response);
+
+		// Cấu hình
 
 	}
 }

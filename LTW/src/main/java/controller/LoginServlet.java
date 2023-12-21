@@ -51,9 +51,9 @@ public class LoginServlet extends HttpServlet {
 			req.getSession().setAttribute("nguoiDung", nguoiDung);
 			service.setIsLogin(true);
 
-			req.getRequestDispatcher("trangChu.jsp").forward(req, resp);
+			req.getRequestDispatcher("/MainServlet").forward(req, resp);
 		} else {
-			req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
+			req.getRequestDispatcher("/dangNhap.jsp").forward(req, resp);
 		}
 //		JDBCUtil.closeConnection();
 	}
@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		req.getRequestDispatcher("dangNhap.jsp").forward(req, resp);
+		req.getRequestDispatcher("/dangNhap.jsp").forward(req, resp);
 	}
 
 }

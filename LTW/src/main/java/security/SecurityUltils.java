@@ -33,8 +33,12 @@ public class SecurityUltils {
 		for (String role : user.getRoles()) {
 
 			List<String> urlPatterns = SecurityConfig.getUrlPatternsForRole(role);
-			if (urlPatterns != null && urlPatterns.contains(urlPattern)) {
-				return true;
+			if (urlPatterns != null ) {
+				for (String string : urlPatterns) {
+					string.contains(urlPattern);
+					return true;
+				}
+				
 			}
 		}}
 		return false;

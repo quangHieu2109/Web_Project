@@ -55,7 +55,7 @@ public class MainServlet extends HttpServlet {
     		req.getSession().setAttribute("nguoiDung", nd);
     	}
     	((NguoiDung)req.getSession().getAttribute("nguoiDung")).setRoles(roles);
-    	req.getRequestDispatcher("trangChu.jsp").forward(req, resp);
+    	req.getRequestDispatcher("/trangChu.jsp").forward(req, resp);
     }
 
 	/**

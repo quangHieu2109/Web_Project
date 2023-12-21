@@ -39,7 +39,7 @@ public class SecurityFilter implements Filter {
 				return ;
 			}
 			if(!SecurityUltils.hasPermission(req,nguoiDung)) {// nếu không đủ quyền 
-				request.getRequestDispatcher("MainServlet").forward(req, response);
+				request.getRequestDispatcher("/MainServlet").forward(req, response);
 				return;
 			}
 			
