@@ -104,7 +104,8 @@ public class UploadServlet extends HttpServlet {
 		} else {
 			// thêm bài báo ở đây
 			File file = new File(request.getSession().getAttribute("filePath") + "");
-			InputStream is = new FileInputStream(file);
+			Part filePart = request.getPart("file");
+			InputStream is = filePart.getInputStream();
 			String fileName = request.getSession().getAttribute("fileName") + "";
 			String link = APISaveImage.uploadImageAndGetLink(is, fileName);
 			file.delete();
