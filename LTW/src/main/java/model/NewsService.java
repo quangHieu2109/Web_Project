@@ -69,6 +69,7 @@ public class NewsService {
 	public ArrayList<BaiBao> getBaiBaoByTheLoai(String theLoaiChinh, String theLoaiPhu) {
 		JDBCUtil.connection();
 		ArrayList<BaiBao> baos = BaiBaoDAO.getBaiBaoByTheLoai(theLoaiChinh, theLoaiPhu);
+		JDBCUtil.closeConnection();
 		return baos;
 	}
 	public ArrayList<BaiBao> getBaiBaoByTenDanhNap(String tenDangNhap) {

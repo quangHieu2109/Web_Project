@@ -36,7 +36,7 @@ public class ReadNewsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		JDBCUtil.connection();
 		System.out.println("Mã bài báo: "+request.getParameter("maBaiBao"));
-		List<BaiBao> baos = (ArrayList<BaiBao>) request.getSession().getAttribute("baos");
+//		List<BaiBao> baos = (ArrayList<BaiBao>) request.getSession().getAttribute("baos");
 		
 		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		
