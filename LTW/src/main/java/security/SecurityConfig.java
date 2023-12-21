@@ -15,6 +15,8 @@ public class SecurityConfig {
 		List<String> urlJournalist = new ArrayList<String>();
 		urlJournalist.add("/pageJournalist");
 		urlJournalist.add("/ShowListServlet");
+		urlJournalist.add("/EditServlet");
+		urlJournalist.add("/UploadServlet");
 		
 		List<String> urlAdmin = new ArrayList<String>();
 		mapConfig.put(JOURNALIST, urlJournalist);
