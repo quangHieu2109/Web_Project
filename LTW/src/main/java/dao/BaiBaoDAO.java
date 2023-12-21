@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
 
+import database.DatabaseManager;
 import database.JDBCUtil;
 import model.BaiBao;
 import model.BinhLuan;
@@ -46,6 +47,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -84,6 +86,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -107,20 +110,21 @@ public class BaiBaoDAO {
 
 	public int countAll() {
 		int result = 0;
-		JDBCUtil.connection();
-		Connection con = JDBCUtil.getConnection();
+//		JDBCUtil.connection();
+		Connection conn = JDBCUtil.getConnection();
 		try {
 			String sql = "select count(*) from baibao";
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			rs.next();
 			result = rs.getInt(1);
 			rs.close();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 		return result;
 	}
 
@@ -132,7 +136,7 @@ public class BaiBaoDAO {
 		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
 		TheLoaiDAO theLoaiDAO = new TheLoaiDAO();
 		try {
-			JDBCUtil.connection();
+//			JDBCUtil.connection();
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "SELECT * FROM baibao ORDER BY ngayDang DESC LIMIT " + size;
 			PreparedStatement st = conn.prepareStatement(sql);
@@ -156,13 +160,15 @@ public class BaiBaoDAO {
 				result.add(baiBao);
 
 			}
-
+			rs.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return result;
 		}
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 		return result;
 	}
 
@@ -173,7 +179,7 @@ public class BaiBaoDAO {
 		NguoiDungDAO nguoiDungDAO = new NguoiDungDAO();
 		TheLoaiDAO theLoaiDAO = new TheLoaiDAO();
 		try {
-			JDBCUtil.connection();
+//			JDBCUtil.connection();
 			Connection conn = JDBCUtil.getConnection();
 			String sql = "SELECT * FROM baibao ORDER BY ngayDang DESC LIMIT " + size;
 			PreparedStatement st = conn.prepareStatement(sql);
@@ -197,13 +203,15 @@ public class BaiBaoDAO {
 				result.add(baiBao);
 
 			}
-
+			rs.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
 			return result;
 		}
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 		return result;
 	}
 
@@ -235,7 +243,11 @@ public class BaiBaoDAO {
 				baiBao.addAllBinhLuan(dsBinhLuan);
 				baiBao.setTheLoai(dsTheLoai);
 				result.add(baiBao);
+				
 			}
+			rs.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -271,7 +283,11 @@ public class BaiBaoDAO {
 				baiBao.addAllBinhLuan(dsBinhLuan);
 				baiBao.setTheLoai(dsTheLoai);
 				result.add(baiBao);
+				
 			}
+			rs.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -322,6 +338,9 @@ public class BaiBaoDAO {
 				baiBao.setTheLoai(dsTheLoai);
 				result.add(baiBao);
 			}
+			rs.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -347,96 +366,96 @@ public class BaiBaoDAO {
 		}
 		return result;
 	}
-public static ArrayList<BaiBao> selectXuHuong(){
-	ArrayList<BaiBao> result = new ArrayList<BaiBao>();
-	Connection con = JDBCUtil.getConnection();
-	Date today = new Date(Calendar.getInstance().getTimeInMillis());
-	try {
-		String sql = "SELECT baibao.maBaiBao, baibao.tenBaiBao, baibao.moTa, baibao.tenDangNhap, baibao.filePath, baibao.noiDung, baibao.ngayDang, baibao.tenBaiBao, baibao.luotXem "
-				+ "FROM baibao INNER JOIN xuhuong ON baibao.maBaiBao = xuhuong.maBaiBao WHERE xuhuong.ngayXuHuong =?";
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setDate(1, today);
-		ResultSet rs = st.executeQuery();
-		
-		while(rs.next()) {
-			String maBaiBao = rs.getString("maBaiBao");
-			String tenBaiBao = rs.getString("tenBaiBao");
-			String moTa = rs.getString("moTa");
-			String filePath = rs.getString("filePath");
-			String noiDung = rs.getString("noiDung");
-			Date ngayDang = rs.getDate("ngayDang");
-			String tenDangNhap = rs.getString("tenDangNhap");
-			int luotXem = rs.getInt("luotXem");
 
-			NguoiDung nguoiDung = NguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-			BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-			ArrayList<BinhLuan> dsBinhLuan = BinhLuanDAO.selectByBaiBao(baiBao);
-			DSTheLoai dsTheLoai = TheLoaiDAO.selectByBaiBao(baiBao);
-			baiBao.addAllBinhLuan(dsBinhLuan);
-			baiBao.setTheLoai(dsTheLoai);
-			result.add(baiBao);
-		}
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-	
-	
-	if(result.size() ==0) {
-		result = createXuHuong();
-		insertXuHuong(result);
-	}
-	return result;
-}
-public static ArrayList<BaiBao> selectTopView(){
-	ArrayList<BaiBao> result = new ArrayList<BaiBao>();
-	Connection con = JDBCUtil.getConnection();
-	try {
-		String sql = "SELECT * FROM baibao "
-				+ "ORDER BY baibao.luotXem desc "
-				+ "LIMIT 5;";
-		PreparedStatement st = con.prepareStatement(sql);
-		ResultSet rs = st.executeQuery();
-		
-		while(rs.next()) {
-			String maBaiBao = rs.getString("maBaiBao");
-			String tenBaiBao = rs.getString("tenBaiBao");
-			String moTa = rs.getString("moTa");
-			String filePath = rs.getString("filePath");
-			String noiDung = rs.getString("noiDung");
-			Date ngayDang = rs.getDate("ngayDang");
-			String tenDangNhap = rs.getString("tenDangNhap");
-			int luotXem = rs.getInt("luotXem");
+	public static ArrayList<BaiBao> selectXuHuong() {
+		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
+		Connection conn = JDBCUtil.getConnection();
 
-			NguoiDung nguoiDung = NguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-			BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-			ArrayList<BinhLuan> dsBinhLuan = BinhLuanDAO.selectByBaiBao(baiBao);
-			DSTheLoai dsTheLoai = TheLoaiDAO.selectByBaiBao(baiBao);
-			baiBao.addAllBinhLuan(dsBinhLuan);
-			baiBao.setTheLoai(dsTheLoai);
-			result.add(baiBao);
+		Date today = new Date(Calendar.getInstance().getTimeInMillis());
+		try {
+			String sql = "SELECT baibao.maBaiBao, baibao.tenBaiBao, baibao.moTa, baibao.tenDangNhap, baibao.filePath, baibao.noiDung, baibao.ngayDang, baibao.tenBaiBao, baibao.luotXem "
+					+ "FROM baibao INNER JOIN xuhuong ON baibao.maBaiBao = xuhuong.maBaiBao WHERE xuhuong.ngayXuHuong =?";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setDate(1, today);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				String maBaiBao = rs.getString("maBaiBao");
+				String tenBaiBao = rs.getString("tenBaiBao");
+				String moTa = rs.getString("moTa");
+				String filePath = rs.getString("filePath");
+				String noiDung = rs.getString("noiDung");
+				Date ngayDang = rs.getDate("ngayDang");
+				String tenDangNhap = rs.getString("tenDangNhap");
+				int luotXem = rs.getInt("luotXem");
+
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+				result.add(baiBao);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
-	} catch (Exception e) {
-		// TODO: handle exception
-	}
-	return result;
-}
-public static void insertXuHuong(ArrayList<BaiBao> list) {
-	Connection con = JDBCUtil.getConnection();
-	Date today = new Date(Calendar.getInstance().getTimeInMillis());
-	try {
-		String sql = "insert into xuhuong (maBaiBao, ngayXuHuong) values(?,?);";
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setDate(2, today);
-		for(BaiBao bb : list) {
-			st.setString(1, bb.getMaBaiBao());
-			st.executeUpdate();
+
+		if (result.size() == 0) {
+			result = createXuHuong();
+			insertXuHuong(result);
 		}
-	} catch (Exception e) {
-		// TODO: handle exception
+		return result;
 	}
-}
+
+	public static ArrayList<BaiBao> selectTopView() {
+		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
+		Connection conn = JDBCUtil.getConnection();
+		try {
+			String sql = "SELECT * FROM baibao " + "ORDER BY baibao.luotXem desc " + "LIMIT 5;";
+			PreparedStatement st = conn.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				String maBaiBao = rs.getString("maBaiBao");
+				String tenBaiBao = rs.getString("tenBaiBao");
+				String moTa = rs.getString("moTa");
+				String filePath = rs.getString("filePath");
+				String noiDung = rs.getString("noiDung");
+				Date ngayDang = rs.getDate("ngayDang");
+				String tenDangNhap = rs.getString("tenDangNhap");
+				int luotXem = rs.getInt("luotXem");
+
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+				result.add(baiBao);
+			}
+			rs.close();
+			st.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result;
+	}
+
+	public static void insertXuHuong(ArrayList<BaiBao> list) {
+		Connection conn = JDBCUtil.getConnection();
+		Date today = new Date(Calendar.getInstance().getTimeInMillis());
+		try {
+			String sql = "insert into xuhuong (maBaiBao, ngayXuHuong) values(?,?);";
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setDate(2, today);
+			for (BaiBao bb : list) {
+				st.setString(1, bb.getMaBaiBao());
+				st.executeUpdate();
+			}
+			st.close();
+			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+
 	public static boolean addBaiBao(BaiBao baiBao) {
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		Connection conn = JDBCUtil.getConnection();
 		try {
 			String sql = "insert into baibao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, tenDangNhap, luotXem)"
@@ -458,7 +477,9 @@ public static void insertXuHuong(ArrayList<BaiBao> list) {
 					+ "', '" + baiBao.getNguoiDang().getTenDangNhap() + "'," + baiBao.getLuotXem() + ");";
 			TheLoaiDAO.insertTheLoaiByBaiBao(baiBao);
 
-			JDBCUtil.closeConnection();
+//			JDBCUtil.closeConnection();
+			st.close();
+			conn.close();
 			return res == 1;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -472,10 +493,11 @@ public static void insertXuHuong(ArrayList<BaiBao> list) {
 		String sql = "";
 		PreparedStatement ps = null;
 		try {
+			Connection conn = JDBCUtil.getConnection();
 			if (theLoaiPhu != null) {
 				sql = "Select * From (baibao inner join danhsachtheloaiphu on baibao.maBaiBao = danhsachtheloaiphu.maBaiBao) Where danhsachtheloaiphu.maTheLoai = '"
 						+ theLoaiPhu + "';";
-				ps = JDBCUtil.getConnection().prepareStatement(sql);
+				ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
 					BaiBao baiBao = new BaiBao(rs.getString("maBaiBao"), rs.getString("tenBaiBao"),
@@ -485,10 +507,11 @@ public static void insertXuHuong(ArrayList<BaiBao> list) {
 					res.add(baiBao);
 
 				}
+				rs.close();
 			} else {
 				sql = "Select * From (baibao inner join theloaiChinh on baibao.maBaiBao = theloaiChinh.maBaiBao) Where theloaichinh.maTheLoai = '"
 						+ theLoaiChinh + "'";
-				ps = JDBCUtil.getConnection().prepareStatement(sql);
+				ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();
 				while (rs.next()) {
 					BaiBao baiBao = new BaiBao(rs.getString("maBaiBao"), rs.getString("tenBaiBao"),
@@ -498,7 +521,10 @@ public static void insertXuHuong(ArrayList<BaiBao> list) {
 					res.add(baiBao);
 
 				}
+				rs.close();
 			}
+			ps.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -507,11 +533,12 @@ public static void insertXuHuong(ArrayList<BaiBao> list) {
 	}
 
 	public static void updateBaiBao(BaiBao baiBao) {
-		Connection con = JDBCUtil.getConnection();
+		Connection conn = JDBCUtil.getConnection();
+
 		try {
 			String sql = "update baibao set "
 					+ "tenBaiBao =?, moTa=?, filePath=?, noiDung=?,luotXem=? where maBaiBao =?";
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, baiBao.getTieuDe());
 			st.setString(2, baiBao.getMoTa());
 			st.setString(3, baiBao.getFilePath());
@@ -520,20 +547,23 @@ public static void insertXuHuong(ArrayList<BaiBao> list) {
 			st.setString(6, baiBao.getMaBaiBao());
 
 			int i = st.executeUpdate();
-
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+
 	}
 
 	public static void removeBaiBaoByMaBaiBao(BaiBao baiBao) {
-		Connection con = JDBCUtil.getConnection();
+		Connection conn = JDBCUtil.getConnection();
 		try {
 			String sql = "delete from baibao where maBaiBao = ?";
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, baiBao.getMaBaiBao());
 			st.executeUpdate();
-
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

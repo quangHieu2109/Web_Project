@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.List;
 
 public class NguoiDung {
 	private String tenDangNhap;
@@ -8,9 +9,9 @@ public class NguoiDung {
 	private String hoVaTen;
 	private String email;
 	private Date ngaySinh;
+	private List<String> roles;
 
 	public NguoiDung(String tenDangNhap, String matKhau, String hoVaTen, String email, Date ngaySinh) {
-		super();
 		this.tenDangNhap = tenDangNhap;
 		this.matKhau = matKhau;
 		this.hoVaTen = hoVaTen;
@@ -60,6 +61,12 @@ public class NguoiDung {
 
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
+	}
+	public void setRoles(List<String> roles) {
+		this.roles=roles;
+	}
+	public List<String> getRoles() {
+		return roles;
 	}
 public String display() {
 	if(this.tenDangNhap == null) {

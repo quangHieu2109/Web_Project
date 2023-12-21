@@ -34,7 +34,7 @@ public class ReadNewsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		JDBCUtil.connection();
+//		JDBCUtil.connection();
 		System.out.println("Mã bài báo: "+request.getParameter("maBaiBao"));
 //		List<BaiBao> baos = (ArrayList<BaiBao>) request.getSession().getAttribute("baos");
 		
@@ -49,7 +49,7 @@ public class ReadNewsServlet extends HttpServlet {
 		request.getSession().setAttribute("bao", bao);
 		newsService.updateBaiBao(bao);
 		request.getRequestDispatcher("docBao.jsp").forward(request, response);
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 	}
 
 	/**

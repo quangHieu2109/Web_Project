@@ -36,7 +36,7 @@ public class ShowListServlet extends HttpServlet {
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		ArrayList<BaiBao> baos = newsService.getBaiBaoByTenDanhNap(tenDangNhap);
 		request.setAttribute("baos", baos);
-		request.getRequestDispatcher("danhSachBaiBao.jsp").forward(request, response);
+		request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
 	}
 
 	/**

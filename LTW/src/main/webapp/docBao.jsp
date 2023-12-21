@@ -39,7 +39,7 @@
 						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px">Xem
 						nhiều</span>
 					<c:forEach items="${topView }" var="baoTV">
-						<a href="read?maBaiBao="${baoTV.getMaBaiBao() }" class="list-group-item">
+						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }" class="list-group-item">
 							<div class="row">
 								<div class="col-md-4">
 									<img alt=""

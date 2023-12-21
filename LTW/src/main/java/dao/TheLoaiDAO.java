@@ -53,6 +53,9 @@ public class TheLoaiDAO extends GeneralDAO {
 				result.addTheLoai(new TheLoai(maTheLoai, tenTheLoai));
 
 			}
+			rs.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -65,21 +68,23 @@ public class TheLoaiDAO extends GeneralDAO {
 	}
 	public static TheLoai selectByMaTheLoai(String maTL) {
 		TheLoai result = null;
-		JDBCUtil.connection();
-		Connection con = JDBCUtil.getConnection();
+//		JDBCUtil.connection();
 		try {
+		Connection conn = JDBCUtil.getConnection();
+	
 			String sql = "select * from theloai where maTheLoai =?";
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, maTL);
 			ResultSet rs = st.executeQuery();
 			rs.next();
 			result = new TheLoai(rs.getString(1), rs.getString(2));
 			rs.close();
 			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		JDBCUtil.closeConnection();
+//		JDBCUtil.closeConnection();
 		return result;
 	}
 
@@ -110,6 +115,8 @@ public class TheLoaiDAO extends GeneralDAO {
 				}
 			}
 //			print.close();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -118,18 +125,20 @@ public class TheLoaiDAO extends GeneralDAO {
 	}
 
 	public static void removeTheLoai(BaiBao baiBao) {
-		Connection con = JDBCUtil.getConnection();
+		Connection conn = JDBCUtil.getConnection();
 		try {
 			String sql = "delete from theloaichinh where maBaiBao = ?;";
 					
-			PreparedStatement st = con.prepareStatement(sql);
+			PreparedStatement st = conn.prepareStatement(sql);
 			st.setString(1, baiBao.getMaBaiBao());
 			
 			int x = st.executeUpdate();
 			sql="delete from danhsachtheloaiphu where maBaiBao = ?";
-			st = con.prepareStatement(sql);
+			st = conn.prepareStatement(sql);
 			st.setString(1, baiBao.getMaBaiBao());
 			x = st.executeUpdate();
+			st.close();
+			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

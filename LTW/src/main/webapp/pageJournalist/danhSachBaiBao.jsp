@@ -9,7 +9,7 @@
 <link href="css/main.css" rel="stylesheet">
 </head>
 <body>
-		<jsp:include page="header.jsp"></jsp:include>
+		<jsp:include page="/header.jsp"></jsp:include>
 	<jsp:useBean id="baos" type="java.util.ArrayList" scope="request"></jsp:useBean>
 	<div class="container">
 		<h1 class="fs-25">Danh sách các bài báo của bạn</h1>
@@ -37,6 +37,6 @@
 			</c:forEach>
 		</div>
 	</div>
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="/footer.jsp"></jsp:include>
 </body>
 </html>
