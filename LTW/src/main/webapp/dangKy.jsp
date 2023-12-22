@@ -15,45 +15,54 @@
 
 </head>
 <body>
+<jsp:include page="header.jsp"></jsp:include>
 	<form action="RegisterServlet" method="post">
 		<h1>Đăng ký tài khoản</h1>
 		<div class="body">
 			<div class="content">
-				<h2>Thông tin tài khoản</h2>
-				<div class="line">
-					<label>Tên đăng nhập</label> <input type="text" name="tenDangNhap">
+				<table>
+					<tr>
+						<th>Tên đăng nhập</th>
+						<td><input type="text" name="tenDangNhap"></td>
+					</tr>
+					<tr>
+						<th>Mật khẩu</th>
+						<td><input type="password" name="matKhau"></td>
+					</tr>
+					<tr>
+						<th>Nhập lại mật khẩu</th>
+						<td><input type="password" name="nhapLaiMatKhau"></td>
+					</tr>
+				</table>
 				</div>
-				<div class="line">
-					<label>Mật khẩu</label> <input type="password" name="matKhau">
+				<div class="content">
+					<table>
+						<tr>
+							<th>Họ tên</th>
+							<td><input type="text" name="hoTen"></td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td><input type="email" name="email"></td>
+						</tr>
+						<tr>
+							<th>Ngày sinh</th>
+							<td><input type="date" name="ngaySinh"></td>
+						</tr>
+					</table>
 				</div>
-				<div class="line">
-					<label>Nhập lại mật khẩu</label> <input type="password"
-						name="nhapLaiMatKhau">
-				</div>
-			</div>
-			<div class="content">
-				<h2>Thông tin người dùng</h2>
-				<div class="line">
-					<label>Họ tên</label> <input type="text" name="hoTen">
-				</div>
-				<div class="line">
-					<label>Email</label> <input type="email" name="email">
-				</div>
-				<div class="line">
-					<label>Ngày sinh</label> <input type="date" name="ngaySinh">
-				</div>
-			</div>
 
-		</div>
-		<div class="check">
-			<input type="checkbox" name="dongYDK"><label>Đồng ý
-				với <a href="">điều khoản</a> của chúng tôi
-			</label>
-		</div>
-		<div class="button">
-			<a href="LoginServlet" class="btn">Đăng nhập</a>
-			<button type="submit" class="btn">Đăng ký</button>
-		</div>
+			</div>
+<!-- 			<div class="check"> -->
+<!-- 				<input type="checkbox" name="dongYDK"><label>Đồng ý -->
+<!-- 					với <a href="">điều khoản</a> của chúng tôi -->
+<!-- 				</label> -->
+<!-- 			</div> -->
+			<div class="button">
+				<a href="LoginServlet" class="btn">Đăng nhập</a>
+				<button type="submit" class="btn">Đăng ký</button>
+			</div>
 	</form>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

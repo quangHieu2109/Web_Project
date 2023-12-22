@@ -43,7 +43,7 @@ h1 {
 	margin-bottom: 50px;
 }
 
-form {
+.form {
 	border: 1px solid;
 	min-width: 60%;
 	max-width: max-content;
@@ -72,8 +72,8 @@ label {
 
 </head>
 <body>
-
-	<form action="LoginServlet" method="post">
+<jsp:include page="header.jsp"></jsp:include>
+	<form action="LoginServlet" method="post" class="form">
 		<h1>Đăng nhập tài khoản</h1>
 		<div class="body">
 			<div class="content">
@@ -95,5 +95,6 @@ label {
 			</div>
 		</div>
 	</form>
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
