@@ -37,17 +37,18 @@ public class JDBCUtil {
 	}
 
 	public static Connection getConnection() {
-//		return conn;
-		try {
-	         // Look up the DataSource
-	         Context initContext = new InitialContext();
-	         Context envContext = (Context) initContext.lookup("java:/comp/env"); 
-	         dataSource = (DataSource) envContext.lookup("jdbc/yourDB");
-	         return dataSource.getConnection();
-	     } catch (Exception e) {
-	         e.printStackTrace();
-	     }
-		return null;
+		connection();
+		return conn;
+//		try {
+//	         // Look up the DataSource
+//	         Context initContext = new InitialContext();
+//	         Context envContext = (Context) initContext.lookup("java:/comp/env"); 
+//	         dataSource = (DataSource) envContext.lookup("jdbc/yourDB");
+//	         return dataSource.getConnection();
+//	     } catch (Exception e) {
+//	         e.printStackTrace();
+//	     }
+//		return null;
 	}
 
 

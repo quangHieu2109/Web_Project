@@ -7,7 +7,10 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Random;
+
+import com.mysql.cj.x.protobuf.MysqlxCrud.Collection;
 
 import database.DatabaseManager;
 import database.JDBCUtil;
@@ -354,12 +357,13 @@ public class BaiBaoDAO {
 		int amount = 0;
 		ArrayList<BaiBao> list = selectAll();
 		Random rd = new Random();
-		if (list.size() <= 5) {
+		if (list.size() <= 10) {
 			result = list;
 		} else {
-			while (result.size() < 5) {
+			while (result.size() < 10) {
+				Collections.shuffle(list);
 				for (BaiBao bb : list) {
-					if (rd.nextInt() % 2 == 0 && !result.contains(bb)) {
+					if (rd.nextInt() % 2 == 0 && !result.contains(bb) && result.size()<10) {
 						result.add(bb);
 					}
 				}
@@ -411,7 +415,7 @@ public class BaiBaoDAO {
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		Connection conn = JDBCUtil.getConnection();
 		try {
-			String sql = "SELECT * FROM baibao " + "ORDER BY baibao.luotXem desc " + "LIMIT 5;";
+			String sql = "SELECT * FROM baibao " + "ORDER BY baibao.luotXem desc " + "LIMIT 10;";
 			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 

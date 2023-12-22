@@ -134,7 +134,7 @@
 				<div class="row space w-80">
 					<c:forEach var="bao" items="${baos}" begin="4">
 						<div class=" border col-lg-4 mt-30">
-							<a href="read?maBaiBao="${bao.getMaBaiBao() }">
+							<a href="read?maBaiBao=${bao.getMaBaiBao() }">
 								<div class="col-md-12">
 									<img src="${bao.getFilePath()}" class="card-img-3"
 										alt="Hình ảnh">
