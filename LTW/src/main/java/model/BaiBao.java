@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -11,13 +12,13 @@ public class BaiBao {
 	private String moTa;
 	private String filePath;
 	private String noiDung;
-	private Date ngayDang;
+	private Timestamp ngayDang;
 	private NguoiDung nguoiDang;
 	private int luotXem;
 	private DSTheLoai theLoai;
 	private ArrayList<BinhLuan> dsBinhLuan = new ArrayList<BinhLuan>();
 
-	public BaiBao(String maBaiBao, String tieuDe, String moTa, String filePath, String noiDung, Date ngayDang,
+	public BaiBao(String maBaiBao, String tieuDe, String moTa, String filePath, String noiDung, Timestamp ngayDang,
 			NguoiDung nguoiDang, int luotXem, DSTheLoai theLoai, ArrayList<BinhLuan> dsBinhLuan) {
 		super();
 		this.maBaiBao = maBaiBao;
@@ -36,7 +37,7 @@ public class BaiBao {
 		super();
 	}
 
-	public BaiBao(String maBaiBao, String tieuDe, String moTa, String filePath, String noiDung, Date ngayDang,
+	public BaiBao(String maBaiBao, String tieuDe, String moTa, String filePath, String noiDung, Timestamp ngayDang,
 			NguoiDung nguoiDang, int luotXem) {
 		super();
 		this.maBaiBao = maBaiBao;
@@ -55,7 +56,7 @@ public class BaiBao {
 		int c = 65 + rd.nextInt(25);
 		String maBB = (char) c + "" + System.currentTimeMillis();
 		this.maBaiBao = maBB;
-		this.ngayDang = new Date(Calendar.getInstance().getTimeInMillis());
+		this.ngayDang = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		this.tieuDe = tieuDe;
 		this.moTa = moTa;
 		this.filePath = filePath;
@@ -105,11 +106,11 @@ public class BaiBao {
 		this.noiDung = noiDung;
 	}
 
-	public Date getNgayDang() {
+	public Timestamp getNgayDang() {
 		return ngayDang;
 	}
 
-	public void setNgayDang(Date ngayDang) {
+	public void setNgayDang(Timestamp ngayDang) {
 		this.ngayDang = ngayDang;
 	}
 

@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 public class DatabaseManager {
 
@@ -64,7 +65,7 @@ public static Connection getConnection() {
     			String moTa = rs.getString("moTa");
     			String filePath = rs.getString("filePath");
     			String noiDung = rs.getString("noiDung");
-    			Date ngayDang = rs.getDate("ngayDang");
+    			Timestamp ngayDang = rs.getTimestamp("ngayDang");
     			String tenDangNhap = rs.getString("tenDangNhap");
     			int luotXem = rs.getInt("luotXem");
 

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -33,7 +34,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -72,7 +73,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -147,7 +148,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -190,7 +191,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -232,7 +233,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -272,7 +273,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -326,7 +327,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -371,12 +372,12 @@ public class BaiBaoDAO {
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		Connection conn = JDBCUtil.getConnection();
 
-		Date today = new Date(Calendar.getInstance().getTimeInMillis());
+		Timestamp today = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		try {
 			String sql = "SELECT baibao.maBaiBao, baibao.tenBaiBao, baibao.moTa, baibao.tenDangNhap, baibao.filePath, baibao.noiDung, baibao.ngayDang, baibao.tenBaiBao, baibao.luotXem "
 					+ "FROM baibao INNER JOIN xuhuong ON baibao.maBaiBao = xuhuong.maBaiBao WHERE xuhuong.ngayXuHuong =?";
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setDate(1, today);
+			st.setTimestamp(1, today);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
@@ -385,7 +386,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -420,7 +421,7 @@ public class BaiBaoDAO {
 				String moTa = rs.getString("moTa");
 				String filePath = rs.getString("filePath");
 				String noiDung = rs.getString("noiDung");
-				Date ngayDang = rs.getDate("ngayDang");
+				Timestamp ngayDang = rs.getTimestamp("ngayDang");
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
@@ -438,11 +439,11 @@ public class BaiBaoDAO {
 
 	public static void insertXuHuong(ArrayList<BaiBao> list) {
 		Connection conn = JDBCUtil.getConnection();
-		Date today = new Date(Calendar.getInstance().getTimeInMillis());
+		Timestamp today = new Timestamp(Calendar.getInstance().getTimeInMillis());
 		try {
 			String sql = "insert into xuhuong (maBaiBao, ngayXuHuong) values(?,?);";
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setDate(2, today);
+			st.setTimestamp(2, today);
 			for (BaiBao bb : list) {
 				st.setString(1, bb.getMaBaiBao());
 				st.executeUpdate();
@@ -466,7 +467,7 @@ public class BaiBaoDAO {
 			st.setString(3, baiBao.getMoTa());
 			st.setString(4, baiBao.getFilePath());
 			st.setString(5, baiBao.getNoiDung());
-			st.setDate(6, baiBao.getNgayDang());
+			st.setTimestamp(6, baiBao.getNgayDang());
 			st.setString(7, baiBao.getNguoiDang().getTenDangNhap());
 			st.setInt(8, baiBao.getLuotXem());
 			int res = st.executeUpdate();
@@ -502,7 +503,7 @@ public class BaiBaoDAO {
 				while (rs.next()) {
 					BaiBao baiBao = new BaiBao(rs.getString("maBaiBao"), rs.getString("tenBaiBao"),
 							rs.getString("moTa"), rs.getString("filePath"), rs.getString("noiDung"),
-							rs.getDate("ngayDang"), new NguoiDung(), rs.getInt("luotXem"), new DSTheLoai(),
+							rs.getTimestamp("ngayDang"), new NguoiDung(), rs.getInt("luotXem"), new DSTheLoai(),
 							new ArrayList<BinhLuan>());
 					res.add(baiBao);
 
@@ -516,7 +517,7 @@ public class BaiBaoDAO {
 				while (rs.next()) {
 					BaiBao baiBao = new BaiBao(rs.getString("maBaiBao"), rs.getString("tenBaiBao"),
 							rs.getString("moTa"), rs.getString("filePath"), rs.getString("noiDung"),
-							rs.getDate("ngayDang"), new NguoiDung(), rs.getInt("luotXem"), new DSTheLoai(),
+							rs.getTimestamp("ngayDang"), new NguoiDung(), rs.getInt("luotXem"), new DSTheLoai(),
 							new ArrayList<BinhLuan>());
 					res.add(baiBao);
 
