@@ -62,8 +62,8 @@ public class UploadServlet extends HttpServlet {
 			// Lấy tệp tin được tải lên từ yêu cầu
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
-			filePart.write(getServletContext().getRealPath("/img") + "//" + fileName);
-			String filePath = getServletContext().getRealPath("/img") + "//" + fileName;
+			filePart.write(getServletContext().getRealPath("/img") + "/" + fileName);
+			String filePath = getServletContext().getRealPath("/img") + "/" + fileName;
 
 			request.getSession().setAttribute("filePath", filePath);
 
@@ -107,8 +107,7 @@ public class UploadServlet extends HttpServlet {
 		} else if(type.equals("dangBai")){
 			// thêm bài báo ở đây
 			File file = new File(request.getSession().getAttribute("filePath") + "");
-			Part filePart = request.getPart("file");
-			InputStream is = filePart.getInputStream();
+			InputStream is = new FileInputStream(file) ;
 			String fileName = request.getSession().getAttribute("fileName") + "";
 			String link = APISaveImage.uploadImageAndGetLink(is, fileName);
 			file.delete();
