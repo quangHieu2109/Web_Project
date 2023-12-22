@@ -6,10 +6,10 @@
 <meta charset="UTF-8">
 <title>Đăng ký</title>
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	href="${pageContext.request.contextPath}/img/logo_icon2.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	href="${pageContext.request.contextPath}/img/logo_icon2.png"
 	type="image/x-icon">
 <link rel="stylesheet" href="css/dangKy.css">
 

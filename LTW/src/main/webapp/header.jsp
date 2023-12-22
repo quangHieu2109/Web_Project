@@ -10,10 +10,10 @@
 	integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	href="${pageContext.request.contextPath}/img/logo_icon2.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	href="${pageContext.request.contextPath}/img/logo_icon2.png"
 	type="image/x-icon">
 </head>
 <style type="text/css">
@@ -180,7 +180,7 @@ ul {
 		<div>
 			<a href="MainServlet" style="display: block; height: max_content;"><img
 				alt="logo" src="
-				${path}/img/logo.png" type="image/x-icon"
+				${path}/img/logo2.png" type="image/x-icon"
 				style="max-height: 100px"> </a>
 		</div>
 		<div class="search">

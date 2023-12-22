@@ -57,7 +57,7 @@ public class MainServlet extends HttpServlet {
     String path = 	req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
 		+ req.getContextPath();
     	req.getServletContext().setAttribute("path", path);
-    	System.out.println(path);
+//    	System.out.println(path);
     	req.getRequestDispatcher("/trangChu.jsp").forward(req, resp);
     }
 
