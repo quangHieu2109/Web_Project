@@ -60,7 +60,7 @@ public class EditServlet extends HttpServlet {
 				request.getSession().removeAttribute("baiBao");
 			}
 			request.getSession().setAttribute("baiBao", baiBao);
-			request.getRequestDispatcher("chinhSuaBaiBao.jsp").forward(request, response);
+			request.getRequestDispatcher("pageJournalist/chinhSuaBaiBao.jsp").forward(request, response);
 		}else if(type.equals("remove")) {
 			String maBaiBao = request.getParameter("maBaiBao");
 			BaiBao baiBao = newsService.getBaiBaoByMaBB(maBaiBao);

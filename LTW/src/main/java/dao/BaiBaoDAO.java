@@ -155,12 +155,12 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
 
 			}
@@ -198,12 +198,12 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
 
 			}
@@ -240,14 +240,14 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
-				
+
 			}
 			rs.close();
 			st.close();
@@ -280,14 +280,14 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
-				
+
 			}
 			rs.close();
 			st.close();
@@ -334,12 +334,12 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
 			}
 			rs.close();
@@ -363,7 +363,7 @@ public class BaiBaoDAO {
 			while (result.size() < 10) {
 				Collections.shuffle(list);
 				for (BaiBao bb : list) {
-					if (rd.nextInt() % 2 == 0 && !result.contains(bb) && result.size()<10) {
+					if (rd.nextInt() % 2 == 0 && !result.contains(bb) && result.size() < 10) {
 						result.add(bb);
 					}
 				}
