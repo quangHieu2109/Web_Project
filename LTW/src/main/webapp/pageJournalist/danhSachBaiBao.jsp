@@ -5,35 +5,41 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Danh sách bài báo của bạn</title>
 <link href="css/main.css" rel="stylesheet">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
 </head>
 <body>
-		<jsp:include page="/header.jsp"></jsp:include>
+	<jsp:include page="/header.jsp"></jsp:include>
 	<jsp:useBean id="baos" type="java.util.ArrayList" scope="request"></jsp:useBean>
 	<div class="container">
 		<h1 class="fs-25">Danh sách các bài báo của bạn</h1>
 		<div class="col-lg-10 ma">
 			<c:forEach items="${baos }" var="bao">
-			<div class="row border">
-				<div class="col-lg-10 space flex ">
-					<div class="col-lg-4">
-						<img alt=""
-							src="${bao.getFilePath()}"
-							class="card-img">
+				<div class="row border">
+					<div class="col-lg-10 space flex ">
+						<div class="col-lg-4">
+							<img alt="" src="${bao.getFilePath()}" class="card-img">
+						</div>
+						<div class="col-lg-8 br">
+							<label class="find-title">${bao.getTieuDe()}</label><br> <label
+								class="find-descrip">${bao.getMoTa()}</label>
+						</div>
 					</div>
-					<div class="col-lg-8 br">
-						<label class="find-title">${bao.getTieuDe()}</label><br> <label
-							class="find-descrip">${bao.getMoTa()}</label>
+					<div class="col-lg-2 button">
+						<a href="EditServlet?type=edit&maBaiBao=${bao.getMaBaiBao() }"
+							class="btn">Chỉnh sửa</a> <a
+							href="EditServlet?type=remove&maBaiBao=${bao.getMaBaiBao()}"
+							class="btn">Xóa</a>
 					</div>
 				</div>
-				<div class="col-lg-2 button">
-					<a href="EditServlet?type=edit&maBaiBao=${bao.getMaBaiBao() }" class="btn">Chỉnh
-						sửa</a> <a href="EditServlet?type=remove&maBaiBao=${bao.getMaBaiBao()}" class="btn">Xóa</a>
-				</div>
-			</div>
-			
-			
+
+
 			</c:forEach>
 		</div>
 	</div>

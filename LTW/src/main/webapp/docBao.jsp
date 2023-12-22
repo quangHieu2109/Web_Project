@@ -6,8 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Đọc báo</title>
 <link href="css/main.css" rel="stylesheet">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
@@ -39,12 +45,11 @@
 						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px">Xem
 						nhiều</span>
 					<c:forEach items="${topView }" var="baoTV">
-						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }" class="list-group-item">
+						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }"
+							class="list-group-item">
 							<div class="row">
 								<div class="col-md-4">
-									<img alt=""
-										src="${baoTV.getFilePath() }"
-										class="card-img">
+									<img alt="" src="${baoTV.getFilePath() }" class="card-img">
 								</div>
 								<div class="col-md-8">
 									<label class="center">${baoTV.getTieuDe() }</label>

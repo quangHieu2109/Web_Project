@@ -54,6 +54,10 @@ public class MainServlet extends HttpServlet {
     		req.getSession().setAttribute("nguoiDung", nd);
     	}
     	((NguoiDung)req.getSession().getAttribute("nguoiDung")).setRoles(roles);
+    String path = 	req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
+		+ req.getContextPath();
+    	req.getServletContext().setAttribute("path", path);
+    	System.out.println(path);
     	req.getRequestDispatcher("/trangChu.jsp").forward(req, resp);
     }
 

@@ -8,6 +8,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="css/main.css" rel="stylesheet">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+</head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="baos" class="java.util.ArrayList" scope="session"></jsp:useBean>
@@ -24,8 +31,9 @@
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Xu
 						hướng</span>
 					<c:forEach items="${xuHuong }" var="baoXH">
-						<a href="read?maBaiBao=${baoXH.getMaBaiBao() }" class="list-group-item"> <span
-							class="text-danger " style="font-size: 18px; font-weight: bold;">${baoXH.getTieuDe() }</span>
+						<a href="read?maBaiBao=${baoXH.getMaBaiBao() }"
+							class="list-group-item"> <span class="text-danger "
+							style="font-size: 18px; font-weight: bold;">${baoXH.getTieuDe() }</span>
 						</a>
 					</c:forEach>
 				</div>
@@ -120,12 +128,13 @@
 			<div class="col-lg-3">
 				<div class="list-group border">
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Top
-						view</span> <c:forEach items="${topView }" var="baoTV">
-						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }" class="list-group-item">
-						<span
-						class="text-danger " style="font-size: 18px; font-weight: bold;">${baoTV.getTieuDe() }</span> 
-					</a> 
-						</c:forEach>
+						view</span>
+					<c:forEach items="${topView }" var="baoTV">
+						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }"
+							class="list-group-item"> <span class="text-danger "
+							style="font-size: 18px; font-weight: bold;">${baoTV.getTieuDe() }</span>
+						</a>
+					</c:forEach>
 				</div>
 				<!-- end top view right -->
 			</div>

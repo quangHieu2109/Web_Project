@@ -9,6 +9,12 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
 	integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
 </head>
 <style type="text/css">
 .rounded-circle {
@@ -167,13 +173,14 @@ ul {
 </head>
 <body>
 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
+	<jsp:useBean id="path" class="java.lang.String" scope="application"></jsp:useBean>
 
 	<div
 		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
 		<div>
 			<a href="MainServlet" style="display: block; height: max_content;"><img
-				alt="logo"
-				src="https://tse4.mm.bing.net/th?id=OIP._IfEaUssjZQwZ1u92b1_GgHaEK&pid=Api&P=0&h=180"
+				alt="logo" src="
+				${path}/img/logo.png" type="image/x-icon"
 				style="max-height: 100px"> </a>
 		</div>
 		<div class="search">
@@ -202,7 +209,8 @@ ul {
 				<ul>
 					<li><a href="UploadServlet"
 						style="text-decoration: none; color: black;">Đăng bài</a></li>
-					<li><a href="ShowListServlet?tenDangNhap=${nguoiDung.getTenDangNhap() }"
+					<li><a
+						href="ShowListServlet?tenDangNhap=${nguoiDung.getTenDangNhap() }"
 						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>
 					<li><a href="" style="text-decoration: none; color: black;">Thông
 							tin tài khoản</a></li>
@@ -238,7 +246,8 @@ ul {
 						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao
 							động</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=dansinh">Dân sinh</a></li>
+						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=dansinh">Dân
+							sinh</a></li>
 					<li><a
 						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao
 							thông</a></li>

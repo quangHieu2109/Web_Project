@@ -5,8 +5,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Kết quả tìm kiếm</title>
 <link href="css/main.css" rel="stylesheet">
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
 </head>
 <body>
 
@@ -17,15 +23,16 @@
 		<div class="col-md-8 mg-a">
 			<label class="keyword">Từ khóa: ${key}</label>
 			<c:forEach var="bao" items="${baos}" varStatus="status">
-				<a href="read?maBaiBao=${bao.getMaBaiBao() }"><div class="row space">
-					<div class="col-lg-4">
-						<img alt="" src="${bao.getFilePath()}" class="card-img">
-					</div>
-					<div class="col-lg-8">
-						<label class="find-title">${bao.getTieuDe()}</label><br> <label
-							class="find-descrip">${bao.getMoTa()}</label>
-					</div>
-				</div></a>
+				<a href="read?maBaiBao=${bao.getMaBaiBao() }"><div
+						class="row space">
+						<div class="col-lg-4">
+							<img alt="" src="${bao.getFilePath()}" class="card-img">
+						</div>
+						<div class="col-lg-8">
+							<label class="find-title">${bao.getTieuDe()}</label><br> <label
+								class="find-descrip">${bao.getMoTa()}</label>
+						</div>
+					</div></a>
 				<hr>
 			</c:forEach>
 

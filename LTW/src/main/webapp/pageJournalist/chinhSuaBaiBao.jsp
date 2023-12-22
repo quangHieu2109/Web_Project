@@ -8,28 +8,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Chỉnh sửa bài báo</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
 <style type="text/css">
-
 </style>
 <link rel="stylesheet" type="text/css" href="css/dangBai.css">
 </head>
 <body>
-		<jsp:include page="/header.jsp" ></jsp:include>
+	<jsp:include page="/header.jsp"></jsp:include>
 	<jsp:useBean id="baiBao" class="model.BaiBao" scope="session"></jsp:useBean>
 	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean>
-<%-- 	<c:set  value="${newService.getBaiBaoByMaBB(request.getParameter(maBaiBao))}" var="bao"></c:set> --%>
-<%-- <% BaiBao bao = newService.getBaiBaoByMaBB(request.getParameter("maBaiBao")); %> --%>
+	<%-- 	<c:set  value="${newService.getBaiBaoByMaBB(request.getParameter(maBaiBao))}" var="bao"></c:set> --%>
+	<%-- <% BaiBao bao = newService.getBaiBaoByMaBB(request.getParameter("maBaiBao")); %> --%>
 	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="EditServlet"
-			enctype="multipart/form-data" id="myform">
+		<form method="POST" action="EditServlet" enctype="multipart/form-data"
+			id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>
 				<textarea rows="1" cols="" wrap="soft" class="tieude" name="tieuDe"
 					value="">${baiBao.getTieuDe()}</textarea>
-					
+
 			</div>
 			<div class="div TheLoai">
 				<label>Thể loại</label>
@@ -45,9 +50,8 @@
 									${theLoai.checkTLPhu("laodong") }>Lao động</li>
 								<li><input type="checkbox" name="thoisu" value="giaoduc"
 									${theLoai.checkTLPhu("giaoduc") }>Giáo dục</li>
-								<li><input type="checkbox" name="thoisu"
-									value="giaothong" ${theLoai.checkTLPhu("giaothong") } >Giao
-									Thông</li>
+								<li><input type="checkbox" name="thoisu" value="giaothong"
+									${theLoai.checkTLPhu("giaothong") }>Giao Thông</li>
 							</div>
 						</ul>
 						<ul class="ul">
@@ -56,9 +60,8 @@
 							<div class="li">
 								<li><input type="checkbox" name="thegioi" value="tulieu"
 									${theLoai.checkTLPhu("tulieu") }>Tư liệu</li>
-								<li><input type="checkbox" name="thegioi"
-									value="cuocsong" ${theLoai.checkTLPhu("cuocsong") }>Cuộc
-									sống</li>
+								<li><input type="checkbox" name="thegioi" value="cuocsong"
+									${theLoai.checkTLPhu("cuocsong") }>Cuộc sống</li>
 								<li><input type="checkbox" name="thegioi" value="quansu"
 									${theLoai.checkTLPhu("quansu") }>Quân sự</li>
 						</ul>
@@ -88,10 +91,10 @@
 								<li><input type="checkbox" name="batdongsan"
 									value="thitruong" ${theLoai.checkTLPhu("thitruong") }>Thị
 									trường</li>
-								<li><input type="checkbox" name="batdongsan"
-									value="duan" ${theLoai.checkTLPhu("duan") }>Dự án</li>
-								<li><input type="checkbox" name="batdongsan"
-									value="tuvan" ${theLoai.checkTLPhu("tuvan") }>Tư vấn</li>
+								<li><input type="checkbox" name="batdongsan" value="duan"
+									${theLoai.checkTLPhu("duan") }>Dự án</li>
+								<li><input type="checkbox" name="batdongsan" value="tuvan"
+									${theLoai.checkTLPhu("tuvan") }>Tư vấn</li>
 							</div>
 						</ul>
 						<ul class="ul">
@@ -115,33 +118,29 @@
 							<div class="li">
 								<li><input type="checkbox" name="giaoduc" value="tintuc"
 									${theLoai.checkTLPhu("tintuc") }>Tin tức</li>
-								<li><input type="checkbox" name="giaoduc"
-									value="tuyensinh" ${theLoai.checkTLPhu("tuyensinh") }>Tuyển
-									sinh</li>
+								<li><input type="checkbox" name="giaoduc" value="tuyensinh"
+									${theLoai.checkTLPhu("tuyensinh") }>Tuyển sinh</li>
 								<li><input type="checkbox" name="giaoduc" value="duhoc"
 									${theLoai.checkTLPhu("duhoc") }>Du học</li>
 								<li><input type="checkbox" name="giaoduc"
 									value="hoctienganh" ${theLoai.checkTLPhu("hoctienganh") }>Học
 									tiếng Anh</li>
-								<li><input type="checkbox" name="giaoduc"
-									value="giaoduc40" ${theLoai.checkTLPhu("giaoduc40") }>Giáo
-									dục 4.0</li>
+								<li><input type="checkbox" name="giaoduc" value="giaoduc40"
+									${theLoai.checkTLPhu("giaoduc40") }>Giáo dục 4.0</li>
 							</div>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="doisong"
 								${theLoai.checkTLChinh("doisong") }> Đời sống
 							<div class="li">
-								<li><input type="checkbox" name="doisong"
-									value="nhipsong" ${theLoai.checkTLPhu("") }>Nhịp
-									sống</li>
+								<li><input type="checkbox" name="doisong" value="nhipsong"
+									${theLoai.checkTLPhu("") }>Nhịp sống</li>
 								<li><input type="checkbox" name="doisong" value="toam"
 									${theLoai.checkTLPhu("toam") }>Tổ ấm</li>
 								<li><input type="checkbox" name="doisong" value="cooking"
 									${theLoai.checkTLPhu("cooking") }>Cooking</li>
-								<li><input type="checkbox" name="doisong"
-									value="tieudung" ${theLoai.checkTLPhu("tieudung") }>Tiêu
-									dùng</li>
+								<li><input type="checkbox" name="doisong" value="tieudung"
+									${theLoai.checkTLPhu("tieudung") }>Tiêu dùng</li>
 							</div>
 						</ul>
 						<ul class="ul">
@@ -195,7 +194,7 @@
 				<button type="button" onclick="submitForm()">Cập nhật</button>
 			</div>
 		</form>
-	
+
 	</div>
 	<script type="text/javascript">
 		function submitFormUpAnh() {

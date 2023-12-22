@@ -5,6 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Đăng nhập</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
+<link rel="shortcut icon"
+	href="${pageContext.request.contextPath}/img/logo_icon.png"
+	type="image/x-icon">
 <link rel="stylesheet" href="css/dangKy.css">
 <style type="text/css">
 .content {
