@@ -181,7 +181,7 @@ ul {
 			<a href="MainServlet" style="display: block; height: max_content;"><img
 				alt="logo" src="
 				${path}/img/logo2.png" type="image/x-icon"
-				style="max-height: 100px"> </a>
+				style="max-height: 100px; max-width:100%;"> </a>
 		</div>
 		<div class="search">
 			<form action="search" id="searchForm">
