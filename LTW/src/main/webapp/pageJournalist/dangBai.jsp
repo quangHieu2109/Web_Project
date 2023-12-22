@@ -69,8 +69,8 @@
 									value="doanhnghiep" ${theLoai.checkTLPhu("doanhnghiep") }>Doanh
 									nghiệp</li>
 								<li><input type="checkbox" name="kinhdoanh"
-									value="chungkhoang" ${theLoai.checkTLPhu("chungkhoang") }>Chứng
-									khoáng</li>
+									value="chungkhoan" ${theLoai.checkTLPhu("chungkhoan") }>Chứng
+									khoán</li>
 								<li><input type="checkbox" name="kinhdoanh" value="baohiem"
 									${theLoai.checkTLPhu("baohiem") }>Bảo hiểm</li>
 							</div>

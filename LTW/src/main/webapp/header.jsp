@@ -275,8 +275,8 @@ ul {
 						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=doanhnghiep">Doanh
 							nghiệp</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoang">Chứng
-							khoáng</a></li>
+						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoan">Chứng
+							khoán</a></li>
 					<li><a
 						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=baohiem">Bảo
 							hiểm</a></li>
