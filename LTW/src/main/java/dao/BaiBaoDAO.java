@@ -514,7 +514,7 @@ public class BaiBaoDAO {
 				}
 				rs.close();
 			} else {
-				sql = "Select * From (baibao inner join theloaiChinh on baibao.maBaiBao = theloaiChinh.maBaiBao) Where theloaichinh.maTheLoai = '"
+				sql = "Select * From (baibao inner join theloaiChinh on baibao.maBaiBao = theloaiChinh.maBaiBao) Where theloaiChinh.maTheLoai = '"
 						+ theLoaiChinh + "'";
 				ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();

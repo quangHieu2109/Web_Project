@@ -21,9 +21,9 @@ public class JDBCUtil {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
 			// Các thông số
-			String url = "jdbc:mySQL://localhost:3306/web";
-			String username = "root";
-			String password = ""; 
+			String url = "jdbc:mySQL://sql12.freesqldatabase.com:3306/sql12672306";
+			String username = "sql12672306";
+			String password = "9peFs2VZ7P"; 
 
 			// Tạo kết nối
 			conn = DriverManager.getConnection(url, username, password);
