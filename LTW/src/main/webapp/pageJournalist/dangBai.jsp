@@ -40,8 +40,8 @@
 									${theLoai.checkTLPhu("chinhtri") }>Chính trị</li>
 								<li><input type="checkbox" name="thoisu" value="laodong"
 									${theLoai.checkTLPhu("laodong") }>Lao động</li>
-								<li><input type="checkbox" name="thoisu" value="giaoduc"
-									${theLoai.checkTLPhu("giaoduc") }>Giáo dục</li>
+								<li><input type="checkbox" name="thoisu" value="dansinh"
+									${theLoai.checkTLPhu("dansinh") }>Dân sinh</li>
 								<li><input type="checkbox" name="thoisu"
 									value="giaothong" ${theLoai.checkTLPhu("giaothong") } >Giao
 									Thông</li>

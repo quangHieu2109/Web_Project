@@ -55,7 +55,7 @@ public class TheLoaiDAO extends GeneralDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -80,7 +80,7 @@ public class TheLoaiDAO extends GeneralDAO {
 			result = new TheLoai(rs.getString(1), rs.getString(2));
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -116,7 +116,7 @@ public class TheLoaiDAO extends GeneralDAO {
 			}
 //			print.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -138,7 +138,7 @@ public class TheLoaiDAO extends GeneralDAO {
 			st.setString(1, baiBao.getMaBaiBao());
 			x = st.executeUpdate();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

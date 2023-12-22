@@ -51,7 +51,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -90,7 +90,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -124,7 +124,7 @@ public class BaiBaoDAO {
 			result = rs.getInt(1);
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -166,7 +166,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -209,7 +209,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -251,7 +251,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -291,7 +291,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -344,7 +344,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -399,7 +399,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -434,7 +434,7 @@ public class BaiBaoDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -453,7 +453,7 @@ public class BaiBaoDAO {
 				st.executeUpdate();
 			}
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -484,7 +484,7 @@ public class BaiBaoDAO {
 
 //			JDBCUtil.closeConnection();
 			st.close();
-			conn.close();
+//			conn.close();
 			return res == 1;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -529,7 +529,7 @@ public class BaiBaoDAO {
 				rs.close();
 			}
 			ps.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -553,7 +553,7 @@ public class BaiBaoDAO {
 
 			int i = st.executeUpdate();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -568,7 +568,7 @@ public class BaiBaoDAO {
 			st.setString(1, baiBao.getMaBaiBao());
 			st.executeUpdate();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

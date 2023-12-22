@@ -42,7 +42,7 @@ public class BinhLuanDAO extends GeneralDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -73,7 +73,7 @@ public class BinhLuanDAO extends GeneralDAO {
 			print.println(sql);
 			st.close();
 			print.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -91,7 +91,7 @@ public class BinhLuanDAO extends GeneralDAO {
 			st.setString(1, binhLuan.getMaBinhLuan());
 			result = st.executeUpdate();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

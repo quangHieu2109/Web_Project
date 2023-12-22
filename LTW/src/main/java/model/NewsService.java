@@ -18,6 +18,10 @@ public class NewsService {
 	private NguoiDungDAO dbNguoiDung = new NguoiDungDAO();
 	private boolean isLogin = false;
 
+	public NewsService() {
+		JDBCUtil.connection();
+	}
+
 	public ArrayList<BaiBao> getBaiBaoMoiNhat(int size) {
 		return dbBaiBao.selectOrderByTime(size);
 	}

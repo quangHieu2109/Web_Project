@@ -37,7 +37,7 @@ public class NguoiDungDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -63,7 +63,7 @@ public class NguoiDungDAO {
 			}
 			rs.close();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -89,7 +89,7 @@ public class NguoiDungDAO {
 //					+ "values ('"+nguoiDung.getTenDangNhap()+"','"+nguoiDung.getMatKhau()+"','"+nguoiDung.getHoVaTen()+"','"+nguoiDung.getEmail()+"','"+nguoiDung.getNgaySinh()+"')";
 
 			st.close();
-			conn.close();
+//			conn.close();
 
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -106,7 +106,7 @@ public class NguoiDungDAO {
 			st.setString(1, nguoiDung.getTenDangNhap());
 			result = st.executeUpdate();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -127,7 +127,7 @@ public class NguoiDungDAO {
 			st.setString(5, nguoiDung.getTenDangNhap());
 			result = st.executeUpdate();
 			st.close();
-			conn.close();
+//			conn.close();
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -149,7 +149,7 @@ public class NguoiDungDAO {
 						rs.getString("email"), rs.getDate("ngaySinh"));
 //				conn.close();
 			} else {
-				conn.close();
+//				conn.close();
 				return null;
 			}
 			

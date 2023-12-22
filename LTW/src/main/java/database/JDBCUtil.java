@@ -37,7 +37,7 @@ public class JDBCUtil {
 	}
 
 	public static Connection getConnection() {
-		connection();
+//		connection();
 		return conn;
 //		try {
 //	         // Look up the DataSource

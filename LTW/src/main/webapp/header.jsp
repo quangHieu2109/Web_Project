@@ -238,8 +238,7 @@ ul {
 						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao
 							động</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaoduc">Giáo
-							dục</a></li>
+						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=dansinh">Dân sinh</a></li>
 					<li><a
 						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao
 							thông</a></li>
