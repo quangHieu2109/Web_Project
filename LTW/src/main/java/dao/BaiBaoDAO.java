@@ -376,12 +376,12 @@ public class BaiBaoDAO {
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		Connection conn = JDBCUtil.getConnection();
 
-		Timestamp today = new Timestamp(Calendar.getInstance().getTimeInMillis());
+		Date today = new Date(System.currentTimeMillis());
 		try {
 			String sql = "SELECT baibao.maBaiBao, baibao.tenBaiBao, baibao.moTa, baibao.tenDangNhap, baibao.filePath, baibao.noiDung, baibao.ngayDang, baibao.tenBaiBao, baibao.luotXem "
 					+ "FROM baibao INNER JOIN xuhuong ON baibao.maBaiBao = xuhuong.maBaiBao WHERE xuhuong.ngayXuHuong =?";
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setTimestamp(1, today);
+			st.setDate(1, today);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
