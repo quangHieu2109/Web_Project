@@ -155,12 +155,12 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
 
 			}
@@ -198,12 +198,12 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
 
 			}
@@ -240,14 +240,14 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
-				
+
 			}
 			rs.close();
 			st.close();
@@ -280,14 +280,14 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
-				
+
 			}
 			rs.close();
 			st.close();
@@ -334,12 +334,12 @@ public class BaiBaoDAO {
 				String tenDangNhap = rs.getString("tenDangNhap");
 				int luotXem = rs.getInt("luotXem");
 
-				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
-				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, nguoiDung, luotXem);
-				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
-				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
-				baiBao.addAllBinhLuan(dsBinhLuan);
-				baiBao.setTheLoai(dsTheLoai);
+//				NguoiDung nguoiDung = nguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+				BaiBao baiBao = new BaiBao(maBaiBao, tenBaiBao, moTa, filePath, noiDung, ngayDang, null, luotXem);
+//				ArrayList<BinhLuan> dsBinhLuan = binhLuanDAO.selectByBaiBao(baiBao);
+//				DSTheLoai dsTheLoai = theLoaiDAO.selectByBaiBao(baiBao);
+				baiBao.addAllBinhLuan(new ArrayList<BinhLuan>());
+				baiBao.setTheLoai(null);
 				result.add(baiBao);
 			}
 			rs.close();
@@ -363,7 +363,7 @@ public class BaiBaoDAO {
 			while (result.size() < 10) {
 				Collections.shuffle(list);
 				for (BaiBao bb : list) {
-					if (rd.nextInt() % 2 == 0 && !result.contains(bb) && result.size()<10) {
+					if (rd.nextInt() % 2 == 0 && !result.contains(bb) && result.size() < 10) {
 						result.add(bb);
 					}
 				}
@@ -376,12 +376,12 @@ public class BaiBaoDAO {
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		Connection conn = JDBCUtil.getConnection();
 
-		Timestamp today = new Timestamp(Calendar.getInstance().getTimeInMillis());
+		Date today = new Date(System.currentTimeMillis());
 		try {
 			String sql = "SELECT baibao.maBaiBao, baibao.tenBaiBao, baibao.moTa, baibao.tenDangNhap, baibao.filePath, baibao.noiDung, baibao.ngayDang, baibao.tenBaiBao, baibao.luotXem "
 					+ "FROM baibao INNER JOIN xuhuong ON baibao.maBaiBao = xuhuong.maBaiBao WHERE xuhuong.ngayXuHuong =?";
 			PreparedStatement st = conn.prepareStatement(sql);
-			st.setTimestamp(1, today);
+			st.setDate(1, today);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
@@ -514,7 +514,7 @@ public class BaiBaoDAO {
 				}
 				rs.close();
 			} else {
-				sql = "Select * From (baibao inner join theloaiChinh on baibao.maBaiBao = theloaiChinh.maBaiBao) Where theloaichinh.maTheLoai = '"
+				sql = "Select * From (baibao inner join theloaiChinh on baibao.maBaiBao = theloaiChinh.maBaiBao) Where theloaiChinh.maTheLoai = '"
 						+ theLoaiChinh + "'";
 				ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();

@@ -89,7 +89,8 @@ public class UploadServlet extends HttpServlet {
 					dsTLPhu.add(TheLoaiDAO.selectByMaTheLoai(s));
 				}
 			}
-			TheLoai tlChinh = (TheLoaiDAO.selectByMaTheLoai(theLoai) == null)?new TheLoai():TheLoaiDAO.selectByMaTheLoai(theLoai);
+			TheLoai tlChinh = (TheLoaiDAO.selectByMaTheLoai(theLoai) == null) ? new TheLoai()
+					: TheLoaiDAO.selectByMaTheLoai(theLoai);
 			DSTheLoai dsTheLoai = new DSTheLoai(tlChinh, dsTLPhu);
 
 			String tieuDe = request.getParameter("tieuDe");
@@ -104,10 +105,16 @@ public class UploadServlet extends HttpServlet {
 			// Chuyển hướng trở lại trang dangbai.jsp
 			response.sendRedirect("UploadServlet");
 //			request.getRequestDispatcher("UploadServlet").forward(request, response);
-		} else if(type.equals("dangBai")){
+		} else if (type.equals("dangBai")) {
 			// thêm bài báo ở đây
 			File file = new File(request.getSession().getAttribute("filePath") + "");
-			InputStream is = new FileInputStream(file) ;
+			InputStream is = null;
+			if (file.exists()) {
+				is = new FileInputStream(file);
+			} else {
+				is = request.getPart("file").getInputStream();
+			}
+
 			String fileName = request.getSession().getAttribute("fileName") + "";
 			String link = APISaveImage.uploadImageAndGetLink(is, fileName);
 			file.delete();
@@ -145,7 +152,7 @@ public class UploadServlet extends HttpServlet {
 			newsService.addBaiBao(baiBao);
 			response.sendRedirect("MainServlet");
 //			request.getRequestDispatcher("trangChu.jsp").forward(request, response);
-		}else {
+		} else {
 			request.getRequestDispatcher("pageJournalist/dangBai.jsp").forward(request, response);
 		}
 		response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");

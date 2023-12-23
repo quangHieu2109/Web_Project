@@ -41,7 +41,7 @@ public class MainServlet extends HttpServlet {
     		newsService = new NewsService();
     		req.getSession().setAttribute("newsService", newsService);
     	}
-    	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat(34));
+//    	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat(34));
     	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat());
     	req.getSession().setAttribute("xuHuong", newsService.getXuHuong());
     	req.getSession().setAttribute("topView", newsService.getTopView());

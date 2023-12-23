@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 
 public class JDBCUtil {
 	private static Connection conn = null;
-	private static DataSource dataSource ;;
+	private static DataSource dataSource ;
 
 	public static void connection() {
 		try {
