@@ -113,6 +113,25 @@
 
 								</div> </a>
 						</div>
+						<div class="row space">
+					<c:forEach var="bao" items="${baos}" begin="4">
+						<div class=" border col-lg-4 mt-30">
+							<a href="read?maBaiBao=${bao.getMaBaiBao() }">
+								<div class="col-md-12">
+									<img src="${bao.getFilePath()}" class="card-img-3"
+										alt="Hình ảnh">
+								</div>
+								<div class="col-md-12">
+									<div class="card-body">
+										<h5 class="card-title">${bao.getTieuDe()}</h5>
+										<p class="card-text">${bao.getMoTa()}</p>
+									</div>
+								</div>
+							</a>
+						</div>
+					</c:forEach>
+				</div>
+						
 					</div>
 					<!-- end 3 ô nhỏ -->
 
@@ -140,24 +159,7 @@
 			</div>
 
 			<div class="container mt-4 w-80">
-				<div class="row space w-80">
-					<c:forEach var="bao" items="${baos}" begin="4">
-						<div class=" border col-lg-4 mt-30">
-							<a href="read?maBaiBao=${bao.getMaBaiBao() }">
-								<div class="col-md-12">
-									<img src="${bao.getFilePath()}" class="card-img-3"
-										alt="Hình ảnh">
-								</div>
-								<div class="col-md-12">
-									<div class="card-body">
-										<h5 class="card-title">${bao.getTieuDe()}</h5>
-										<p class="card-text">${bao.getMoTa()}</p>
-									</div>
-								</div>
-							</a>
-						</div>
-					</c:forEach>
-				</div>
+				
 			</div>
 
 			<jsp:include page="footer.jsp"></jsp:include>

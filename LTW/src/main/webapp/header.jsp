@@ -80,7 +80,7 @@ li {
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	font-size: 200%;
+/* 	font-size: 200%; */
 }
 
 .nav {
@@ -94,7 +94,6 @@ li {
 	justify-content: space-between;
 	width: 90%;
 	margin: auto;
-	position: relative;
 	display: flex;
 }
 
