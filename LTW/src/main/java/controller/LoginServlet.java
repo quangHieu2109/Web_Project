@@ -43,9 +43,6 @@ public class LoginServlet extends HttpServlet {
 		}
 //		JDBCUtil.connection();
 		NguoiDung nguoiDung = service.checkDangNhap(tenDangNhap, matKhau);
-		if(req.getSession().getAttribute("nguoiDung") != null) {
-			req.getSession().removeAttribute("nguoiDung");
-		}
 		if (nguoiDung != null) {// nếu đăng nhập đúng
 			System.out.println(nguoiDung);
 			req.getSession().setAttribute("nguoiDung", nguoiDung);
