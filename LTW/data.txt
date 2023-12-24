@@ -1,4 +1,0 @@
-
-123123
-insert into nguoidung (tendangnhap, matkhau, hovaten, email, ngaysinh) values ('hiu123588','123123','Ng?´ Quang Hiáº¿u','hiu@123.com','2023-12-08')
-123123

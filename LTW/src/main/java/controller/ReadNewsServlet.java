@@ -20,7 +20,7 @@ import model.NewsService;
 @WebServlet("/read")
 public class ReadNewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+        
     /**
      * @see HttpServlet#HttpServlet()
      */

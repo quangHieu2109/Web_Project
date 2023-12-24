@@ -41,6 +41,9 @@ public class MainServlet extends HttpServlet {
     		newsService = new NewsService();
     		req.getSession().setAttribute("newsService", newsService);
     	}
+if(JDBCUtil.getConnection() == null) {
+    		JDBCUtil.connection();
+    	}
 //    	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat(34));
     	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat());
     	req.getSession().setAttribute("xuHuong", newsService.getXuHuong());
@@ -57,7 +60,7 @@ public class MainServlet extends HttpServlet {
     String path = 	req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort()
 		+ req.getContextPath();
     	req.getServletContext().setAttribute("path", path);
-//    	System.out.println(path);
+//    	System.out.println(path); 
     	req.getRequestDispatcher("/trangChu.jsp").forward(req, resp);
     }
 

@@ -29,7 +29,7 @@ import model.TheLoai;
  * Servlet implementation class EditServlet
  */
 @MultipartConfig
-@WebServlet("/EditServlet")
+@WebServlet("/EditServlet") 
 public class EditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

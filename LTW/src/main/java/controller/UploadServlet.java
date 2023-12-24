@@ -69,7 +69,7 @@ public class UploadServlet extends HttpServlet {
 
 			String link = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 					+ request.getContextPath() + "/img/" + fileName;
-			request.setAttribute("image", link);
+			request.setAttribute("image", link); 
 			request.getSession().setAttribute("fileName", fileName);
 
 			System.out.println(filePath);
