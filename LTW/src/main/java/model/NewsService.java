@@ -103,4 +103,10 @@ public class NewsService {
 
 		return res;
 	}
+	public NguoiDung getNguoiDung(String tenDangNhap) {
+		return NguoiDungDAO.selectByTenDangNhap(tenDangNhap);
+	}
+	public void updateNguoiDung(NguoiDung nguoiDung	) {
+		NguoiDungDAO.updateNguoiDung(nguoiDung);
+	}
 }

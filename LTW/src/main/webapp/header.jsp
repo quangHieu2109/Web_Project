@@ -200,7 +200,7 @@ ul {
 		</div>
 		<div class="user label2" onclick="toggleDropdown('div2')"
 			style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
-			<img src="https://github.com/mdo.png" alt="mdo" width="32"
+			<img src="${nguoiDung.getAvt() }" alt="mdo" width="32"
 				height="32" class="rounded-circle"> <i
 				class="fa-solid fa-angle-down"></i>
 
@@ -209,9 +209,9 @@ ul {
 					<li><a href="UploadServlet"
 						style="text-decoration: none; color: black;">Đăng bài</a></li>
 					<li><a
-						href="ShowListServlet?tenDangNhap=${nguoiDung.getTenDangNhap() }"
+						href="ShowListServlet?type=danhSachBaiBao&tenDangNhap=${nguoiDung.getTenDangNhap() }"
 						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>
-					<li><a href="" style="text-decoration: none; color: black;">Thông
+					<li><a href="ShowListServlet?type=trangCaNhan&tenDangNhap=${nguoiDung.getTenDangNhap() }" style="text-decoration: none; color: black;">Thông
 							tin tài khoản</a></li>
 					<li><a href="" style="text-decoration: none; color: black;">Thay
 							đổi thông tin</a></li>

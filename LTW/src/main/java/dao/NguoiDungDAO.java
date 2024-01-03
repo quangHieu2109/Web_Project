@@ -33,7 +33,10 @@ public class NguoiDungDAO {
 				String hoVaTen = rs.getString("hoVaTen");
 				String email = rs.getString("email");
 				Date ngaySinh = rs.getDate("ngaySinh");
-				result.add(new NguoiDung(tenNguoiDung, matKhau, hoVaTen, email, ngaySinh));
+				String avt = rs.getString("avt");
+				String theLoai = rs.getString("loaiTaiKhoan");
+						
+				result.add(new NguoiDung(tenNguoiDung, matKhau, hoVaTen, email, ngaySinh, avt, theLoai));
 			}
 			rs.close();
 			st.close();
@@ -59,7 +62,10 @@ public class NguoiDungDAO {
 				String hoVaTen = rs.getString("hoVaTen");
 				String email = rs.getString("email");
 				Date ngaySinh = rs.getDate("ngaySinh");
-				result = new NguoiDung(tenNguoiDung, matKhau, hoVaTen, email, ngaySinh);
+				String avt = rs.getString("avt");
+				String theLoai = rs.getString("loaiTaiKhoan");
+						
+				result=(new NguoiDung(tenNguoiDung, matKhau, hoVaTen, email, ngaySinh, avt, theLoai));
 			}
 			rs.close();
 			st.close();
@@ -117,14 +123,16 @@ public class NguoiDungDAO {
 		int result = 0;
 		try {
 			Connection conn = JDBCUtil.getConnection();
-			String sql = "update nguoidung set matKhau =?, hoVaten=?, email=?, ngaySinh=? where tenDangNhap=?";
+			String sql = "update nguoidung set matKhau =?, hoVaten=?, email=?, ngaySinh=?, avt=?, loaiTaiKhoan=? where tenDangNhap=?";
 			PreparedStatement st = conn.prepareStatement(sql);
 
 			st.setString(1, nguoiDung.getMatKhau());
 			st.setString(2, nguoiDung.getHoVaTen());
 			st.setString(3, nguoiDung.getEmail());
 			st.setDate(4, nguoiDung.getNgaySinh());
-			st.setString(5, nguoiDung.getTenDangNhap());
+			st.setString(5, nguoiDung.getAvt());
+			st.setString(6, nguoiDung.getTheLoaiND());
+			st.setString(7, nguoiDung.getTenDangNhap());
 			result = st.executeUpdate();
 			st.close();
 //			conn.close();
@@ -146,7 +154,7 @@ public class NguoiDungDAO {
 			if (rs.next()) {
 				
 				return new NguoiDung(rs.getString("tenDangNhap"), rs.getString("matKhau"), rs.getString("hoVaTen"),
-						rs.getString("email"), rs.getDate("ngaySinh"));
+						rs.getString("email"), rs.getDate("ngaySinh"), rs.getString("avt"), rs.getString("loaiTaiKhoan"));
 //				conn.close();
 			} else {
 //				conn.close();

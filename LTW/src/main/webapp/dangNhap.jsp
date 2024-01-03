@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +49,6 @@ h1 {
 	min-width: 60%;
 	max-width: max-content;
 	margin: auto;
-	margin-top: 10%;
 	padding-bottom: 30px;
 }
 
@@ -68,11 +68,31 @@ label {
 .content {
 	width: 90%;
 }
+
+.error {
+	width: max-content;
+	color: red;
+	font-weight: 600;
+	margin: auto;
+	margin-top: 10%;
+	color: red;
+}
+
+.error label {
+	font-size: 40px;
+}
 </style>
 
 </head>
 <body>
-<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
+	<div class="error">
+		<c:if test="${error.length() >0 }">
+			<label>${error }</label>
+		</c:if>
+	</div>
+
 	<form action="LoginServlet" method="post" class="form">
 		<h1>Đăng nhập tài khoản</h1>
 		<div class="body">

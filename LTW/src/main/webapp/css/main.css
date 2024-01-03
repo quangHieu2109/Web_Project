@@ -312,7 +312,15 @@ p {
 	width: 80%;
 	margin: auto;
 }
-
+.w-50{
+	width: 50%;
+}
+.ml-25{
+	margin-left: 25%;
+}
+.w-maxcontent{
+	width: max-content;
+}
 .center {
 	display: -webkit-box;
 	font-size: 17px;
@@ -333,7 +341,10 @@ p {
 	font-weight: 600;
 	line-height: 35px;
 }
-
+.text-center{
+	display: block;
+	text-align: center;
+}
 .descrip,
 .content {
 	margin: 10px 0;
@@ -401,6 +412,13 @@ p {
 
 }
 
+.line-2{
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	/* Số lượng dòng tối đa */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
 .find-descrip {
 	display: -webkit-box;
 	font-size: 20px;
@@ -411,7 +429,21 @@ p {
 	-webkit-box-orient: vertical;
 	overflow: hidden;
 }
-
+.line-3{
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	/* Số lượng dòng tối đa */
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+.font-22{
+	font-size: 22px;
+	line-height: 24px;
+}
+.font-18{
+	font-size: 18px;
+	line-height: 18px;
+}
 .mg-a {
 	margin: auto;
 }
@@ -452,8 +484,87 @@ hr {
 	border-right: 1px solid #dee2e6;
 }
 .ma{
-	margin: auto ;
+	margin: auto ;  
 }
 .fs-25{
 	font-size: 25px;
+}
+.avt{
+	margin: 10px 0	; 
+	margin-right: 5%;
+	margin-left: 10%;
+}
+.avt img{
+	border:1px solid #dee2e6; 
+	border-radius: 50%; 
+	height: 150px;
+	width: 150px;
+	
+}
+.in4{
+	width: max-content;
+	margin-top: auto;
+	margin-bottom: auto;
+	display: flex;
+	flex-direction: column;
+}
+.in4-title{ 
+	font-size: 40px;
+	margin: 5px;
+	font-weight: 600;
+}
+.in4-amt{
+	font-size: 25px;
+	margin-top:20px ; 
+	margin-left:20px ;
+	color:#333333ba;
+}
+.ul{
+	font-size: 30px;
+} 
+.border-r{
+	border-right:1px solid #dee2e6 ;
+}
+.border-t{
+	border-top:1px solid #dee2e6 ;
+}
+.li{
+	font-size: 20px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+}
+.h-max{
+	height: max-content;  
+}
+.padding-10{
+	padding: 10px ;
+}
+.list-news{
+	height: 880px;
+	overflow: auto;
+}
+/*up avt*/
+.custom-file-input {
+  position: relative;
+}
+
+.hidden-input {
+  display: none;
+}
+
+.file-label {
+  padding: 8px 12px;
+/*  background-color: #f1f1f1;*/
+  border-radius: 4px;
+  cursor: pointer;
+  
+}
+
+.selected-file {
+  display: none;
+  margin-top: 8px;
+}
+
+.hidden-input:checked + .file-label + .selected-file {
+  display: block;
 }

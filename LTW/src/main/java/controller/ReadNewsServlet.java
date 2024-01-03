@@ -46,7 +46,7 @@ public class ReadNewsServlet extends HttpServlet {
 		if(request.getSession().getAttribute("bao") != null) {
 			request.getSession().removeAttribute("bao");
 		}
-		request.getSession().setAttribute("bao", bao);
+		request.setAttribute("bao", bao);
 		newsService.updateBaiBao(bao);
 		request.getRequestDispatcher("docBao.jsp").forward(request, response);
 //		JDBCUtil.closeConnection();

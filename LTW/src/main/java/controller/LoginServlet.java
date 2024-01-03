@@ -42,16 +42,25 @@ public class LoginServlet extends HttpServlet {
 
 		}
 //		JDBCUtil.connection();
-		NguoiDung nguoiDung = service.checkDangNhap(tenDangNhap, matKhau);
-		if (nguoiDung != null) {// nếu đăng nhập đúng
-			System.out.println(nguoiDung);
-			req.getSession().setAttribute("nguoiDung", nguoiDung);
-			service.setIsLogin(true);
-
-			req.getRequestDispatcher("/MainServlet").forward(req, resp);
-		} else {
+		String error ="";
+		NguoiDung nguoiDung = service.getNguoiDung(tenDangNhap);
+		if(nguoiDung == null) {
+			error = "Tài khoản không chính xác";
+			req.setAttribute("error", error);
 			req.getRequestDispatcher("/dangNhap.jsp").forward(req, resp);
+		}else {
+			if(!nguoiDung.getMatKhau().equals(matKhau)) {
+				error="Mật khẩu không chính xác";
+				req.setAttribute("error", error);
+				req.getRequestDispatcher("/dangNhap.jsp").forward(req, resp);
+			}else {
+				req.getSession().setAttribute("nguoiDung", nguoiDung);
+//				service.setIsLogin(true);
+
+				req.getRequestDispatcher("/MainServlet").forward(req, resp);
+			}
 		}
+		
 //		JDBCUtil.closeConnection();
 	}
 

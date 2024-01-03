@@ -9,6 +9,8 @@ public class NguoiDung {
 	private String hoVaTen;
 	private String email;
 	private Date ngaySinh;
+	private String avt;
+	private String theLoaiND;
 	private List<String> roles;
 
 	public NguoiDung(String tenDangNhap, String matKhau, String hoVaTen, String email, Date ngaySinh) {
@@ -17,6 +19,18 @@ public class NguoiDung {
 		this.hoVaTen = hoVaTen;
 		this.email = email;
 		this.ngaySinh = ngaySinh;
+	}
+
+	public NguoiDung(String tenDangNhap, String matKhau, String hoVaTen, String email, Date ngaySinh, String avt,
+			String theLoaiND) {
+		super();
+		this.tenDangNhap = tenDangNhap;
+		this.matKhau = matKhau;
+		this.hoVaTen = hoVaTen;
+		this.email = email;
+		this.ngaySinh = ngaySinh;
+		this.avt = avt;
+		this.theLoaiND = theLoaiND;
 	}
 
 	public NguoiDung() {
@@ -62,25 +76,49 @@ public class NguoiDung {
 	public void setNgaySinh(Date ngaySinh) {
 		this.ngaySinh = ngaySinh;
 	}
+
 	public void setRoles(List<String> roles) {
-		this.roles=roles;
+		this.roles = roles;
 	}
+
 	public List<String> getRoles() {
 		return roles;
 	}
-public String display() {
-	if(this.tenDangNhap == null) {
-		return "none";
-	}else {
-		return "flex";
+
+	public String getAvt() {
+		return avt;
 	}
-}
+
+	public void setAvt(String avt) {
+		this.avt = avt;
+	}
+
+	public String getTheLoaiND() {
+		return theLoaiND;
+	}
+
+	public void setTheLoaiND(String theLoaiND) {
+		this.theLoaiND = theLoaiND;
+	}
+
+	public String display() {
+		if (this.tenDangNhap == null) {
+			return "none";
+		} else {
+			return "flex";
+		}
+	}
+
+	
+
 	@Override
 	public String toString() {
 		return "NguoiDung [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + ", hoVaTen=" + hoVaTen + ", email="
-				+ email + ", ngaySinh=" + ngaySinh + "]";
+				+ email + ", ngaySinh=" + ngaySinh + ", avt=" + avt + ", theLoaiND=" + theLoaiND + "]";
 	}
-public static void main(String[] args) {
-	System.out.println(new NguoiDung().getTenDangNhap().equals(""));;
-}
+
+	public static void main(String[] args) {
+		System.out.println(new NguoiDung().getTenDangNhap().equals(""));
+		;
+	}
 }

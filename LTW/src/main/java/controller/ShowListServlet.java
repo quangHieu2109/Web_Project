@@ -36,7 +36,14 @@ public class ShowListServlet extends HttpServlet {
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		ArrayList<BaiBao> baos = newsService.getBaiBaoByTenDanhNap(tenDangNhap);
 		request.setAttribute("baos", baos);
-		request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
+		String type = request.getParameter("type");
+		if(type.equalsIgnoreCase("danhSachBaiBao")) {
+			request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
+		}else if(type.equalsIgnoreCase("trangCaNhan")) {
+			request.getRequestDispatcher("thongTinTaiKhoan.jsp").forward(request, response);
+		}
+//		
+		
 	}
 
 	/**

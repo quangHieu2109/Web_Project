@@ -180,7 +180,7 @@
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
 					<img alt="" src="${bao.getFilePath()}">
-					<button type="button" onclick="submitFormUpAnh()">up anh</button>
+<!-- 					<button type="button" onclick="submitFormUpAnh()">up anh</button> -->
 				</div>
 			</div>
 			<div class="div NoiDung">
@@ -211,6 +211,12 @@
 			type.value = "dangBai";
 			form.submit();
 		}
+
+		document.getElementById('file').addEventListener('change', function() {
+			var type = document.getElementById('type');
+			type.value = "upAnh";
+			document.getElementById('myform').submit();
+		});
 	</script>
 
 	<jsp:include page="/footer.jsp" flush="false"></jsp:include>
