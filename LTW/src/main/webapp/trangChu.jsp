@@ -9,10 +9,10 @@
 <title>FITNews</title>
 <link href="css/main.css" rel="stylesheet">
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 </head>
 <body>
@@ -31,7 +31,7 @@
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Xu
 						hướng</span>
 					<c:forEach items="${xuHuong }" var="baoXH">
-						<a href="read?maBaiBao=${baoXH.getMaBaiBao() }"
+						<a href="NewsServlet?type=read&maBaiBao=${baoXH.getMaBaiBao() }"
 							class="list-group-item"> <span class="text-danger "
 							style="font-size: 18px; font-weight: bold;">${baoXH.getTieuDe() }</span>
 						</a>
@@ -47,7 +47,7 @@
 					<!-- 				ô lớn ở giữa -->
 					<div class="col-lg-12 col-md-6 mb-4">
 						<div class="card h-200" style="width: 100%;">
-							<a href="read?maBaiBao=${news[0].getMaBaiBao() }"><div
+							<a href="NewsServlet?type=read&maBaiBao=${news[0].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-8">
 										<img src="${news[0].getFilePath()}" class="card-img"
@@ -66,7 +66,7 @@
 					<!-- 						3 ô nhỏ ở dưới -->
 					<div class="row  mt-15">
 						<div class="card h-200 " style="width: 31%;">
-							<a href="read?maBaiBao=${news[1].getMaBaiBao() }"><div
+							<a href="NewsServlet?type=read&maBaiBao=${news[1].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(1).getFilePath()}" class=" card-img-3"
@@ -82,7 +82,7 @@
 						</div>
 						<div class="card h-200 ml-3"
 							style="width: 31%; margin-left: 3.5%; margin-right: 3.5%">
-							<a href="read?maBaiBao=${news[2].getMaBaiBao() }"><div
+							<a href="NewsServlet?type=read&maBaiBao=${news[2].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(2).getFilePath()}" class="card-img-3"
@@ -98,7 +98,7 @@
 								</div></a>
 						</div>
 						<div class="card h-200 " style="width: 31%;">
-							<a href="read?maBaiBao=${news[3].getMaBaiBao() }"><div
+							<a href="NewsServlet?type=read&maBaiBao=${news[3].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(3).getFilePath()}" class="card-img-3"
@@ -116,7 +116,7 @@
 						<div class="row space">
 					<c:forEach var="bao" items="${baos}" begin="4">
 						<div class=" border col-lg-4 mt-30">
-							<a href="read?maBaiBao=${bao.getMaBaiBao() }">
+							<a href="NewsServlet?type=read&maBaiBao=${bao.getMaBaiBao() }">
 								<div class="col-md-12">
 									<img src="${bao.getFilePath()}" class="card-img-3"
 										alt="Hình ảnh">
@@ -149,7 +149,7 @@
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Top
 						view</span>
 					<c:forEach items="${topView }" var="baoTV">
-						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }"
+						<a href="NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
 							class="list-group-item"> <span class="text-danger "
 							style="font-size: 18px; font-weight: bold;">${baoTV.getTieuDe() }</span>
 						</a>

@@ -10,10 +10,10 @@
 <meta charset="UTF-8">
 <title>Chỉnh sửa bài báo</title>
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <style type="text/css">
 </style>
@@ -27,9 +27,10 @@
 	<%-- <% BaiBao bao = newService.getBaiBaoByMaBB(request.getParameter("maBaiBao")); %> --%>
 	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="EditServlet" enctype="multipart/form-data"
+		<form method="POST" action="NewsServlet" enctype="multipart/form-data"
 			id="myform">
-			<input type="hidden" name="type" value="1234" id="type">
+			<input type="hidden" name="type" value="edit"> <input
+				type="hidden" name="typeEdit" value="1234" id="type">
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>
 				<textarea rows="1" cols="" wrap="soft" class="tieude" name="tieuDe"
@@ -183,7 +184,6 @@
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
 					<img alt="" src="${baiBao.getFilePath()}">
-					<button type="button" onclick="submitFormUpAnh()">up anh</button>
 				</div>
 			</div>
 			<div class="div NoiDung">
@@ -197,6 +197,11 @@
 
 	</div>
 	<script type="text/javascript">
+		document.getElementById('file').addEventListener('change', function() {
+			var type = document.getElementById('type');
+			type.value = "upAnh";
+			document.getElementById('myform').submit();
+		});
 		function submitFormUpAnh() {
 			var form = document.getElementById('myform');
 			var fileInput = document.getElementById('file');

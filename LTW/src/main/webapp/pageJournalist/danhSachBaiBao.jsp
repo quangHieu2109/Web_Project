@@ -8,10 +8,10 @@
 <title>Danh sách bài báo của bạn</title>
 <link href="css/main.css" rel="stylesheet">
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 </head>
 <body>
@@ -32,9 +32,9 @@
 						</div>
 					</div>
 					<div class="col-lg-2 button">
-						<a href="EditServlet?type=edit&maBaiBao=${bao.getMaBaiBao() }"
+						<a href="NewsServlet?type=edit&typeEdit=edit&maBaiBao=${bao.getMaBaiBao() }"
 							class="btn">Chỉnh sửa</a> <a
-							href="EditServlet?type=remove&maBaiBao=${bao.getMaBaiBao()}"
+							href="NewsServlet?type=edit&typeEdit=remove&maBaiBao=${bao.getMaBaiBao()}"
 							class="btn">Xóa</a>
 					</div>
 				</div>

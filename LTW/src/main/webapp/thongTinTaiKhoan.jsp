@@ -8,10 +8,10 @@
 <title>Thông tin tài khoản</title>
 <link href="css/main.css" rel="stylesheet">
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 </head>
 <body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Đăng ký</title>
+<title>Thay đổi thông tin</title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -16,25 +16,33 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
 	<form action="UserServlet" method="post" id="myform">
-	<input type="hidden" name="type" value="register">
-		<h1>Đăng ký tài khoản</h1>
+	<input type="hidden" name="type" value="editIn4">
+	<jsp:useBean id="thongBao" class="java.lang.String" scope="request"></jsp:useBean>
+	<div class="thongBao">
+		<c:if test="${thongBao.length() >0 }">
+			<label>${thongBao }</label>
+		</c:if>
+	</div>
+		<h1>Thay đổi thông tin tài khoản</h1>
 		<div class="body">
 			<div class="content">
 				<table>
 					<tr>
 						<th>Tên đăng nhập</th>
-						<td><input type="text" name="tenDangNhap" id="tenDangNhap"></td>
+						<td><input type="text" name="tenDangNhap" id="tenDangNhap"
+							value="${nguoiDung.getTenDangNhap()}" disabled="disabled"></td>
 					</tr>
 					<tr>
 						<th>Mật khẩu</th>
 						<td><input type="password" name="matKhau" id="matKhau"
-							required="required"></td>
+							required="required" value="${nguoiDung.getMatKhau()}"></td>
 					</tr>
 					<tr>
 						<th>Nhập lại mật khẩu</th>
 						<td><input type="password" name="nhapLaiMatKhau"
-							id="nhapLaiMatKhau"></td>
+							id="nhapLaiMatKhau" value="${nguoiDung.getMatKhau()}"></td>
 					</tr>
 				</table>
 			</div>
@@ -42,12 +50,13 @@
 				<table>
 					<tr>
 						<th>Họ tên</th>
-						<td><input type="text" name="hoTen" id="hoTen"></td>
+						<td><input type="text" name="hoTen" id="hoTen"
+							value="${nguoiDung.getHoVaTen()}"></td>
 					</tr>
 					<tr>
 						<th>Email</th>
 						<td><input type="email" name="email" id="email"
-							required="required"></td>
+							required="required" value="${nguoiDung.getEmail()}"></td>
 					</tr>
 					<tr>
 						<th>Ngày sinh</th>
@@ -59,13 +68,15 @@
 
 		</div>
 		<div class="button">
-			<a href="UserServlet?type=dangNhap" class="btn">Đăng nhập</a>
-			<button type="button" class="btn" onclick="submitForm()">Đăng
-				ký</button>
+			<button type="button" class="btn margin-a" onclick="submitForm()">Lưu
+				thay đổi</button>
 		</div>
 	</form>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script type="text/javascript">
+		var ngaySinhInput = document.getElementById('ngaySinh');
+		var ngaySinhValue = "${nguoiDung.getNgaySinh()}";
+		ngaySinhInput.value = ngaySinhValue;
 		function submitForm() {
 			var email = document.getElementById('email').value;
 			var gmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{1,}$/;
@@ -76,10 +87,11 @@
 			var tenDangNhap = document.getElementById('matKhau').value;
 			var hoTen = document.getElementById('matKhau').value;
 			var nhapLaiMatKhau = document.getElementById('nhapLaiMatKhau').value;
-			
-			if(tenDangNhap ==="" || matKhau ==="" || nhapLaiMatKhau ==="" || hoTen === "" || email ===""||ngaySinh===""){
+
+			if (tenDangNhap === "" || matKhau === "" || nhapLaiMatKhau === ""
+					|| hoTen === "" || email === "" || ngaySinh === "") {
 				alert('Vui lòng nhập đầy đủ thông tin');
-			}else{
+			} else {
 				if (matKhau !== nhapLaiMatKhau) {
 					alert('Mật khẩu nhập lại không chính xác');
 				} else if (!gmailRegex.test(email)) {

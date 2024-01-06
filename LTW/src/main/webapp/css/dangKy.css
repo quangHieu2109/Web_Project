@@ -79,6 +79,7 @@ tr {
 	justify-content: space-between;
 	font-size: 20px;
 	margin: auto;
+	margin-top: 5%;
 
 }
 
@@ -123,4 +124,19 @@ form {
 	background-color: #363628ed;
 	color: #fff;
 
+}
+.margin-a{
+	margin: auto;
+}
+.thongBao{
+	color: red;
+	align-items: center;
+	width: max-content;
+	margin: auto;
+	margin-top: 20px;
+	
+}
+.thongBao label{
+	font-size: 40px; 
+	font-weight: 600;
 }

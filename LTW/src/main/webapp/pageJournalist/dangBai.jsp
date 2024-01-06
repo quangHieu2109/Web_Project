@@ -10,10 +10,10 @@
 <meta charset="UTF-8">
 <title>Đăng bài</title>
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <style type="text/css">
 </style>
@@ -24,7 +24,7 @@
 	<jsp:useBean id="bao" class="model.BaiBao" scope="session"></jsp:useBean>
 	<c:set value="${bao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="UploadServlet"
+		<form method="POST" action="NewsServlet"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 

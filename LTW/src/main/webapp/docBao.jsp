@@ -9,10 +9,10 @@
 <title>Đọc báo</title>
 <link href="css/main.css" rel="stylesheet">
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 </head>
 <body>
@@ -45,7 +45,7 @@
 						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px">Xem
 						nhiều</span>
 					<c:forEach items="${topView }" var="baoTV">
-						<a href="read?maBaiBao=${baoTV.getMaBaiBao() }"
+						<a href="NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
 							class="list-group-item">
 							<div class="row">
 								<div class="col-md-4">

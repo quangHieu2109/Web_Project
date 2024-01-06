@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <title>Đăng nhập</title>
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="stylesheet" href="css/dangKy.css">
 <style type="text/css">
@@ -93,22 +93,23 @@ label {
 		</c:if>
 	</div>
 
-	<form action="LoginServlet" method="post" class="form">
+	<form action="UserServlet" method="post" class="form">
+	<input type="hidden" name="type" value="login">
 		<h1>Đăng nhập tài khoản</h1>
 		<div class="body">
 			<div class="content">
 				<div class="line">
-					<label>Tên đăng nhập</label> <input type="text" name="tenDangNhap">
+					<label>Tên đăng nhập</label> <input type="text" name="tenDangNhap" required="required">
 				</div>
 				<div class="line">
-					<label>Mật khẩu</label> <input type="password" name="matKhau">
+					<label>Mật khẩu</label> <input type="password" name="matKhau" required="required">
 				</div>
 
 
 
 				<div class="button2">
 
-					<a href="RegisterServlet" class="btn">Đăng ký</a>
+					<a href="UserServlet?type=dangKy" class="btn">Đăng ký</a>
 					<button type="submit" class="btn">Đăng nhập</button>
 
 				</div>

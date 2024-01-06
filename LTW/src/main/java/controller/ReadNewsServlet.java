@@ -20,42 +20,40 @@ import model.NewsService;
 @WebServlet("/read")
 public class ReadNewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ReadNewsServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ReadNewsServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-//		JDBCUtil.connection();
-		System.out.println("Mã bài báo: "+request.getParameter("maBaiBao"));
-//		List<BaiBao> baos = (ArrayList<BaiBao>) request.getSession().getAttribute("baos");
-		
 		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
-		
-		BaiBao bao=newsService.getBaiBaoByMaBB(request.getParameter("maBaiBao")+"");
-	
-//		bao.setLuotXem(bao.getLuotXem()+1);
-		if(request.getSession().getAttribute("bao") != null) {
+
+		BaiBao bao = newsService.getBaiBaoByMaBB(request.getParameter("maBaiBao") + "");
+
+		if (request.getSession().getAttribute("bao") != null) {
 			request.getSession().removeAttribute("bao");
 		}
 		request.setAttribute("bao", bao);
 		newsService.updateBaiBao(bao);
 		request.getRequestDispatcher("docBao.jsp").forward(request, response);
-//		JDBCUtil.closeConnection();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

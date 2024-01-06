@@ -10,10 +10,10 @@
 	integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/img/logo_icon2.png"
+	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 </head>
 <style type="text/css">
@@ -183,8 +183,10 @@ ul {
 				style="max-height: 100px; max-width:100%;"> </a>
 		</div>
 		<div class="search">
-			<form action="search" id="searchForm">
-				<input type="hidden" name="type" value="seachByTen"> <input
+			<form action="NewsServlet" id="searchForm">
+				<input type="hidden" name="typeSearch" value="seachByTen"> 
+				<input type="hidden" name="type" value="search"> 
+				<input
 					type="text" name="txtSearch"> <i
 					class="fa-solid fa-magnifying-glass" id="search" onclick="search()"></i>
 			</form>
@@ -192,9 +194,9 @@ ul {
 		<div
 			style="margin-top: auto; margin-bottom: auto; display:  ${nguoiDung.getTenDangNhap() == null ? "flex" : "none"}; width:max-content; justify-content:space-between;">
 
-			<a href="LoginServlet"
+			<a href="UserServlet?type=dangNhap"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;">Đăng
-				nhập</a> <a href="RegisterServlet"
+				nhập</a> <a href="UserServlet?type=dangKy"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
 				ký</a>
 		</div>
@@ -206,20 +208,18 @@ ul {
 
 			<div class="div2" id="div2">
 				<ul>
-					<li><a href="UploadServlet"
+					<li><a href="NewsServlet?type=dangBao"
 						style="text-decoration: none; color: black;">Đăng bài</a></li>
 					<li><a
-						href="ShowListServlet?type=danhSachBaiBao&tenDangNhap=${nguoiDung.getTenDangNhap() }"
+						href="NewsServlet?typeShow=danhSachBaiBao&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }"
 						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>
-					<li><a href="ShowListServlet?type=trangCaNhan&tenDangNhap=${nguoiDung.getTenDangNhap() }" style="text-decoration: none; color: black;">Thông
+					<li><a href="NewsServlet?typeShow=trangCaNhan&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }" style="text-decoration: none; color: black;">Thông
 							tin tài khoản</a></li>
-					<li><a href="" style="text-decoration: none; color: black;">Thay
+					<li><a href="thayDoiThongTin.jsp" style="text-decoration: none; color: black;">Thay
 							đổi thông tin</a></li>
-					<li><a href="" style="text-decoration: none; color: black;">Đổi
-							mật khẩu</a></li>
 					<li style="height: 1px; margin: 0; list-style: none;"><hr
 							class=""></li>
-					<li><a href="Logout"
+					<li><a href="UserServlet?type=logout"
 						style="text-decoration: none; color: black; margin-top: 10px">Đăng
 							xuất</a></li>
 				</ul>
@@ -235,175 +235,175 @@ ul {
 				class="fa-solid fa-house"></i></a>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=thoisu">Thời sự</a>
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu">Thời sự</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=chinhtri">Chính
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=chinhtri">Chính
 							trị</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao
 							động</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=dansinh">Dân
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=dansinh">Dân
 							sinh</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao
 							thông</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=thegioi">Thế
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi">Thế
 				giới</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=tulieu">Tư
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=tulieu">Tư
 							liệu</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=cuocsong">Cuộc
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=cuocsong">Cuộc
 							sống</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=quansu">Quân
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=quansu">Quân
 							sự</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh">Kinh
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh">Kinh
 				doanh</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=quocte">Quốc
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=quocte">Quốc
 							tế</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=doanhnghiep">Doanh
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=doanhnghiep">Doanh
 							nghiệp</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoan">Chứng
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoan">Chứng
 							khoán</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=baohiem">Bảo
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=baohiem">Bảo
 							hiểm</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=batdongsan">Bất
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan">Bất
 				động sản</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=chinhsach">Chính
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=chinhsach">Chính
 							sách</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=thitruong">Thị
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=thitruong">Thị
 							trường</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=duan">Dự
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=duan">Dự
 							án</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=tuvan">Tư
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=tuvan">Tư
 							vấn</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=thethao">Thể
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao">Thể
 				thao</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=bongda">Bóng
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=bongda">Bóng
 							đá</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=lichthidau">Lịch
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=lichthidau">Lịch
 							thi đấu</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=tennis">Tennis</a></li>
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=tennis">Tennis</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=marathon">Marathon</a></li>
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=marathon">Marathon</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=giaoduc">Giáo
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc">Giáo
 				dục</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tintuc">Tin
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tintuc">Tin
 							tức</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Tuyển
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Tuyển
 							sinh</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Du
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Du
 							học</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=hoctienganh">Học
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=hoctienganh">Học
 							tiếng Anh</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=giaoduc40">Giáo
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=giaoduc40">Giáo
 							dục 4.0</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=doisong">Đời
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong">Đời
 				sống</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=nhipsong">Nhịp
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=nhipsong">Nhịp
 							sống</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=toam">Tổ
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=toam">Tổ
 							ấm</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=cooking">Cooking</a></li>
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=cooking">Cooking</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=tieudung">Tiêu
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=tieudung">Tiêu
 							dùng</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=dulich">Du lịch</a>
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich">Du lịch</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=diemden">Điểm
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=diemden">Điểm
 							đến</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=amthuc">Ăm
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=amthuc">Ăm
 							thực</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=camnang">Cẩm
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=camnang">Cẩm
 							nang</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=tuvan">Tư
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=tuvan">Tư
 							vấn</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="search?type=searchByTheLoai&theLoaiChinh=xe">Xe</a>
+			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe">Xe</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thitruong">Thị
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thitruong">Thị
 							trường</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=diendan">Diễn
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=diendan">Diễn
 							đàn</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thibanglai">Thi
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thibanglai">Thi
 							bằng lái</a></li>
 					<li><a
-						href="search?type=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=muaban">Mua
+						href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=muaban">Mua
 							bán</a></li>
 				</ul>
 			</div>
