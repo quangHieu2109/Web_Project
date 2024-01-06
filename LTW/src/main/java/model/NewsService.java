@@ -109,4 +109,10 @@ public class NewsService {
 	public void updateNguoiDung(NguoiDung nguoiDung	) {
 		NguoiDungDAO.updateNguoiDung(nguoiDung);
 	}
+	public void addBinhLuan(BinhLuan binhLuan) {
+		BinhLuanDAO.insertBinhLuan(binhLuan);
+	}
+	public ArrayList<BinhLuan> getBinhLuan(BaiBao baiBao){
+		return BinhLuanDAO.selectByBaiBao(baiBao);
+	}
 }

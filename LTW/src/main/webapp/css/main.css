@@ -190,6 +190,9 @@ ul {
 	margin-top: 30px;
 
 }
+.mb-30{ 
+	margin-bottom: 30px;
+}
 .border {
 	border: 1px solid #dee2e6;
 	border-radius: 5px;
@@ -447,7 +450,15 @@ p {
 .mg-a {
 	margin: auto;
 }
-
+.mb-10{
+	margin-bottom: 10px ;
+}
+.m-5{
+	margin: 5px ;
+}
+.mtb-10{
+	margin: 10px 0;
+}
 hr {
 	margin: 20px 0;
 }
@@ -564,7 +575,33 @@ hr {
   display: none;
   margin-top: 8px;
 }
-
+.avt-cmt img{
+	display: block;
+	width: 50px;
+	height: 50px;
+	border-radius:50% ;  
+	margin: auto ;
+}
+.title-cmt{
+	display: block;
+	font-size: 25px;
+	font-weight: 600;
+}
+.content-cmt{  
+	margin: 5px 10px; 
+	font-size: 18px;
+	 
+}
+.date-cmt{
+	display: block; 
+	font-size: 15px; 
+	color: #dee2e6;
+	margin-right: 10%; 
+}
 .hidden-input:checked + .file-label + .selected-file {
   display: block;
+}
+.head-cmt{
+	display: flex;
+	justify-content: space-between;
 }

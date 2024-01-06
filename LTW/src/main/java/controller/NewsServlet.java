@@ -19,6 +19,7 @@ import javax.servlet.http.Part;
 import dao.TheLoaiDAO;
 import model.APISaveImage;
 import model.BaiBao;
+import model.BinhLuan;
 import model.DSTheLoai;
 import model.NewsService;
 import model.NguoiDung;
@@ -65,6 +66,8 @@ public class NewsServlet extends HttpServlet {
 			edit(request, response);
 		} else if (type.equals("search")) {
 			search(request, response);
+		}else if (type.equals("cmt")) {
+			cmt(request, response);
 		} else if (type.equals("dangBao")) {
 			request.getRequestDispatcher("pageJournalist/dangBai.jsp").forward(request, response);
 		}
@@ -79,7 +82,21 @@ public class NewsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-
+	protected void cmt(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
+		String maBaiBao = request.getParameter("maBaiBao");
+		String noiDung = request.getParameter("noiDung");
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+		BaiBao baiBao = newsService.getBaiBaoByMaBB(maBaiBao);
+		BinhLuan binhLuan = new BinhLuan(nguoiDung, noiDung, baiBao);
+		newsService.addBinhLuan(binhLuan);
+		request.getSession().setAttribute("bao", baiBao);
+		request.getSession().setAttribute("cmts", newsService.getBinhLuan(baiBao));
+		response.sendRedirect("docBao.jsp");
+//		request.getRequestDispatcher("docBao.jsp").forward(request, response);
+		
+	}
 	protected void upAnh(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		// Lấy tệp tin được tải lên từ yêu cầu
@@ -237,9 +254,11 @@ public class NewsServlet extends HttpServlet {
 		if (request.getSession().getAttribute("bao") != null) {
 			request.getSession().removeAttribute("bao");
 		}
-		request.setAttribute("bao", bao);
+		
+		request.getSession().setAttribute("bao", bao);
+		request.getSession().setAttribute("cmts", newsService.getBinhLuan(bao));
 		newsService.updateBaiBao(bao);
-		request.getRequestDispatcher("docBao.jsp").forward(request, response);
+		response.sendRedirect("docBao.jsp");
 	}
 
 	protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

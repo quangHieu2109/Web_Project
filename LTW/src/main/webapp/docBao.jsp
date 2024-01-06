@@ -17,7 +17,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean>
+	<jsp:useBean id="bao" class="model.BaiBao" scope="session"></jsp:useBean>
+	<jsp:useBean id="cmts" class="java.util.ArrayList" scope="session"></jsp:useBean>
 	<jsp:useBean id="topView" class="java.util.ArrayList" scope="session"></jsp:useBean>
 	<div class="container">
 		<div class="row space  w-80">
@@ -65,8 +66,34 @@
 			<div class="col-lg-8">
 				<div class="comment">
 					<h3>Bình luận</h3>
-					<textarea rows="7" cols="" wrap="soft"></textarea>
-					<button>Bình luận</button>
+					<div class="mb-30 ">
+						<c:forEach var="cmt" items="${cmts }" begin="0">
+							<div class="row  m-5 border">
+								<div class="col-lg-2 avt-cmt mtb-10">
+									<img alt="" src="${cmt.getNguoiDung().getAvt() }">
+								</div>
+								<div class="col-lg-10 mtb-10">
+									<div class="head-cmt">
+										<label class="title-cmt">${cmt.getNguoiDung().getHoVaTen() }</label>
+										<label class="date-cmt">${cmt.getNgayBinhLuan() }</label>
+									</div>
+									<br>
+									<p class="content-cmt">${cmt.getNoiDung() }</p>
+								</div>
+							</div>
+
+						</c:forEach>
+
+
+					</div>
+					<c:if test="${nguoiDung.getTenDangNhap()!=null }">
+					<form action="NewsServlet" method="get" id="myform">
+						<input type="hidden" name="type" value="cmt"> <input
+							type="hidden" name="maBaiBao" value="${bao.getMaBaiBao() }">
+						<textarea rows="7" cols="" wrap="soft" name="noiDung" id="noiDung"></textarea>
+						<button type="button" onclick="submitForm()">Bình luận</button>
+					</form>
+					</c:if>
 				</div>
 
 			</div>
@@ -76,5 +103,18 @@
 	</div>
 
 	<jsp:include page="footer.jsp"></jsp:include>
+	<script type="text/javascript">
+		function submitForm() {
+			var form = document.getElementById('myform');
+			var noiDung = document.getElementById('noiDung').value;
+
+			if (noiDung === "") {
+				alert('Bạn chưa nhập nội dung bình luận');
+			} else {
+				form.submit();
+			}
+
+		}
+	</script>
 </body>
 </html>

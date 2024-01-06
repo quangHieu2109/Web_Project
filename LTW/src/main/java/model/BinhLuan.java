@@ -21,7 +21,7 @@ public class BinhLuan {
 		this.baiBao = baiBao;
 	}
 
-	public BinhLuan(NguoiDung nguoiDung, String noiDung) {
+	public BinhLuan(NguoiDung nguoiDung, String noiDung, BaiBao baiBao) {
 		super();
 		Random rd = new Random();
 		int c = 65 + rd.nextInt(25);
@@ -31,6 +31,7 @@ public class BinhLuan {
 		;
 		this.nguoiDung = nguoiDung;
 		this.noiDung = noiDung;
+		this.baiBao = baiBao;
 	}
 
 	
