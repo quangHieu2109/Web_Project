@@ -187,8 +187,8 @@
 				<label>Nội dung</label>
 				<textarea rows="20" cols="" wrap="soft" name="noiDung">${bao.getNoiDung()}</textarea>
 			</div>
-			<div class="divBtn Button">
-				<button type="button" onclick="submitForm()">Đăng bài</button>
+			<div class="divBtn">
+				<button type="button" onclick="submitForm()" class="button">Đăng bài</button>
 			</div>
 		</form>
 

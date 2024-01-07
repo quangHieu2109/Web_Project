@@ -75,7 +75,7 @@ public class NguoiDungDAO {
 		}
 		return result;
 	}
-
+	
 	public static int insertNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {
@@ -118,7 +118,24 @@ public class NguoiDungDAO {
 		}
 		return result; // so dong thay doi
 	}
+	public static int updateLoaiTK(NguoiDung nguoiDung) {
+		int result = 0;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			String sql = "update nguoidung set loaiTaiKhoan=? where tenDangNhap=?";
+			PreparedStatement st = conn.prepareStatement(sql);
 
+			
+			st.setString(1, nguoiDung.getTheLoaiND());
+			st.setString(2, nguoiDung.getTenDangNhap());
+			result = st.executeUpdate();
+			st.close();
+//			conn.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return result; // so dong thay doi
+	}
 	public static int updateNguoiDung(NguoiDung nguoiDung) {
 		int result = 0;
 		try {

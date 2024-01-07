@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,7 +81,7 @@ li {
 	position: sticky;
 	top: 0;
 	z-index: 2;
-/* 	font-size: 200%; */
+	/* 	font-size: 200%; */
 }
 
 .nav {
@@ -179,14 +180,13 @@ ul {
 		<div>
 			<a href="MainServlet" style="display: block; height: max_content;"><img
 				alt="logo" src="
-				${path}/img/logo2.png" type="image/x-icon"
-				style="max-height: 100px; max-width:100%;"> </a>
+				${path}/img/logo3.png" type="image/x-icon"
+				style="max-height: 100px; max-width: 100%;"> </a>
 		</div>
 		<div class="search">
 			<form action="NewsServlet" id="searchForm">
-				<input type="hidden" name="typeSearch" value="seachByTen"> 
-				<input type="hidden" name="type" value="search"> 
-				<input
+				<input type="hidden" name="typeSearch" value="seachByTen"> <input
+					type="hidden" name="type" value="search"> <input
 					type="text" name="txtSearch"> <i
 					class="fa-solid fa-magnifying-glass" id="search" onclick="search()"></i>
 			</form>
@@ -202,21 +202,27 @@ ul {
 		</div>
 		<div class="user label2" onclick="toggleDropdown('div2')"
 			style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
-			<img src="${nguoiDung.getAvt() }" alt="mdo" width="32"
-				height="32" class="rounded-circle"> <i
-				class="fa-solid fa-angle-down"></i>
+			<img src="${nguoiDung.getAvt() }" alt="mdo" width="32" height="32"
+				class="rounded-circle"> <i class="fa-solid fa-angle-down"></i>
 
 			<div class="div2" id="div2">
 				<ul>
 					<li><a href="NewsServlet?type=dangBao"
 						style="text-decoration: none; color: black;">Đăng bài</a></li>
+					<c:if test="${nguoiDung.isAdmin() }">
+					<li><a href="UserServlet?type=dangKyDangBai&typeDK=danhSach"
+						style="text-decoration: none; color: black;">Danh sách đăng ký</a></li>
+					</c:if>
 					<li><a
 						href="NewsServlet?typeShow=danhSachBaiBao&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }"
 						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>
-					<li><a href="NewsServlet?typeShow=trangCaNhan&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }" style="text-decoration: none; color: black;">Thông
-							tin tài khoản</a></li>
-					<li><a href="thayDoiThongTin.jsp" style="text-decoration: none; color: black;">Thay
-							đổi thông tin</a></li>
+					<li><a
+						href="NewsServlet?typeShow=trangCaNhan&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }"
+						style="text-decoration: none; color: black;">Thông tin tài
+							khoản</a></li>
+					<li><a href="thayDoiThongTin.jsp"
+						style="text-decoration: none; color: black;">Thay đổi thông
+							tin</a></li>
 					<li style="height: 1px; margin: 0; list-style: none;"><hr
 							class=""></li>
 					<li><a href="UserServlet?type=logout"
@@ -235,7 +241,9 @@ ul {
 				class="fa-solid fa-house"></i></a>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu">Thời sự</a>
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu">Thời
+				sự</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
@@ -254,7 +262,8 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi">Thế
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi">Thế
 				giới</a>
 			<div class="nav-itemlist">
 				<ul>
@@ -271,7 +280,8 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh">Kinh
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh">Kinh
 				doanh</a>
 			<div class="nav-itemlist">
 				<ul>
@@ -291,7 +301,8 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan">Bất
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan">Bất
 				động sản</a>
 			<div class="nav-itemlist">
 				<ul>
@@ -311,7 +322,8 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao">Thể
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao">Thể
 				thao</a>
 			<div class="nav-itemlist">
 				<ul>
@@ -329,7 +341,8 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc">Giáo
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc">Giáo
 				dục</a>
 			<div class="nav-itemlist">
 				<ul>
@@ -352,7 +365,8 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong">Đời
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong">Đời
 				sống</a>
 			<div class="nav-itemlist">
 				<ul>
@@ -371,7 +385,9 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich">Du lịch</a>
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich">Du
+				lịch</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
@@ -390,7 +406,8 @@ ul {
 			</div>
 		</div>
 		<div class="nav-item">
-			<a href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe">Xe</a>
+			<a
+				href="NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe">Xe</a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a

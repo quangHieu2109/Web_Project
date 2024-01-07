@@ -32,8 +32,8 @@
 						hướng</span>
 					<c:forEach items="${xuHuong }" var="baoXH">
 						<a href="NewsServlet?type=read&maBaiBao=${baoXH.getMaBaiBao() }"
-							class="list-group-item"> <span class="text-danger "
-							style="font-size: 18px; font-weight: bold;">${baoXH.getTieuDe() }</span>
+							class="list-group-item"> <span class="main-color"
+							style="font-size: 18px;  line-height: 20px">${baoXH.getTieuDe() }</span>
 						</a>
 					</c:forEach>
 				</div>
@@ -146,12 +146,12 @@
 			<!-- 			top view right -->
 			<div class="col-lg-3">
 				<div class="list-group border">
-					<span style="font-size: 20px; font-weight: bold; color: #9F224E">Top
+					<span style="font-size: 20px; font-weight: bold;line-height:22px; color: #9F224E">Top
 						view</span>
 					<c:forEach items="${topView }" var="baoTV">
 						<a href="NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
-							class="list-group-item"> <span class="text-danger "
-							style="font-size: 18px; font-weight: bold;">${baoTV.getTieuDe() }</span>
+							class="list-group-item"> <span class="main-color"
+							style="font-size: 18px; line-height: 20px">${baoTV.getTieuDe() }</span>
 						</a>
 					</c:forEach>
 				</div>

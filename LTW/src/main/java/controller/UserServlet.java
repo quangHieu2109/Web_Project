@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.DangKyDangBai;
 import model.NewsService;
 import model.NguoiDung;
 
@@ -49,6 +50,8 @@ public class UserServlet extends HttpServlet {
 			logout(request, response);
 		} else if (type.equals("editIn4")) {
 			editIn4(request, response);
+		}else if (type.equals("dangKyDangBai")) {
+			dangKyDangBai(request, response);
 		}
 	}
 
@@ -126,7 +129,30 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		response.sendRedirect("dangKy.jsp");
 	}
-
+	protected void dangKyDangBai(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String typeDK = request.getParameter("typeDK");
+		NewsService newsService =(NewsService) request.getSession().getAttribute("newsService");
+		if(typeDK.equals("danhSach")) {
+			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
+			System.out.println("size :"+newsService.getDangKyDangBai().size());
+			response.sendRedirect("danhSachDangKy.jsp");
+		}else if(typeDK.equals("xoa")) {
+			String maDK = request.getParameter("maDK");
+			newsService.deleteDangKy(maDK);
+			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
+			response.sendRedirect("danhSachDangKy.jsp");
+		}else if(typeDK.equals("chapNhan")) {
+			String maDK = request.getParameter("maDK");
+			DangKyDangBai dkdb = newsService.getDangKyDangBaiByMaDK(maDK);
+			NguoiDung nguoiDung = dkdb.getNguoiDung();
+			nguoiDung.setTheLoaiND("NhaBao");
+			newsService.updateNguoiDung(nguoiDung);
+			newsService.deleteDangKy(maDK);
+			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
+			response.sendRedirect("danhSachDangKy.jsp");
+		}
+	}
 	protected void editIn4(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");

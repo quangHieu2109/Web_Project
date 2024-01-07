@@ -10,7 +10,7 @@ public class NguoiDung {
 	private String email;
 	private Date ngaySinh;
 	private String avt;
-	private String theLoaiND;
+	private String theLoaiND="";
 	private List<String> roles;
 
 	public NguoiDung(String tenDangNhap, String matKhau, String hoVaTen, String email, Date ngaySinh) {
@@ -108,9 +108,29 @@ public class NguoiDung {
 			return "flex";
 		}
 	}
-
-	
-
+	public boolean isAdmin() {
+		if(this.theLoaiND.equalsIgnoreCase("Admin")) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public boolean isNhaBao() {
+		if(this.theLoaiND.equalsIgnoreCase("Admin") || this.theLoaiND.equalsIgnoreCase("NhaBao")) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public String loaiTaiKhoan() {
+		String result="Đọc giả";
+		if(this.theLoaiND.equalsIgnoreCase("Admin")) {
+			result ="Admin";
+		}else if(this.theLoaiND.equalsIgnoreCase("NhaBao")){
+			result="Nhà báo";
+		}
+		return result;
+	}
 	@Override
 	public String toString() {
 		return "NguoiDung [tenDangNhap=" + tenDangNhap + ", matKhau=" + matKhau + ", hoVaTen=" + hoVaTen + ", email="

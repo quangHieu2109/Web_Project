@@ -32,7 +32,7 @@
 			</div>
 
 			<div class="in4 ml-5">
-				<label class="in4-title">Ngô Quang Hiếu</label> <label
+				<label class="in4-title">${nguoiDung.getHoVaTen() }</label> <label
 					class="in4-amt">${baos.size() } Bài báo</label>
 			</div>
 		</div>
@@ -43,7 +43,7 @@
 
 					<li class="li mt-30">Email: ${nguoiDung.getEmail() }</li>
 					<li class="li">Ngày sinh: ${nguoiDung.getNgaySinh() }</li>
-					<li class="li">Loại tài khoản:Nhà báo</li>
+					<li class="li">Loại tài khoản: ${nguoiDung.loaiTaiKhoan() }</li>
 				</ul>
 			</div>
 			<div class="col-lg-8 border  list-news">

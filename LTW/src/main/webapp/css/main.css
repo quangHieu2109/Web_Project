@@ -10,8 +10,12 @@ html {
 }
 a{
 	text-decoration: none;
+	color: black; 
 }
-
+.main-color{
+	color: black;
+	
+	}
 * {
 	box-sizing: inherit;
 	/* inherit: kết thừa lại box-sizing của những thẻ chứa nó */
@@ -373,6 +377,7 @@ p {
 }
 
 .comment button {
+	display: block;
 	width: max-content;
 	margin: auto;
 	font-size: 25px;
@@ -604,4 +609,14 @@ hr {
 .head-cmt{
 	display: flex;
 	justify-content: space-between;
+}
+.div-in4{
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+	
+}
+.div-in4 label{ 
+	margin-top: 5px;
+	font-size: 20px;
 }

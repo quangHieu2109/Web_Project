@@ -7,6 +7,7 @@ import java.util.List;
 
 import dao.BaiBaoDAO;
 import dao.BinhLuanDAO;
+import dao.DangKyDangBaiDao;
 import dao.NguoiDungDAO;
 import dao.TheLoaiDAO;
 import database.JDBCUtil;
@@ -114,5 +115,21 @@ public class NewsService {
 	}
 	public ArrayList<BinhLuan> getBinhLuan(BaiBao baiBao){
 		return BinhLuanDAO.selectByBaiBao(baiBao);
+	}
+	public ArrayList<DangKyDangBai> getDangKyDangBai(){
+		return DangKyDangBaiDao.selectAll();
+	}
+	public DangKyDangBai getDangKyDangBaiByMaDK(String maDK){
+		return DangKyDangBaiDao.selectByMaDK(maDK);
+	}
+	public void addDangKy(DangKyDangBai dangKyDangBai) {
+		DangKyDangBaiDao.insertDK(dangKyDangBai);
+	}
+	public void deleteDangKy(String maDK) {
+		DangKyDangBaiDao.remove(maDK);
+	}
+	public static void main(String[] args) {
+		NewsService news = new NewsService();
+		System.out.println(news.getNguoiDung("hao"));
 	}
 }
