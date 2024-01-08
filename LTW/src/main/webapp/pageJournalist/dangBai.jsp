@@ -17,14 +17,14 @@
 	type="image/x-icon">
 <style type="text/css">
 </style>
-<link rel="stylesheet" type="text/css" href="css/dangBai.css">
+<link rel="stylesheet" type="text/css" href="../css/dangBai.css">
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
 	<jsp:useBean id="bao" class="model.BaiBao" scope="session"></jsp:useBean>
 	<c:set value="${bao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="NewsServlet"
+		<form method="POST" action="${pageContext.request.contextPath}/NewsServlet"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 

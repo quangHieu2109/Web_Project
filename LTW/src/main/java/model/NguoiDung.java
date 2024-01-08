@@ -115,6 +115,12 @@ public class NguoiDung {
 			return false;
 		}
 	}
+	public boolean isDangKy() {
+		if(this.theLoaiND.equalsIgnoreCase("DangKy")) {
+			return true;
+		}
+		return false;
+	}
 	public boolean isNhaBao() {
 		if(this.theLoaiND.equalsIgnoreCase("Admin") || this.theLoaiND.equalsIgnoreCase("NhaBao")) {
 			return true;

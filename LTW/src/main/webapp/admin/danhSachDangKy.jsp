@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Danh sách đăng ký</title>
-<link href="css/main.css" rel="stylesheet">
+<link href="../css/main.css" rel="stylesheet" type="text/css">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">

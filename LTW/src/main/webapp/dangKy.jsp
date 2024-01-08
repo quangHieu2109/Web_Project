@@ -16,7 +16,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<form action="UserServlet" method="post" id="myform">
+	<form action="${pageContext.request.contextPath}/UserServlet" method="post" id="myform">
 	<input type="hidden" name="type" value="register">
 		<h1>Đăng ký tài khoản</h1>
 		<div class="body">
@@ -59,7 +59,7 @@
 
 		</div>
 		<div class="button">
-			<a href="UserServlet?type=dangNhap" class="btn">Đăng nhập</a>
+			<a href="${pageContext.request.contextPath}/UserServlet?type=dangNhap" class="btn">Đăng nhập</a>
 			<button type="button" class="btn" onclick="submitForm()">Đăng
 				ký</button>
 		</div>

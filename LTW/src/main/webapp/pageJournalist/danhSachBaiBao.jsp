@@ -32,9 +32,9 @@
 						</div>
 					</div>
 					<div class="col-lg-2 button">
-						<a href="NewsServlet?type=edit&typeEdit=edit&maBaiBao=${bao.getMaBaiBao() }"
+						<a href="${pageContext.request.contextPath}/NewsServlet?type=edit&typeEdit=edit&maBaiBao=${bao.getMaBaiBao() }"
 							class="btn">Chỉnh sửa</a> <a
-							href="NewsServlet?type=edit&typeEdit=remove&maBaiBao=${bao.getMaBaiBao()}"
+							href="${pageContext.request.contextPath}/NewsServlet?type=edit&typeEdit=remove&maBaiBao=${bao.getMaBaiBao()}"
 							class="btn">Xóa</a>
 					</div>
 				</div>

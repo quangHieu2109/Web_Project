@@ -95,24 +95,28 @@ label {
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
 
 
-	<form action="UserServlet" method="post" class="form">
+	<form action="${pageContext.request.contextPath}/UserServlet" method="post" class="form">
 		<input type="hidden" name="type" value="login">
 		<h1>Thông báo</h1>
 		<div class="body">
 			<div class="content">
+				<c:if test="${nguoiDung.isDangKy() }">
+				
 				<div class="line">
-					<label>Chức năng này chỉ dành cho tài khoản nhà báo. </label> <label>Bạn
+					<label>Bạn đã đăng ký làm nhà báo trước đó. </label> <label>Hãy đợi cho đến khi được admin phê duyệt để có thể đăng bài! </label>
+				</div>
+				</c:if>
+				<c:if test="${!nguoiDung.isDangKy() }">
+				<div class="line">
+					<label>Chức năng đăng bài chỉ dành cho tài khoản nhà báo. </label> <label>Bạn
 						cần đăng ký làm nhà báo để có thể sử dụng chức năng đăng bài! </label>
 				</div>
 
 				<div class="button2">
-					<button class="btn margin-a" type="submit">Đăng ký</button>
+					<a class="btn margin-a"  href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=dangKy">Đăng ký</a>
 
 				</div>
-				
-				<div class="line">
-					<label>Bạn đã đăng ký làm nhà báo trước đó. </label> <label>Hãy đợi cho đến khi được admin phê duyệt! </label>
-				</div>
+				</c:if>
 			</div>
 		</div>
 	</form>

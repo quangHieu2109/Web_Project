@@ -17,7 +17,7 @@
 	type="image/x-icon">
 <style type="text/css">
 </style>
-<link rel="stylesheet" type="text/css" href="css/dangBai.css">
+<link rel="stylesheet" type="text/css" href="../css/dangBai.css">
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
@@ -27,7 +27,7 @@
 	<%-- <% BaiBao bao = newService.getBaiBaoByMaBB(request.getParameter("maBaiBao")); %> --%>
 	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="NewsServlet" enctype="multipart/form-data"
+		<form method="POST" action="${pageContext.request.contextPath}/NewsServlet" enctype="multipart/form-data"
 			id="myform">
 			<input type="hidden" name="type" value="edit"> <input
 				type="hidden" name="typeEdit" value="1234" id="type">

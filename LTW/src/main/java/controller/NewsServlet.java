@@ -69,7 +69,7 @@ public class NewsServlet extends HttpServlet {
 		}else if (type.equals("cmt")) {
 			cmt(request, response);
 		} else if (type.equals("dangBao")) {
-			request.getRequestDispatcher("pageJournalist/dangBai.jsp").forward(request, response);
+			 response.sendRedirect("pageJournalist/dangBai.jsp");
 		}
 	}
 

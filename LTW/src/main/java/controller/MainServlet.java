@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import database.JDBCUtil;
 import model.NewsService;
 import model.NguoiDung;
-import security.SecurityConfig;
 
 /**
  * Servlet implementation class MainServlet
@@ -50,14 +49,10 @@ public class MainServlet extends HttpServlet {
 		req.getSession().setAttribute("xuHuong", newsService.getXuHuong());
 		req.getSession().setAttribute("topView", newsService.getTopView());
 
-		List<String> roles = new ArrayList<String>();
-		roles.add(SecurityConfig.JOURNALIST);
-		roles.add(SecurityConfig.ADMIN);
 		if (req.getSession().getAttribute("nguoiDung") == null) {
 			NguoiDung nd = new NguoiDung();
 			req.getSession().setAttribute("nguoiDung", nd);
 		}
-		((NguoiDung) req.getSession().getAttribute("nguoiDung")).setRoles(roles);
 		String path = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
 		req.getServletContext().setAttribute("path", path);
 //    	System.out.println(path); 

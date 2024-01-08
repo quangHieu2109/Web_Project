@@ -23,7 +23,7 @@
 		<div class="col-md-8 mg-a">
 			<label class="keyword">Từ khóa: ${key}</label>
 			<c:forEach var="bao" items="${baos}" varStatus="status">
-				<a href="NewsServlet?type=read&maBaiBao=${bao.getMaBaiBao() }"><div
+				<a href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${bao.getMaBaiBao() }"><div
 						class="row space">
 						<div class="col-lg-4">
 							<img alt="" src="${bao.getFilePath()}" class="card-img">

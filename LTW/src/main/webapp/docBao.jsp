@@ -46,7 +46,7 @@
 						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px">Xem
 						nhiều</span>
 					<c:forEach items="${topView }" var="baoTV">
-						<a href="NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
+						<a href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
 							class="list-group-item">
 							<div class="row">
 								<div class="col-md-4">
@@ -87,7 +87,7 @@
 
 					</div>
 					<c:if test="${nguoiDung.getTenDangNhap()!=null }">
-					<form action="NewsServlet" method="get" id="myform">
+					<form action="${pageContext.request.contextPath}/NewsServlet" method="get" id="myform">
 						<input type="hidden" name="type" value="cmt"> <input
 							type="hidden" name="maBaiBao" value="${bao.getMaBaiBao() }">
 						<textarea rows="7" cols="" wrap="soft" name="noiDung" id="noiDung"></textarea>

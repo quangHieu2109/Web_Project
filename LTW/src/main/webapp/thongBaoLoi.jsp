@@ -49,12 +49,14 @@ h1 {
 	min-width: 60%;
 	max-width: max-content;
 	margin: auto;
+	margin-top: 5%;
 	padding-bottom: 30px;
 }
 
 label {
 	text-wrap: nowrap;
 	font-size: 25px;
+	margin: auto;
 }
 
 .body {
@@ -81,37 +83,28 @@ label {
 .error label {
 	font-size: 40px;
 }
+
+.line {
+	flex-direction: column;
+}
 </style>
 
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
-	<div class="error">
-		<c:if test="${error.length() >0 }">
-			<label>${error }</label>
-		</c:if>
-	</div>
 
-	<form action="${pageContext.request.contextPath}/UserServlet" method="post" class="form">
-	<input type="hidden" name="type" value="login">
-		<h1>Đăng nhập tài khoản</h1>
+
+	<form action="UserServlet" method="post" class="form">
+		<input type="hidden" name="type" value="login">
+		<h1>Thông báo</h1>
 		<div class="body">
 			<div class="content">
+
+
 				<div class="line">
-					<label>Tên đăng nhập</label> <input type="text" name="tenDangNhap" required="required">
-				</div>
-				<div class="line">
-					<label>Mật khẩu</label> <input type="password" name="matKhau" required="required">
-				</div>
-
-
-
-				<div class="button2">
-
-					<a href="${pageContext.request.contextPath}/UserServlet?type=dangKy" class="btn">Đăng ký</a>
-					<button type="submit" class="btn">Đăng nhập</button>
-
+					<label>Chức năng này chỉ dành cho Admin. </label> <label>Vui
+						lòng sử dụng chức năng khác! </label>
 				</div>
 			</div>
 		</div>

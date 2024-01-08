@@ -136,9 +136,13 @@ public class UserServlet extends HttpServlet {
 		if(typeDK.equals("danhSach")) {
 			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
 			System.out.println("size :"+newsService.getDangKyDangBai().size());
-			response.sendRedirect("danhSachDangKy.jsp");
+			response.sendRedirect("admin/danhSachDangKy.jsp");
 		}else if(typeDK.equals("xoa")) {
 			String maDK = request.getParameter("maDK");
+			DangKyDangBai dkdb = newsService.getDangKyDangBaiByMaDK(maDK);
+			NguoiDung nguoiDung = dkdb.getNguoiDung();
+			nguoiDung.setTheLoaiND("NguoiDung");
+			newsService.updateNguoiDung(nguoiDung);
 			newsService.deleteDangKy(maDK);
 			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
 			response.sendRedirect("danhSachDangKy.jsp");
@@ -151,6 +155,12 @@ public class UserServlet extends HttpServlet {
 			newsService.deleteDangKy(maDK);
 			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
 			response.sendRedirect("danhSachDangKy.jsp");
+		}else if(typeDK.equals("dangKy")) {
+			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
+			nguoiDung.setTheLoaiND("DangKy");
+			newsService.updateNguoiDung(nguoiDung);
+			newsService.addDangKy(new DangKyDangBai(nguoiDung));
+			response.sendRedirect("thongBaoKetQua.jsp");
 		}
 	}
 	protected void editIn4(HttpServletRequest request, HttpServletResponse response)

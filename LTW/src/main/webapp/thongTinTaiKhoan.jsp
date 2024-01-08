@@ -21,7 +21,7 @@
 	<div class="container w-80">
 		<div class="row border mt-30">
 			<div class="custom-file-input avt">
-				<form method="POST" action="UploadServlet"
+				<form method="POST" action="${pageContext.request.contextPath}/NewsServlet"
 			enctype="multipart/form-data" id="my-form">
 				<input type="hidden" name="type" value="avt">
 				<input type="file" id="file-input" class="hidden-input" accept="image/*" name="file"> <label
