@@ -145,7 +145,7 @@ public class UserServlet extends HttpServlet {
 			newsService.updateNguoiDung(nguoiDung);
 			newsService.deleteDangKy(maDK);
 			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
-			response.sendRedirect("danhSachDangKy.jsp");
+			response.sendRedirect("admin/danhSachDangKy.jsp");
 		}else if(typeDK.equals("chapNhan")) {
 			String maDK = request.getParameter("maDK");
 			DangKyDangBai dkdb = newsService.getDangKyDangBaiByMaDK(maDK);
@@ -154,7 +154,7 @@ public class UserServlet extends HttpServlet {
 			newsService.updateNguoiDung(nguoiDung);
 			newsService.deleteDangKy(maDK);
 			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
-			response.sendRedirect("danhSachDangKy.jsp");
+			response.sendRedirect("admin/danhSachDangKy.jsp");
 		}else if(typeDK.equals("dangKy")) {
 			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 			nguoiDung.setTheLoaiND("DangKy");

@@ -190,8 +190,8 @@
 				<label>Nội dung</label>
 				<textarea rows="20" cols="" wrap="soft" name="noiDung">${baiBao.getNoiDung()}</textarea>
 			</div>
-			<div class="divBtn Button">
-				<button type="button" onclick="submitForm()">Cập nhật</button>
+			<div class="divBtn">
+				<button type="button" onclick="submitForm()" class="button">Cập nhật</button>
 			</div>
 		</form>
 

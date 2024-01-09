@@ -21,17 +21,19 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<jsp:useBean id="bao" class="model.BaiBao" scope="session"></jsp:useBean>
-	<c:set value="${bao.getTheLoai()}" var="theLoai"></c:set>
+	<jsp:useBean id="baoDB" class="model.BaiBao" scope="session"></jsp:useBean>
+	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean>
+	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="${pageContext.request.contextPath}/NewsServlet"
+		<form method="POST"
+			action="${pageContext.request.contextPath}/NewsServlet"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
-
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>
 				<textarea rows="1" cols="" wrap="soft" class="tieude" name="tieuDe"
-					value="">${bao.getTieuDe()}</textarea>
+					value="">${baiBao.getTieuDe()}</textarea>
+
 			</div>
 			<div class="div TheLoai">
 				<label>Thể loại</label>
@@ -45,8 +47,8 @@
 									${theLoai.checkTLPhu("chinhtri") }>Chính trị</li>
 								<li><input type="checkbox" name="thoisu" value="laodong"
 									${theLoai.checkTLPhu("laodong") }>Lao động</li>
-								<li><input type="checkbox" name="thoisu" value="dansinh"
-									${theLoai.checkTLPhu("dansinh") }>Dân sinh</li>
+								<li><input type="checkbox" name="thoisu" value="giaoduc"
+									${theLoai.checkTLPhu("giaoduc") }>Giáo dục</li>
 								<li><input type="checkbox" name="thoisu" value="giaothong"
 									${theLoai.checkTLPhu("giaothong") }>Giao Thông</li>
 							</div>
@@ -72,8 +74,8 @@
 									value="doanhnghiep" ${theLoai.checkTLPhu("doanhnghiep") }>Doanh
 									nghiệp</li>
 								<li><input type="checkbox" name="kinhdoanh"
-									value="chungkhoan" ${theLoai.checkTLPhu("chungkhoan") }>Chứng
-									khoán</li>
+									value="chungkhoang" ${theLoai.checkTLPhu("chungkhoang") }>Chứng
+									khoáng</li>
 								<li><input type="checkbox" name="kinhdoanh" value="baohiem"
 									${theLoai.checkTLPhu("baohiem") }>Bảo hiểm</li>
 							</div>
@@ -173,19 +175,18 @@
 			</div>
 			<div class="div MoTa">
 				<label>Mô tả</label>
-				<textarea rows="5" cols="" wrap="soft" name="moTa">${bao.getMoTa()}</textarea>
+				<textarea rows="5" cols="" wrap="soft" name="moTa">${baiBao.getMoTa()}</textarea>
 			</div>
 			<div class="div TaiAnh">
 				<label>Tải ảnh lên</label>
 				<div class="img">
 					<input type="file" accept="image/*" value="" name="file" id="file">
-					<img alt="" src="${bao.getFilePath()}">
-<!-- 					<button type="button" onclick="submitFormUpAnh()">up anh</button> -->
+					<img alt="" src="${baiBao.getFilePath()}">
 				</div>
 			</div>
 			<div class="div NoiDung">
 				<label>Nội dung</label>
-				<textarea rows="20" cols="" wrap="soft" name="noiDung">${bao.getNoiDung()}</textarea>
+				<textarea rows="20" cols="" wrap="soft" name="noiDung">${baiBao.getNoiDung()}</textarea>
 			</div>
 			<div class="divBtn">
 				<button type="button" onclick="submitForm()" class="button">Đăng bài</button>
@@ -194,6 +195,21 @@
 
 	</div>
 	<script type="text/javascript">
+	document.getElementById('file').addEventListener('change', function() {
+		var type = document.getElementById('type');
+		var fileInput = document.getElementById('file');
+		  
+		var file = fileInput.files[0];
+		var maxSize=1024000;
+		if(file && file.size > maxSize){
+			alert('File ảnh có dung lượng quá lớn, vui lòng chọn file ảnh khác')
+			fileInput.value = '';
+			return;
+		}else{
+			type.value = "upAnh";
+			document.getElementById('myform').submit();
+		}
+	});
 		function submitFormUpAnh() {
 			var form = document.getElementById('myform');
 			var fileInput = document.getElementById('file');
@@ -211,12 +227,6 @@
 			type.value = "dangBai";
 			form.submit();
 		}
-
-		document.getElementById('file').addEventListener('change', function() {
-			var type = document.getElementById('type');
-			type.value = "upAnh";
-			document.getElementById('myform').submit();
-		});
 	</script>
 
 	<jsp:include page="/footer.jsp" flush="false"></jsp:include>

@@ -178,7 +178,7 @@ ul {
 	<div
 		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
 		<div>
-			<a href="MainServlet" style="display: block; height: max_content;"><img
+			<a href="${pageContext.request.contextPath}/MainServlet" style="display: block; height: max_content;"><img
 				alt="logo" src="
 				${path}/img/logo3.png" type="image/x-icon"
 				style="max-height: 100px; max-width: 100%;"> </a>
@@ -220,7 +220,7 @@ ul {
 						href="${pageContext.request.contextPath}/NewsServlet?typeShow=trangCaNhan&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }"
 						style="text-decoration: none; color: black;">Thông tin tài
 							khoản</a></li>
-					<li><a href="thayDoiThongTin.jsp"
+					<li><a href="${pageContext.request.contextPath}/thayDoiThongTin.jsp"
 						style="text-decoration: none; color: black;">Thay đổi thông
 							tin</a></li>
 					<li style="height: 1px; margin: 0; list-style: none;"><hr
@@ -237,7 +237,7 @@ ul {
 	<!-- Navbar -->
 	<div class="nav">
 		<div class="nav-item">
-			<a href="MainServlet" style="padding: 15px;"><i
+			<a href="${pageContext.request.contextPath}/MainServlet" style="padding: 15px;"><i
 				class="fa-solid fa-house"></i></a>
 		</div>
 		<div class="nav-item">

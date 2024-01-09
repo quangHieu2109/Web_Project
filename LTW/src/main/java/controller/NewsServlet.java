@@ -66,10 +66,10 @@ public class NewsServlet extends HttpServlet {
 			edit(request, response);
 		} else if (type.equals("search")) {
 			search(request, response);
-		}else if (type.equals("cmt")) {
+		} else if (type.equals("cmt")) {
 			cmt(request, response);
 		} else if (type.equals("dangBao")) {
-			 response.sendRedirect("pageJournalist/dangBai.jsp");
+			response.sendRedirect("pageJournalist/dangBai.jsp");
 		}
 	}
 
@@ -82,8 +82,8 @@ public class NewsServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	protected void cmt(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+
+	protected void cmt(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 		String maBaiBao = request.getParameter("maBaiBao");
 		String noiDung = request.getParameter("noiDung");
@@ -95,8 +95,9 @@ public class NewsServlet extends HttpServlet {
 		request.getSession().setAttribute("cmts", newsService.getBinhLuan(baiBao));
 		response.sendRedirect("docBao.jsp");
 //		request.getRequestDispatcher("docBao.jsp").forward(request, response);
-		
+
 	}
+
 	protected void upAnh(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		// Lấy tệp tin được tải lên từ yêu cầu
@@ -141,9 +142,9 @@ public class NewsServlet extends HttpServlet {
 		BaiBao baiBao = new BaiBao(tieuDe, moTa, link, noiDung, nguoiDung, dsTheLoai);
 		request.getSession().setAttribute("baiBao", baiBao);
 		System.out.println(baiBao);
-		request.getSession().setAttribute("bao", baiBao);
-		// Chuyển hướng trở lại trang dangbai.jsp
-		response.sendRedirect("UploadServlet");
+		request.getSession().setAttribute("baoDB", baiBao);
+		// Chuyển hướng trở lại trang dangBai.jsp
+		response.sendRedirect("pageJournalist/dangBai.jsp");
 	}
 
 	protected void dangBai(HttpServletRequest request, HttpServletResponse response)
@@ -215,12 +216,12 @@ public class NewsServlet extends HttpServlet {
 		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		ArrayList<BaiBao> baos = newsService.getBaiBaoByTenDanhNap(tenDangNhap);
-		request.setAttribute("baos", baos);
+		request.getSession().setAttribute("baos", baos);
 		String type = request.getParameter("typeShow");
 		if (type.equalsIgnoreCase("danhSachBaiBao")) {
-			request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
+			response.sendRedirect("pageJournalist/danhSachBaiBao.jsp");
 		} else if (type.equalsIgnoreCase("trangCaNhan")) {
-			request.getRequestDispatcher("thongTinTaiKhoan.jsp").forward(request, response);
+			response.sendRedirect("thongTinTaiKhoan.jsp");
 		}
 //		
 
@@ -254,7 +255,7 @@ public class NewsServlet extends HttpServlet {
 		if (request.getSession().getAttribute("bao") != null) {
 			request.getSession().removeAttribute("bao");
 		}
-		
+
 		request.getSession().setAttribute("bao", bao);
 		request.getSession().setAttribute("cmts", newsService.getBinhLuan(bao));
 		newsService.updateBaiBao(bao);
@@ -272,14 +273,14 @@ public class NewsServlet extends HttpServlet {
 				request.getSession().removeAttribute("baiBao");
 			}
 			request.getSession().setAttribute("baiBao", baiBao);
-			request.getRequestDispatcher("pageJournalist/chinhSuaBaiBao.jsp").forward(request, response);
+			response.sendRedirect("pageJournalist/chinhSuaBaiBao.jsp");
 		} else if (type.equals("remove")) {
 			String maBaiBao = request.getParameter("maBaiBao");
 			BaiBao baiBao = newsService.getBaiBaoByMaBB(maBaiBao);
 			newsService.removeBaiBao(baiBao);
 			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
-			request.setAttribute("baos", newsService.getBaiBaoByTenDanhNap(nguoiDung.getTenDangNhap()));
-			request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
+			request.getSession().setAttribute("baos", newsService.getBaiBaoByTenDanhNap(nguoiDung.getTenDangNhap()));
+			response.sendRedirect("pageJournalist/danhSachBaiBao.jsp");
 		} else if (type.equals("upAnh")) {
 			// Lấy tệp tin được tải lên từ yêu cầu
 			Part filePart = request.getPart("file");
@@ -331,9 +332,8 @@ public class NewsServlet extends HttpServlet {
 
 			request.getSession().setAttribute("baiBao", baiBao);
 			System.out.println(baiBao);
-			request.setAttribute("bao", baiBao);
-			// Chuyển hướng trở lại trang dangbai.jsp
-			request.getRequestDispatcher("pageJournalist/chinhSuaBaiBao.jsp").forward(request, response);
+			request.getSession().setAttribute("baiBao", baiBao);
+			response.sendRedirect("pageJournalist/chinhSuaBaiBao.jsp");
 		} else {
 			BaiBao baiBao = (BaiBao) request.getSession().getAttribute("baiBao");
 			String link = null;

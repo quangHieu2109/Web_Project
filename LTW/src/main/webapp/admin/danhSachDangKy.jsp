@@ -37,9 +37,9 @@
 
 					</div>
 					<div class="col-lg-3 button">
-						<a href="UserServlet?type=dangKyDangBai&typeDK=chapNhan&maDK=${ds.getMaDK() }"
+						<a href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=chapNhan&maDK=${ds.getMaDK() }"
 							class="btn">Chấp nhận</a> <a
-							href="UserServlet?type=dangKyDangBai&typeDK=xoa&maDK=${ds.getMaDK() }"
+							href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=xoa&maDK=${ds.getMaDK() }"
 							class="btn">Xóa</a>
 					</div>
 				</div>
