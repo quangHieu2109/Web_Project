@@ -11,7 +11,7 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
-<link rel="stylesheet" href="css/dangKy.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dangKy.css">
 
 </head>
 <body>

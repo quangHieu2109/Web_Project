@@ -17,7 +17,7 @@
 	type="image/x-icon">
 <style type="text/css">
 </style>
-<link rel="stylesheet" type="text/css" href="../css/dangBai.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dangBai.css">
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>

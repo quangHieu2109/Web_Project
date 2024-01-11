@@ -214,10 +214,10 @@ ul {
 						style="text-decoration: none; color: black;">Danh sách đăng ký</a></li>
 					</c:if>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?typeShow=danhSachBaiBao&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }"
+						href="${pageContext.request.contextPath}/NewsServlet?typeShow=danhSachBaiBao&type=showList"
 						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?typeShow=trangCaNhan&type=showList&tenDangNhap=${nguoiDung.getTenDangNhap() }"
+						href="${pageContext.request.contextPath}/NewsServlet?typeShow=trangCaNhan&type=showList"
 						style="text-decoration: none; color: black;">Thông tin tài
 							khoản</a></li>
 					<li><a href="${pageContext.request.contextPath}/thayDoiThongTin.jsp"

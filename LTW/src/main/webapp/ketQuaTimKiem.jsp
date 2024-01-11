@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Kết quả tìm kiếm</title>
-<link href="css/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -17,7 +17,7 @@
 <body>
 
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:useBean id="baos" class="java.util.ArrayList" scope="session"></jsp:useBean>
+	<jsp:useBean id="baos" class="java.util.ArrayList" scope="request"></jsp:useBean>
 	<jsp:useBean id="key" class="java.lang.String" scope="request"></jsp:useBean>
 	<div class="container">
 		<div class="col-md-8 mg-a">

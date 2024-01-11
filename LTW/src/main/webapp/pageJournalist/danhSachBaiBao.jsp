@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Danh sách bài báo của bạn</title>
-<link href="../css/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -16,11 +16,11 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<jsp:useBean id="baos" type="java.util.ArrayList" scope="session"></jsp:useBean>
+	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean>
 	<div class="container">
 		<h1 class="fs-25">Danh sách các bài báo của bạn</h1>
 		<div class="col-lg-10 ma">
-			<c:forEach items="${baos }" var="bao">
+			<c:forEach items="${baoND }" var="bao">
 				<div class="row border">
 					<div class="col-lg-10 space flex ">
 						<div class="col-lg-4">

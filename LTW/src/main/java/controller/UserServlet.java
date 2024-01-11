@@ -87,7 +87,7 @@ public class UserServlet extends HttpServlet {
 			} else {
 				request.getSession().setAttribute("nguoiDung", nguoiDung);
 
-				request.getRequestDispatcher("/MainServlet").forward(request, response);
+				response.sendRedirect("MainServlet");
 			}
 		}
 

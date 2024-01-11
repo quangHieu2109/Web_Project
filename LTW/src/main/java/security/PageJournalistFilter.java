@@ -17,7 +17,7 @@ import model.NguoiDung;
 /**
  * Servlet Filter implementation class SecurityFilter
  */
-@WebFilter("/pageJournalist/*")
+@WebFilter(urlPatterns ={"/pageJournalist/*", "/NewsServlet?*typeShow=danhSachBaiBao*", "/NewsServlet?*type=dangBao*","/NewsServlet?*type=edit*"})
 public class PageJournalistFilter extends HttpFilter implements Filter {
        
     /**

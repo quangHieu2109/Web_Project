@@ -405,6 +405,7 @@ public class BaiBaoDAO {
 		}
 
 		if (result.size() == 0) {
+			System.out.println("create xu hướng");
 			result = createXuHuong();
 			insertXuHuong(result);
 		}
@@ -584,7 +585,7 @@ public class BaiBaoDAO {
 //		}
 //		System.out.println("\n");
 //		dsTheLoai.addTheLoai(new TheLoai("tl3", null));
-		for (BaiBao bb : dao.selectTopView()) {
+		for (BaiBao bb : dao.selectXuHuong()) {
 			System.out.println(bb);
 		}
 //		System.out.println(dao.selectByMaBaiBao("Q1702659445184"));
