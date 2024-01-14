@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,8 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dangKy.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/dangKy.css">
 <style type="text/css">
 .content {
 	display: block;
@@ -48,9 +50,9 @@ h1 {
 	border: 1px solid;
 	min-width: 60%;
 	max-width: max-content;
-	margin: auto; 
+	margin: auto;
 	margin-top: 5%;
- 	padding-bottom: 30px;
+	padding-bottom: 30px;
 }
 
 label {
@@ -93,29 +95,39 @@ label {
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
-
-
-	<form action="${pageContext.request.contextPath}/UserServlet" method="post" class="form">
+	<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
+	<form action="${pageContext.request.contextPath}/UserServlet"
+		method="post" class="form">
 		<input type="hidden" name="type" value="login">
-		<h1>Thông báo</h1>
+		<h1>
+			<fmt:message>thong_bao</fmt:message>
+		</h1>
 		<div class="body">
 			<div class="content">
 				<c:if test="${nguoiDung.isDangKy() }">
-				
-				<div class="line">
-					<label>Bạn đã đăng ký làm nhà báo trước đó. </label> <label>Hãy đợi cho đến khi được admin phê duyệt để có thể đăng bài! </label>
-				</div>
+
+					<div class="line">
+						<label><fmt:message>ban_da_dang_ky_tai_khoan_truoc_do</fmt:message>.
+						</label> <label><fmt:message>hay_doi_cho_den_khi_duoc_admin_phe_duyet_de_co_the_dang_bai</fmt:message>!
+						</label>
+					</div>
 				</c:if>
 				<c:if test="${!nguoiDung.isDangKy() }">
-				<div class="line">
-					<label>Chức năng đăng bài chỉ dành cho tài khoản nhà báo. </label> <label>Bạn
-						cần đăng ký làm nhà báo để có thể sử dụng chức năng đăng bài! </label>
-				</div>
+					<div class="line">
+						<label><fmt:message>chuc_nang_dang_bai_chi_danh_cho_tai_khoan_nha_bao</fmt:message>.
+						</label> <label><fmt:message>ban_can_dang_ky_lam_nha_bao_de_co_the_su_dung_chuc_nang_dang_bai</fmt:message>!
+						</label>
+					</div>
 
-				<div class="button2">
-					<a class="btn margin-a"  href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=dangKy">Đăng ký</a>
+					<div class="button2">
+						<a class="btn margin-a"
+							href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=dangKy"><fmt:message>dang_ky</fmt:message></a>
 
-				</div>
+					</div>
 				</c:if>
 			</div>
 		</div>

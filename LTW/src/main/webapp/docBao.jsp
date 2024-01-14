@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Đọc báo</title>
-<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/main.css"
+	rel="stylesheet">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -16,6 +18,11 @@
 	type="image/x-icon">
 </head>
 <body>
+	<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean>
 	<jsp:useBean id="cmts" class="java.util.ArrayList" scope="request"></jsp:useBean>
@@ -43,10 +50,10 @@
 			<div class="col-lg-4 ml-5">
 				<div class="list-group border sticky">
 					<span
-						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px">Xem
-						nhiều</span>
+						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px"><fmt:message>xem_nhieu</fmt:message></span>
 					<c:forEach items="${topView }" var="baoTV">
-						<a href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
+						<a
+							href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
 							class="list-group-item">
 							<div class="row">
 								<div class="col-md-4">
@@ -65,7 +72,7 @@
 		<div class="row space w-80">
 			<div class="col-lg-8">
 				<div class="comment">
-					<h3>Bình luận</h3>
+					<h3><fmt:message>binh_luan</fmt:message></h3>
 					<div class="mb-30 ">
 						<c:forEach var="cmt" items="${cmts }" begin="0">
 							<div class="row  m-5 border">
@@ -87,12 +94,14 @@
 
 					</div>
 					<c:if test="${nguoiDung.getTenDangNhap()!=null }">
-					<form action="${pageContext.request.contextPath}/NewsServlet" method="get" id="myform">
-						<input type="hidden" name="type" value="cmt"> <input
-							type="hidden" name="maBaiBao" value="${bao.getMaBaiBao() }">
-						<textarea rows="7" cols="" wrap="soft" name="noiDung" id="noiDung"></textarea>
-						<button type="button" onclick="submitForm()">Bình luận</button>
-					</form>
+						<form action="${pageContext.request.contextPath}/NewsServlet"
+							method="get" id="myform">
+							<input type="hidden" name="type" value="cmt"> <input
+								type="hidden" name="maBaiBao" value="${bao.getMaBaiBao() }">
+							<textarea rows="7" cols="" wrap="soft" name="noiDung"
+								id="noiDung"></textarea>
+							<button type="button" onclick="submitForm()"><fmt:message>binh_luan</fmt:message></button>
+						</form>
 					</c:if>
 				</div>
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,17 +175,24 @@ ul {
 <body>
 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
 	<jsp:useBean id="path" class="java.lang.String" scope="application"></jsp:useBean>
+	<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
 
 	<div
 		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
 		<div>
-			<a href="${pageContext.request.contextPath}/MainServlet" style="display: block; height: max_content;"><img
-				alt="logo" src="
+			<a href="${pageContext.request.contextPath}/MainServlet"
+				style="display: block; height: max_content;"><img alt="logo"
+				src="
 				${path}/img/logo3.png" type="image/x-icon"
 				style="max-height: 100px; max-width: 100%;"> </a>
 		</div>
 		<div class="search">
-			<form action="${pageContext.request.contextPath}/NewsServlet" id="searchForm">
+			<form action="${pageContext.request.contextPath}/NewsServlet"
+				id="searchForm">
 				<input type="hidden" name="typeSearch" value="seachByTen"> <input
 					type="hidden" name="type" value="search"> <input
 					type="text" name="txtSearch"> <i
@@ -194,11 +202,11 @@ ul {
 		<div
 			style="margin-top: auto; margin-bottom: auto; display:  ${nguoiDung.getTenDangNhap() == null ? "flex" : "none"}; width:max-content; justify-content:space-between;">
 
-			<a href="${pageContext.request.contextPath}/UserServlet?type=dangNhap"
-				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;">Đăng
-				nhập</a> <a href="${pageContext.request.contextPath}/UserServlet?type=dangKy"
-				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;">Đăng
-				ký</a>
+			<a
+				href="${pageContext.request.contextPath}/UserServlet?type=dangNhap"
+				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;"><fmt:message>dang_nhap</fmt:message></a> <a
+				href="${pageContext.request.contextPath}/UserServlet?type=dangKy"
+				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;"><fmt:message>dang_ky</fmt:message></a>
 		</div>
 		<div class="user label2" onclick="toggleDropdown('div2')"
 			style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
@@ -207,27 +215,28 @@ ul {
 
 			<div class="div2" id="div2">
 				<ul>
-					<li><a href="${pageContext.request.contextPath}/NewsServlet?type=dangBao"
-						style="text-decoration: none; color: black;">Đăng bài</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/NewsServlet?type=dangBao"
+						style="text-decoration: none; color: black;"><fmt:message>dang_bai</fmt:message></a></li>
 					<c:if test="${nguoiDung.isAdmin() }">
-					<li><a href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=danhSach"
-						style="text-decoration: none; color: black;">Danh sách đăng ký</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=danhSach"
+							style="text-decoration: none; color: black;"><fmt:message>danh_sach_dang_ky</fmt:message></a></li>
 					</c:if>
 					<li><a
 						href="${pageContext.request.contextPath}/NewsServlet?typeShow=danhSachBaiBao&type=showList"
-						style="text-decoration: none; color: black;">Danh sách bài báo</a></li>
+						style="text-decoration: none; color: black;"><fmt:message>danh_sach_bai_bao</fmt:message></a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/NewsServlet?typeShow=trangCaNhan&type=showList"
-						style="text-decoration: none; color: black;">Thông tin tài
-							khoản</a></li>
-					<li><a href="${pageContext.request.contextPath}/thayDoiThongTin.jsp"
-						style="text-decoration: none; color: black;">Thay đổi thông
-							tin</a></li>
+						style="text-decoration: none; color: black;"><fmt:message>thong_tin_tai_khoan</fmt:message></a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/thayDoiThongTin.jsp"
+						style="text-decoration: none; color: black;"><fmt:message>thay_doi_thong_tin</fmt:message></a></li>
 					<li style="height: 1px; margin: 0; list-style: none;"><hr
 							class=""></li>
-					<li><a href="${pageContext.request.contextPath}/UserServlet?type=logout"
-						style="text-decoration: none; color: black; margin-top: 10px">Đăng
-							xuất</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/UserServlet?type=logout"
+						style="text-decoration: none; color: black; margin-top: 10px"><fmt:message>dang_xuat</fmt:message></a></li>
 				</ul>
 				</ul>
 			</div>
@@ -237,102 +246,80 @@ ul {
 	<!-- Navbar -->
 	<div class="nav">
 		<div class="nav-item">
-			<a href="${pageContext.request.contextPath}/MainServlet" style="padding: 15px;"><i
-				class="fa-solid fa-house"></i></a>
+			<a href="${pageContext.request.contextPath}/MainServlet"
+				style="padding: 15px;"><i class="fa-solid fa-house"></i></a>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu">Thời
-				sự</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu"><fmt:message>thoi_su</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=chinhtri">Chính
-							trị</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=chinhtri"><fmt:message>chinh_tri</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong">Lao
-							động</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=laodong"><fmt:message>lao_dong</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=dansinh">Dân
-							sinh</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=dansinh"><fmt:message>dan_sinh</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong">Giao
-							thông</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thoisu&theLoaiPhu=giaothong"><fmt:message>giao_thong</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi">Thế
-				giới</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi"><fmt:message>the_gioi</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=tulieu">Tư
-							liệu</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=tulieu"><fmt:message>tu_lieu</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=cuocsong">Cuộc
-							sống</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=cuocsong"><fmt:message>cuoc_song</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=quansu">Quân
-							sự</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thegioi&theLoaiPhu=quansu"><fmt:message>quan_su</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh">Kinh
-				doanh</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh"><fmt:message>kinh_doanh</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=quocte">Quốc
-							tế</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=quocte"><fmt:message>quoc_te</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=doanhnghiep">Doanh
-							nghiệp</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=doanhnghiep"><fmt:message>doanh_nghiep</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoan">Chứng
-							khoán</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=chungkhoan"><fmt:message>chung_khoan</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=baohiem">Bảo
-							hiểm</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=kinhdoanh&theLoaiPhu=baohiem"><fmt:message>bao_hiem</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan">Bất
-				động sản</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan"><fmt:message>bat_dong_san</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=chinhsach">Chính
-							sách</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=chinhsach"><fmt:message>chinh_sach</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=thitruong">Thị
-							trường</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=thitruong"><fmt:message>thi_truong</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=duan">Dự
-							án</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=duan"><fmt:message>du_an</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=tuvan">Tư
-							vấn</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=batdongsan&theLoaiPhu=tuvan"><fmt:message>tu_van</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao">Thể
-				thao</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao"><fmt:message>the_thao</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=bongda">Bóng
-							đá</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=bongda"><fmt:message>bong_da</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=lichthidau">Lịch
-							thi đấu</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=lichthidau"><fmt:message>lich_thi_dau</fmt:message></a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=thethao&theLoaiPhu=tennis">Tennis</a></li>
 					<li><a
@@ -342,86 +329,67 @@ ul {
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc">Giáo
-				dục</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc"><fmt:message>giao_duc</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tintuc">Tin
-							tức</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tintuc"><fmt:message>tin_tuc</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Tuyển
-							sinh</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh"><fmt:message>tuyen_sinh</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh">Du
-							học</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=tuyensinh"><fmt:message>du_hoc</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=hoctienganh">Học
-							tiếng Anh</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=hoctienganh"><fmt:message>hoc_tieng_anh</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=giaoduc40">Giáo
-							dục 4.0</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=giaoduc&theLoaiPhu=giaoduc40"><fmt:message>giao_duc_4.0</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong">Đời
-				sống</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong"><fmt:message>doi_song</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=nhipsong">Nhịp
-							sống</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=nhipsong"><fmt:message>nhip_song</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=toam">Tổ
-							ấm</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=toam"><fmt:message>to_am</fmt:message></a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=cooking">Cooking</a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=tieudung">Tiêu
-							dùng</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=doisong&theLoaiPhu=tieudung"><fmt:message>tieu_dung</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich">Du
-				lịch</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich"><fmt:message>du_lich</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=diemden">Điểm
-							đến</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=diemden"><fmt:message>diem_den</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=amthuc">Ăm
-							thực</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=amthuc"><fmt:message>am_thuc</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=camnang">Cẩm
-							nang</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=camnang"><fmt:message>cam_nang</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=tuvan">Tư
-							vấn</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=dulich&theLoaiPhu=tuvan"><fmt:message>tu_van</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="nav-item">
 			<a
-				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe">Xe</a>
+				href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe"><fmt:message>xe</fmt:message></a>
 			<div class="nav-itemlist">
 				<ul>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thitruong">Thị
-							trường</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thitruong"><fmt:message>thi_truong</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=diendan">Diễn
-							đàn</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=diendan"><fmt:message>dien_dan</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thibanglai">Thi
-							bằng lái</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=thibanglai"><fmt:message>thi_bang_lai</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=muaban">Mua
-							bán</a></li>
+						href="${pageContext.request.contextPath}/NewsServlet?type=search&typeSearch=searchByTheLoai&theLoaiChinh=xe&theLoaiPhu=muaban"><fmt:message>mua_ban</fmt:message></a></li>
 				</ul>
 			</div>
 		</div>

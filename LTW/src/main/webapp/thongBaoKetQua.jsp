@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,20 +92,25 @@ label {
 
 </head>
 <body>
+<fmt:setLocale value="vi_VN" />
+	<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
 
 
 	<form action="UserServlet" method="post" class="form">
 		<input type="hidden" name="type" value="login">
-		<h1>Thông báo</h1>
+		<h1><fmt:message>thong_bao</fmt:message></h1>
 		<div class="body">
 			<div class="content">
 
 
 				<div class="line">
-					<label>Bạn đã đăng ký làm nhà báo thành công. </label> <label>Vui
-						lòng đợi admin phê duyệt để có thể sử dụng chức năng này! </label>
+					<label><fmt:message>ban_da_dang_ky_lam_nha_bao_thanh_cong</fmt:message>. </label> <label><fmt:message>vui_long_doi_admin_phe_duyet_de_su_dung_chuc_nang_nay</fmt:message>! </label>
 				</div>
 			</div>
 		</div>

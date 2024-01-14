@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +16,11 @@
 	type="image/x-icon">
 </head>
 <body>
+<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean>
 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
@@ -33,22 +39,22 @@
 
 			<div class="in4 ml-5">
 				<label class="in4-title">${nguoiDung.getHoVaTen() }</label> <label
-					class="in4-amt">${baoND.size() } Bài báo</label>
+					class="in4-amt">${baoND.size() } <fmt:message>bai_bao</fmt:message></label>
 			</div>
 		</div>
 		<div class="row space mt-30">
 			<div class="col-lg-4 border h-max">
 				<ul class="ul">
-					Thông tin
+					<fmt:message>thong_tin</fmt:message>
 
 					<li class="li mt-30">Email: ${nguoiDung.getEmail() }</li>
-					<li class="li">Ngày sinh: ${nguoiDung.getNgaySinh() }</li>
-					<li class="li">Loại tài khoản: ${nguoiDung.loaiTaiKhoan() }</li>
+					<li class="li"><fmt:message>ngay_sinh</fmt:message>: ${nguoiDung.getNgaySinh() }</li>
+					<li class="li"><fmt:message>loai_tai_khoan</fmt:message>: ${nguoiDung.loaiTaiKhoan() }</li>
 				</ul>
 			</div>
 			<div class="col-lg-8 border  list-news">
 				<div class="title">
-					<label class="text-center">Các bài đăng</label>
+					<label class="text-center"><fmt:message>cac_bai_dang</fmt:message></label>
 				</div>
 				<div class="row">
 					<c:forEach items="${baoND }" var="bao">

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -91,20 +92,24 @@ label {
 
 </head>
 <body>
+<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
 
 
 	<form action="UserServlet" method="post" class="form">
 		<input type="hidden" name="type" value="login">
-		<h1>Thông báo</h1>
+		<h1><fmt:message>thong_bao</fmt:message></h1>
 		<div class="body">
 			<div class="content">
 
 
 				<div class="line">
-					<label>Chức năng này chỉ dành cho Admin. </label> <label>Vui
-						lòng sử dụng chức năng khác! </label>
+					<label><fmt:message>chuc_nang_nay_chi_danh_cho_admin</fmt:message>. </label> <label><fmt:message>vui_long_su_dung_chuc_nang_khac</fmt:message>! </label>
 				</div>
 			</div>
 		</div>

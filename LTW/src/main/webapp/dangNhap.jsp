@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,6 +86,11 @@ label {
 
 </head>
 <body>
+	<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
 	<div class="error">
@@ -95,22 +101,22 @@ label {
 
 	<form action="${pageContext.request.contextPath}/UserServlet" method="post" class="form">
 	<input type="hidden" name="type" value="login">
-		<h1>Đăng nhập tài khoản</h1>
+		<h1><fmt:message>dang_nhap_tai_khoan</fmt:message></h1>
 		<div class="body">
 			<div class="content">
 				<div class="line">
-					<label>Tên đăng nhập</label> <input type="text" name="tenDangNhap" required="required">
+					<label><fmt:message>ten_dang_nhap</fmt:message></label> <input type="text" name="tenDangNhap" required="required">
 				</div>
 				<div class="line">
-					<label>Mật khẩu</label> <input type="password" name="matKhau" required="required">
+					<label><fmt:message>mat_khau</fmt:message></label> <input type="password" name="matKhau" required="required">
 				</div>
 
 
 
 				<div class="button2">
 
-					<a href="${pageContext.request.contextPath}/UserServlet?type=dangKy" class="btn">Đăng ký</a>
-					<button type="submit" class="btn">Đăng nhập</button>
+					<a href="${pageContext.request.contextPath}/UserServlet?type=dangKy" class="btn"><fmt:message>dang_ky</fmt:message></a>
+					<button type="submit" class="btn"><fmt:message>dang_nhap</fmt:message></button>
 
 				</div>
 			</div>
