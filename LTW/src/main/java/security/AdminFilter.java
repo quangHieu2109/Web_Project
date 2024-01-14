@@ -12,6 +12,7 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.NewsService;
 import model.NguoiDung;
 
 /**
@@ -43,16 +44,16 @@ public class AdminFilter extends HttpFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) response;
 		NguoiDung nguoiDung = (NguoiDung) req.getSession().getAttribute("nguoiDung");
 		
-		
+			NewsService newsService = (NewsService) req.getSession().getAttribute("newsService");
 			if(nguoiDung.getTenDangNhap()==null) {
 				
 				
-				res.sendRedirect(req.getContextPath()+"/UserServlet?type=dangNhap");
+				res.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/UserServlet?type=dangNhap"));
 			}else {
 				if(nguoiDung.isAdmin() ) {
 					chain.doFilter(req, res);
 				}else {
-					res.sendRedirect(req.getContextPath()+"/thongBaoLoi.jsp");
+					res.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/thongBaoLoi.jsp"));
 				}
 			}
 	}

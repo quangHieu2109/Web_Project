@@ -140,3 +140,15 @@ form {
 	font-size: 40px; 
 	font-weight: 600;
 }
+.error {
+	width: max-content;
+	color: red;
+	font-weight: 600;
+	margin: auto;
+	margin-top: 4%;
+	color: red;
+}
+
+.error label {
+	font-size: 40px;
+}

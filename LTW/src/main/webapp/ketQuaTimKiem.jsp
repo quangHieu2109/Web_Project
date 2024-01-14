@@ -6,8 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Kết quả tìm kiếm</title>
-<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+<fmt:setLocale value="vi_VN" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>ket_qua_tim_kiem</fmt:message></title>
+<link href="${pageContext.request.contextPath}/css/main.css"
+	rel="stylesheet">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -16,19 +22,17 @@
 	type="image/x-icon">
 </head>
 <body>
-<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="baos" class="java.util.ArrayList" scope="request"></jsp:useBean>
 	<jsp:useBean id="key" class="java.lang.String" scope="request"></jsp:useBean>
 	<div class="container">
 		<div class="col-md-8 mg-a">
-			<label class="keyword"><fmt:message>tu_khoa</fmt:message>: ${key}</label>
+			<label class="keyword"><fmt:message>tu_khoa</fmt:message>:
+				${key}</label>
 			<c:forEach var="bao" items="${baos}" varStatus="status">
-				<a href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${bao.getMaBaiBao() }"><div
+				<a
+					href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${bao.getMaBaiBao() }"><div
 						class="row space">
 						<div class="col-lg-4">
 							<img alt="" src="${bao.getFilePath()}" class="card-img">

@@ -18,7 +18,7 @@ public class NewsService {
 	private BinhLuanDAO dbBinhLuan = new BinhLuanDAO();
 	private NguoiDungDAO dbNguoiDung = new NguoiDungDAO();
 	private boolean isLogin = false;
-
+	private static boolean isEnglish = false;
 	public NewsService() {
 		JDBCUtil.connection();
 	}
@@ -128,6 +128,29 @@ public class NewsService {
 	public void deleteDangKy(String maDK) {
 		DangKyDangBaiDao.remove(maDK);
 	}
+	public String rewriteURL(String url) {
+		String result ="";
+		if(isEnglish) {
+			if(url.contains("?")) {
+				result=url+"&lang=en";
+			}else {
+				result=url+"?lang=en";
+			}
+		}else {
+			result = url;
+		}
+		
+		
+		return result;
+	}
+	public boolean isEnglish() {
+		return isEnglish;
+	}
+
+	public void setEnglish(boolean isEnglish) {
+		this.isEnglish = isEnglish;
+	}
+
 	public static void main(String[] args) {
 		NewsService news = new NewsService();
 		System.out.println(news.getNguoiDung("hao"));

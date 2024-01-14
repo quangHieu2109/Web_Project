@@ -41,10 +41,6 @@ public class MainServlet extends HttpServlet {
 			newsService = new NewsService();
 			req.getSession().setAttribute("newsService", newsService);
 		}
-//		if (JDBCUtil.getConnection() == null) {
-//			JDBCUtil.connection();
-//		}
-//    	req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat(34));
 		req.getSession().setAttribute("baos", newsService.getBaiBaoMoiNhat());
 		req.getSession().setAttribute("xuHuong", newsService.getXuHuong());
 		req.getSession().setAttribute("topView", newsService.getTopView());
@@ -55,9 +51,13 @@ public class MainServlet extends HttpServlet {
 		}
 		String path = req.getScheme() + "://" + req.getServerName() + ":" + req.getServerPort() + req.getContextPath();
 		req.getServletContext().setAttribute("path", path);
-//    	System.out.println(path); 
-		String url = resp.encodeRedirectURL("/trangChu.jsp?id=1234");
-		req.getRequestDispatcher(url).forward(req, resp);
+		String lang = req.getParameter("lang")+"";
+		if(lang.equals("change")) {
+			newsService.setEnglish(!newsService.isEnglish());
+			req.getSession().setAttribute("newsService", newsService);
+			
+		}
+		req.getRequestDispatcher(newsService.rewriteURL("/trangChu.jsp")).forward(req, resp);
 	}
 
 	/**

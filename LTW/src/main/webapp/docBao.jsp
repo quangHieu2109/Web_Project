@@ -7,7 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Đọc báo</title>
+<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>doc_bao</fmt:message></title>
 <link href="${pageContext.request.contextPath}/css/main.css"
 	rel="stylesheet">
 <link rel="icon"
@@ -18,11 +23,7 @@
 	type="image/x-icon">
 </head>
 <body>
-	<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+	
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean>
 	<jsp:useBean id="cmts" class="java.util.ArrayList" scope="request"></jsp:useBean>

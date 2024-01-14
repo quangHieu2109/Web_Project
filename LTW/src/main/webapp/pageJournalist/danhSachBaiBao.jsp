@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Danh sách bài báo của bạn</title>
+<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>thong_bao_DS</fmt:message></title>
 <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
@@ -18,7 +24,7 @@
 	<jsp:include page="/header.jsp"></jsp:include>
 	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean>
 	<div class="container">
-		<h1 class="fs-25">Danh sách các bài báo của bạn</h1>
+		<h1 class="fs-25"><fmt:message>thong_bao_DS</fmt:message></h1>
 		<div class="col-lg-10 ma">
 			<c:forEach items="${baoND }" var="bao">
 				<div class="row border">
@@ -33,9 +39,9 @@
 					</div>
 					<div class="col-lg-2 button">
 						<a href="${pageContext.request.contextPath}/NewsServlet?type=edit&typeEdit=edit&maBaiBao=${bao.getMaBaiBao() }"
-							class="btn">Chỉnh sửa</a> <a
+							class="btn"><fmt:message>chinh_sua</fmt:message></a> <a
 							href="${pageContext.request.contextPath}/NewsServlet?type=edit&typeEdit=remove&maBaiBao=${bao.getMaBaiBao()}"
-							class="btn">Xóa</a>
+							class="btn"><fmt:message>xoa</fmt:message></a>
 					</div>
 				</div>
 

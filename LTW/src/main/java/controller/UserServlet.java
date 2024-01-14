@@ -50,7 +50,7 @@ public class UserServlet extends HttpServlet {
 			logout(request, response);
 		} else if (type.equals("editIn4")) {
 			editIn4(request, response);
-		}else if (type.equals("dangKyDangBai")) {
+		} else if (type.equals("dangKyDangBai")) {
 			dangKyDangBai(request, response);
 		}
 	}
@@ -68,26 +68,27 @@ public class UserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String tenDangNhap = request.getParameter("tenDangNhap");
 		String matKhau = request.getParameter("matKhau");
-		NewsService service = (NewsService) request.getSession().getAttribute("newsService");
-		if (service == null) {
-			service = new NewsService();
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+		System.out.println(newsService.isEnglish());
+		if (newsService == null) {
+			newsService = new NewsService();
 
 		}
 		String error = "";
-		NguoiDung nguoiDung = service.getNguoiDung(tenDangNhap);
+		NguoiDung nguoiDung = newsService.getNguoiDung(tenDangNhap);
 		if (nguoiDung == null) {
-			error = "Tài khoản không chính xác";
+			error = "dang_nhap_error_tk";
 			request.setAttribute("error", error);
-			request.getRequestDispatcher("/dangNhap.jsp").forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("/dangNhap.jsp")).forward(request, response);
 		} else {
 			if (!nguoiDung.getMatKhau().equals(matKhau)) {
-				error = "Mật khẩu không chính xác";
+				error = "dang_nhap_error_mk";
 				request.setAttribute("error", error);
-				request.getRequestDispatcher("/dangNhap.jsp").forward(request, response);
+				request.getRequestDispatcher(newsService.rewriteURL("/dangNhap.jsp")).forward(request, response);
 			} else {
 				request.getSession().setAttribute("nguoiDung", nguoiDung);
 
-				response.sendRedirect("MainServlet");
+				response.sendRedirect(newsService.rewriteURL("MainServlet"));
 			}
 		}
 
@@ -95,7 +96,9 @@ public class UserServlet extends HttpServlet {
 
 	protected void logout(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		request.getSession().invalidate();
+		request.getSession().setAttribute("newsService", newsService);
 		response.sendRedirect("MainServlet");
 	}
 
@@ -106,65 +109,70 @@ public class UserServlet extends HttpServlet {
 		String hoTen = request.getParameter("hoTen");
 		String email = request.getParameter("email");
 		String ngaySinh = request.getParameter("ngaySinh");
-		NewsService service = (NewsService) request.getSession().getAttribute("newsService");
-		if (service == null) {
-			service = new NewsService();
-			request.getSession().setAttribute("newsService", service);
-
-		}
-		if (service.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh))) != 0) {
-			request.setAttribute("error", "Đăng ký tài khoản thành công!");
-			request.getRequestDispatcher("dangNhap.jsp").forward(request, response);
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+//		if (newsService == null) {
+//			newsService = new NewsService();
+//			request.getSession().setAttribute("newsService", newsService);
+//
+//		}
+		if (newsService.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh))) != 0) {
+			request.setAttribute("error", "dang_ky_thanh_cong");
+			request.getRequestDispatcher(newsService.rewriteURL("dangNhap.jsp")).forward(request, response);
 		} else {
-			request.getRequestDispatcher("dangKy.jsp").forward(request, response);
+			request.setAttribute("error", "dang_ky_error");
+			request.getRequestDispatcher(newsService.rewriteURL("dangKy.jsp")).forward(request, response);
 		}
 	}
 
 	protected void dangNhap(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("dangNhap.jsp");
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+		response.sendRedirect(newsService.rewriteURL("dangNhap.jsp"));
 	}
 
 	protected void dangKy(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect("dangKy.jsp");
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+		response.sendRedirect(newsService.rewriteURL("dangKy.jsp"));
 	}
+
 	protected void dangKyDangBai(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String typeDK = request.getParameter("typeDK");
-		NewsService newsService =(NewsService) request.getSession().getAttribute("newsService");
-		if(typeDK.equals("danhSach")) {
-			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
-			System.out.println("size :"+newsService.getDangKyDangBai().size());
-			response.sendRedirect("admin/danhSachDangKy.jsp");
-		}else if(typeDK.equals("xoa")) {
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+		if (typeDK.equals("danhSach")) {
+			request.setAttribute("danhSachDK", newsService.getDangKyDangBai());
+			request.getRequestDispatcher(newsService.rewriteURL("admin/danhSachDangKy.jsp")).forward(request, response);
+		} else if (typeDK.equals("xoa")) {
 			String maDK = request.getParameter("maDK");
 			DangKyDangBai dkdb = newsService.getDangKyDangBaiByMaDK(maDK);
 			NguoiDung nguoiDung = dkdb.getNguoiDung();
 			nguoiDung.setTheLoaiND("NguoiDung");
 			newsService.updateNguoiDung(nguoiDung);
 			newsService.deleteDangKy(maDK);
-			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
-			response.sendRedirect("admin/danhSachDangKy.jsp");
-		}else if(typeDK.equals("chapNhan")) {
+//			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
+			response.sendRedirect(newsService.rewriteURL("/UserServlet?type=dangKyDangBai&typeDK=danhSach"));
+		} else if (typeDK.equals("chapNhan")) {
 			String maDK = request.getParameter("maDK");
 			DangKyDangBai dkdb = newsService.getDangKyDangBaiByMaDK(maDK);
 			NguoiDung nguoiDung = dkdb.getNguoiDung();
 			nguoiDung.setTheLoaiND("NhaBao");
 			newsService.updateNguoiDung(nguoiDung);
 			newsService.deleteDangKy(maDK);
-			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
-			response.sendRedirect("admin/danhSachDangKy.jsp");
-		}else if(typeDK.equals("dangKy")) {
+//			request.getSession().setAttribute("danhSachDK", newsService.getDangKyDangBai());
+			response.sendRedirect(newsService.rewriteURL("/UserServlet?type=dangKyDangBai&typeDK=danhSach"));
+		} else if (typeDK.equals("dangKy")) {
 			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 			nguoiDung.setTheLoaiND("DangKy");
 			newsService.updateNguoiDung(nguoiDung);
 			newsService.addDangKy(new DangKyDangBai(nguoiDung));
-			response.sendRedirect("thongBaoKetQua.jsp");
+			response.sendRedirect(newsService.rewriteURL("thongBaoKetQua.jsp"));
 		}
 	}
+
 	protected void editIn4(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 		String matKhau = request.getParameter("matKhau");
 		String hoTen = request.getParameter("hoTen");
@@ -182,7 +190,7 @@ public class UserServlet extends HttpServlet {
 		}
 		service.updateNguoiDung(nguoiDung);
 		request.setAttribute("thongBao", "Thay đổi thông tin thành công");
-		request.getRequestDispatcher("thayDoiThongTin.jsp").forward(request, response);
+		request.getRequestDispatcher(newsService.rewriteURL("thayDoiThongTin.jsp")).forward(request, response);
 	}
 
 }

@@ -6,7 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Thông tin tài khoản</title>
+<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>thong_tin_tai_khoan</fmt:message></title>
 <link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
@@ -16,11 +21,6 @@
 	type="image/x-icon">
 </head>
 <body>
-<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean>
 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>

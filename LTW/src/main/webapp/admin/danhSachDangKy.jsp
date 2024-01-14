@@ -1,11 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Danh sách đăng ký</title>
+<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>danh_sach_dang_ky</fmt:message></title>
 <link href="../css/main.css" rel="stylesheet" type="text/css">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
@@ -16,9 +22,9 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<jsp:useBean id="danhSachDK" type="java.util.ArrayList" scope="session"></jsp:useBean>
+	<jsp:useBean id="danhSachDK" type="java.util.ArrayList" scope="request"></jsp:useBean>
 	<div class="container">
-		<h1 class="fs-25">Danh sách đăng ký làm nhà báo</h1>
+		<h1 class="fs-25"><fmt:message>thong_bao_DK</fmt:message></h1>
 		<div class="col-lg-10 ma">
 			<c:forEach items="${danhSachDK}" var="ds">
 				<div class="row border">
@@ -38,9 +44,9 @@
 					</div>
 					<div class="col-lg-3 button">
 						<a href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=chapNhan&maDK=${ds.getMaDK() }"
-							class="btn">Chấp nhận</a> <a
+							class="btn"><fmt:message>chap_nhan</fmt:message></a> <a
 							href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=xoa&maDK=${ds.getMaDK() }"
-							class="btn">Xóa</a>
+							class="btn"><fmt:message>xoa</fmt:message></a>
 					</div>
 				</div>
 

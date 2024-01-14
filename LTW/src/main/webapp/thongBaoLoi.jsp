@@ -6,14 +6,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Đăng nhập</title>
+<fmt:setLocale value="vi_VN" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>thong_bao</fmt:message></title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dangKy.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/dangKy.css">
 <style type="text/css">
 .content {
 	display: block;
@@ -92,24 +98,23 @@ label {
 
 </head>
 <body>
-<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
 
 
 	<form action="UserServlet" method="post" class="form">
 		<input type="hidden" name="type" value="login">
-		<h1><fmt:message>thong_bao</fmt:message></h1>
+		<h1>
+			<fmt:message>thong_bao</fmt:message>
+		</h1>
 		<div class="body">
 			<div class="content">
 
 
 				<div class="line">
-					<label><fmt:message>chuc_nang_nay_chi_danh_cho_admin</fmt:message>. </label> <label><fmt:message>vui_long_su_dung_chuc_nang_khac</fmt:message>! </label>
+					<label><fmt:message>chuc_nang_nay_chi_danh_cho_admin</fmt:message>.
+					</label> <label><fmt:message>vui_long_su_dung_chuc_nang_khac</fmt:message>!
+					</label>
 				</div>
 			</div>
 		</div>

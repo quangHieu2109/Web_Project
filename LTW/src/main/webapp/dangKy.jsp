@@ -6,7 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Đăng ký</title>
+<fmt:setLocale value="vi_VN" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>dang_ky</fmt:message></title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -18,16 +23,19 @@
 
 </head>
 <body>
-	<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
 	<form action="${pageContext.request.contextPath}/UserServlet"
 		method="post" id="myform">
 		<input type="hidden" name="type" value="register">
-		<h1><fmt:message>dang_ky_tai_khoan</fmt:message></h1>
+		<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
+		<div class="error">
+			<c:if test="${error.length() >0 }">
+				<label><fmt:message>${error }</fmt:message></label>
+			</c:if>
+		</div>
+		<h1>
+			<fmt:message>dang_ky_tai_khoan</fmt:message>
+		</h1>
 		<div class="body">
 			<div class="content">
 				<table>
@@ -71,9 +79,15 @@
 			<a
 				href="${pageContext.request.contextPath}/UserServlet?type=dangNhap"
 				class="btn"><fmt:message>dang_nhap</fmt:message></a>
-			<button type="button" class="btn" onclick="submitForm()"><fmt:message>dang_ky</fmt:message></button>
+			<button type="button" class="btn" onclick="submitForm()">
+				<fmt:message>dang_ky</fmt:message>
+			</button>
 		</div>
 	</form>
+	<fmt:message key="error_thieu_thong_tin" var="error_thieu_thong_tin" />
+	<fmt:message key="error_ngay_sinh" var="error_ngay_sinh" />
+	<fmt:message key="error_email" var="error_email" />
+	<fmt:message key="error_sai_mat_khau" var="error_sai_mat_khau" />
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		function submitForm() {
@@ -89,15 +103,15 @@
 
 			if (tenDangNhap === "" || matKhau === "" || nhapLaiMatKhau === ""
 					|| hoTen === "" || email === "" || ngaySinh === "") {
-				alert('Vui lòng nhập đầy đủ thông tin');
+				alert("<c:out value='${error_thieu_thong_tin}' />");
 			} else {
 				if (matKhau !== nhapLaiMatKhau) {
-					alert('Mật khẩu nhập lại không chính xác');
+					alert("<c:out value='${error_sai_mat_khau}' />");
 				} else if (!gmailRegex.test(email)) {
-					alert('Email không hợp lệ');
+					alert("<c:out value='${error_email}' />");
 
 				} else if (date > new Date()) {
-					alert('Ngày sinh không hợp lệ');
+					alert("<c:out value='${error_ngay_sinh}' />");
 
 				} else {
 					myform.submit();

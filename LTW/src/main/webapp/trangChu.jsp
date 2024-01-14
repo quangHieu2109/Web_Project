@@ -33,7 +33,7 @@
 
 			<!-- Menu left -->
 			<div class="col-lg-2">
-				<div class="list-group border">
+				<div class="list-group border w-800">
 
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E"><fmt:message>xu_huong</fmt:message></span>
 					<c:forEach items="${xuHuong }" var="baoXH">
@@ -49,7 +49,7 @@
 			<!-- 				End menu left -->
 			<!--product-->
 
-			<div class="col-lg-7">
+			<div class="col-lg-7 w-90">
 				<div class="row">
 					<!-- 				ô lớn ở giữa -->
 					<div class="col-lg-12 col-md-6 mb-4">
@@ -157,7 +157,7 @@
 			</div>
 			<!-- 			top view right -->
 			<div class="col-lg-3">
-				<div class="list-group border">
+				<div class="list-group border w-800">
 					<span
 						style="font-size: 20px; font-weight: bold; line-height: 22px; color: #9F224E"><fmt:message>top_view</fmt:message></span>
 					<c:forEach items="${topView }" var="baoTV">

@@ -5,8 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<fmt:setLocale value="vi_VN" />
+	<c:if test="${param.lang == 'en'}">
+		<fmt:setLocale value="en_US" />
+	</c:if>
+	<fmt:setBundle basename="lang.lang" />
 <meta charset="UTF-8">
-<title>Đăng nhập</title>
+<title><fmt:message>dang_nhap</fmt:message></title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -86,16 +91,12 @@ label {
 
 </head>
 <body>
-	<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+	
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
 	<div class="error">
 		<c:if test="${error.length() >0 }">
-			<label>${error }</label>
+			<label><fmt:message>${error }</fmt:message></label>
 		</c:if>
 	</div>
 

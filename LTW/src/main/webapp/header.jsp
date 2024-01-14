@@ -55,7 +55,7 @@
 	margin-top: 5px; /* Điều chỉnh khoảng cách giữa .label2 và .div2 */
 	width: max-content;
 	top: 100%;
-	/* 	right: -90%; */
+	 	right: -235%; 
 	border: 1px solid;
 	border-color: #bebaba;
 	border-radius: 5px;
@@ -170,10 +170,26 @@ ul {
 .search i {
 	margin-right: 0
 }
+.w-800{
+
+}
+.w-1086{
+}
+@media ( max-width : 800px) {
+	.w-800{
+	display: none;
+	}
+}
+@media ( max-width : 1086px) {
+	.w-1086{
+	display: none;
+	}
+}
 </style>
 </head>
 <body>
 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
+	<jsp:useBean id="newsService" type="model.NewsService" scope="session"></jsp:useBean>
 	<jsp:useBean id="path" class="java.lang.String" scope="application"></jsp:useBean>
 	<fmt:setLocale value="vi_VN" />
 	<c:if test="${param.lang == 'en'}">
@@ -182,7 +198,7 @@ ul {
 	<fmt:setBundle basename="lang.lang" />
 
 	<div
-		style="display: flex; margin: 0 10% 0 10%; justify-content: space-between;">
+		style="display: flex; margin: 0 10% 0 5%; justify-content: space-between;">
 		<div>
 			<a href="${pageContext.request.contextPath}/MainServlet"
 				style="display: block; height: max_content;"><img alt="logo"
@@ -190,7 +206,12 @@ ul {
 				${path}/img/logo3.png" type="image/x-icon"
 				style="max-height: 100px; max-width: 100%;"> </a>
 		</div>
-		<div class="search">
+		<div class="search w-800">
+			<a
+				href="${pageContext.request.contextPath}/MainServlet?lang=change"
+				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #932048e8; text-decoration: none; text-align: center; margin-right: 20px;"><fmt:message>lang</fmt:message></a>
+		</div>
+		<div class="search w-1086">
 			<form action="${pageContext.request.contextPath}/NewsServlet"
 				id="searchForm">
 				<input type="hidden" name="typeSearch" value="seachByTen"> <input
@@ -204,8 +225,8 @@ ul {
 
 			<a
 				href="${pageContext.request.contextPath}/UserServlet?type=dangNhap"
-				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;"><fmt:message>dang_nhap</fmt:message></a> <a
-				href="${pageContext.request.contextPath}/UserServlet?type=dangKy"
+				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center; margin-right: 20px;"><fmt:message>dang_nhap</fmt:message></a>
+			<a href="${pageContext.request.contextPath}/UserServlet?type=dangKy"
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;"><fmt:message>dang_ky</fmt:message></a>
 		</div>
 		<div class="user label2" onclick="toggleDropdown('div2')"
@@ -230,7 +251,7 @@ ul {
 						href="${pageContext.request.contextPath}/NewsServlet?typeShow=trangCaNhan&type=showList"
 						style="text-decoration: none; color: black;"><fmt:message>thong_tin_tai_khoan</fmt:message></a></li>
 					<li><a
-						href="${pageContext.request.contextPath}/thayDoiThongTin.jsp"
+						href="${pageContext.request.contextPath}${newsService.rewriteURL("/thayDoiThongTin.jsp")}"
 						style="text-decoration: none; color: black;"><fmt:message>thay_doi_thong_tin</fmt:message></a></li>
 					<li style="height: 1px; margin: 0; list-style: none;"><hr
 							class=""></li>

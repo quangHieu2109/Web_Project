@@ -61,6 +61,7 @@ public class NewsServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		String type = request.getParameter("type");
 		if (type.equals("upAnh")) {
 			upAnh(request, response);
@@ -79,7 +80,7 @@ public class NewsServlet extends HttpServlet {
 		} else if (type.equals("cmt")) {
 			cmt(request, response);
 		} else if (type.equals("dangBao")) {
-			response.sendRedirect("pageJournalist/dangBai.jsp");
+			response.sendRedirect(newsService.rewriteURL("pageJournalist/dangBai.jsp"));
 		}
 	}
 
@@ -101,12 +102,14 @@ public class NewsServlet extends HttpServlet {
 		BaiBao baiBao = newsService.getBaiBaoByMaBB(maBaiBao);
 		BinhLuan binhLuan = new BinhLuan(nguoiDung, noiDung, baiBao);
 		newsService.addBinhLuan(binhLuan);
-		response.sendRedirect(request.getServletContext().getAttribute("path")+"/NewsServlet?type=read&maBaiBao="+maBaiBao);
+		response.sendRedirect(newsService.rewriteURL(
+				request.getContextPath() + "/NewsServlet?type=read&maBaiBao=" + maBaiBao));
 
 	}
 
 	protected void upAnh(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		// Lấy tệp tin được tải lên từ yêu cầu
 		Part filePart = request.getPart("file");
 		String fileName = getFileName(filePart);
@@ -115,8 +118,7 @@ public class NewsServlet extends HttpServlet {
 
 		request.getSession().setAttribute("filePath", filePath);
 
-		String link = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-				+ request.getContextPath() + "/img/" + fileName;
+		String link =  request.getContextPath() + "/img/" + fileName;
 		request.setAttribute("image", link);
 		request.getSession().setAttribute("fileName", fileName);
 
@@ -151,7 +153,7 @@ public class NewsServlet extends HttpServlet {
 		System.out.println(baiBao);
 		request.getSession().setAttribute("baoDB", baiBao);
 		// Chuyển hướng trở lại trang dangBai.jsp
-		response.sendRedirect("pageJournalist/dangBai.jsp");
+		response.sendRedirect(newsService.rewriteURL("pageJournalist/dangBai.jsp"));
 	}
 
 	protected void dangBai(HttpServletRequest request, HttpServletResponse response)
@@ -199,7 +201,7 @@ public class NewsServlet extends HttpServlet {
 		BaiBao baiBao = new BaiBao(tieuDe, moTa, link, noiDung, nguoiDung, dsTheLoai);
 
 		newsService.addBaiBao(baiBao);
-		response.sendRedirect("MainServlet");
+		response.sendRedirect(newsService.rewriteURL("MainServlet"));
 	}
 
 	protected void doiAVT(HttpServletRequest request, HttpServletResponse response)
@@ -211,7 +213,8 @@ public class NewsServlet extends HttpServlet {
 		nguoiDung.setAvt(link);
 		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		newsService.updateNguoiDung(nguoiDung);
-		response.sendRedirect(request.getServletContext().getAttribute("path")+"/NewsServlet?typeShow=trangCaNhan&type=showList");
+		response.sendRedirect(newsService.rewriteURL(
+				request.getContextPath() + "/NewsServlet?typeShow=trangCaNhan&type=showList"));
 //		request.getRequestDispatcher("thongTinTaiKhoan.jsp").forward(request, response);
 	}
 
@@ -219,14 +222,14 @@ public class NewsServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
-		NguoiDung nguoiDung = (NguoiDung)request.getSession().getAttribute("nguoiDung");
+		NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 		ArrayList<BaiBao> baos = newsService.getBaiBaoByTenDanhNap(nguoiDung.getTenDangNhap());
 		request.setAttribute("baoND", baos);
 		String type = request.getParameter("typeShow");
 		if (type.equalsIgnoreCase("danhSachBaiBao")) {
-			request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("pageJournalist/danhSachBaiBao.jsp")).forward(request, response);
 		} else if (type.equalsIgnoreCase("trangCaNhan")) {
-			request.getRequestDispatcher("thongTinTaiKhoan.jsp").forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("thongTinTaiKhoan.jsp")).forward(request, response);
 		}
 //		
 
@@ -248,19 +251,19 @@ public class NewsServlet extends HttpServlet {
 			req.setAttribute("key", txtSearch);
 			req.setAttribute("baos", newsService.searchBaiBao(txtSearch));
 		}
-		req.getRequestDispatcher("ketQuaTimKiem.jsp").forward(req, resp);
+		req.getRequestDispatcher(newsService.rewriteURL("ketQuaTimKiem.jsp")).forward(req, resp);
 	}
 
 	protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-				NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
+		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 
-				BaiBao bao = newsService.getBaiBaoByMaBB(request.getParameter("maBaiBao") + "");
+		BaiBao bao = newsService.getBaiBaoByMaBB(request.getParameter("maBaiBao") + "");
 
-				request.setAttribute("bao", bao);
-				request.setAttribute("cmts", newsService.getBinhLuan(bao));
-				newsService.updateBaiBao(bao);
-				request.getRequestDispatcher("docBao.jsp").forward(request, response);
+		request.setAttribute("bao", bao);
+		request.setAttribute("cmts", newsService.getBinhLuan(bao));
+		newsService.updateBaiBao(bao);
+		request.getRequestDispatcher(newsService.rewriteURL("docBao.jsp")).forward(request, response);
 	}
 
 	protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -268,12 +271,12 @@ public class NewsServlet extends HttpServlet {
 		NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 		String type = request.getParameter("typeEdit");
 		if (type.equals("edit")) {
-			//chỉnh sửa bài báo
+			// chỉnh sửa bài báo
 			String maBaiBao = request.getParameter("maBaiBao");
 			BaiBao baiBao = newsService.getBaiBaoByMaBB(maBaiBao);
-			
+
 			request.setAttribute("baiBao", baiBao);
-			request.getRequestDispatcher("pageJournalist/chinhSuaBaiBao.jsp").forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("pageJournalist/chinhSuaBaiBao.jsp")).forward(request, response);
 		} else if (type.equals("remove")) {
 			// xóa bài báo
 			String maBaiBao = request.getParameter("maBaiBao");
@@ -281,22 +284,22 @@ public class NewsServlet extends HttpServlet {
 			newsService.removeBaiBao(baiBao);
 			NguoiDung nguoiDung = (NguoiDung) request.getSession().getAttribute("nguoiDung");
 			request.setAttribute("baos", newsService.getBaiBaoByTenDanhNap(nguoiDung.getTenDangNhap()));
-			response.sendRedirect(request.getServletContext().getAttribute("path")+"/NewsServlet?typeShow=danhSachBaiBao&type=showList");
+			response.sendRedirect(newsService.rewriteURL(request.getContextPath()
+					+ "/NewsServlet?typeShow=danhSachBaiBao&type=showList"));
 		} else if (type.equals("upAnh")) {
-			//Đổi ảnh bài báo
+			// Đổi ảnh bài báo
 			// Lấy tệp tin được tải lên từ yêu cầu
 			Part filePart = request.getPart("file");
 			String fileName = getFileName(filePart);
-			//lưu ảnh trên server
+			// lưu ảnh trên server
 			filePart.write(getServletContext().getRealPath("/img") + "//" + fileName);
-			//lấy đường dẫn tuyệt đối của file ảnh
+			// lấy đường dẫn tuyệt đối của file ảnh
 			String filePath = getServletContext().getRealPath("/img") + "//" + fileName;
-			//lưu đường dẫn ảnh trên server để phục vụ việc đăng bài
+			// lưu đường dẫn ảnh trên server để phục vụ việc đăng bài
 			request.getSession().setAttribute("filePath", filePath);
-			
-			//lấy đường dẫn file ảnh trên server
-			String link = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-					+ request.getContextPath() + "/img/" + fileName;
+
+			// lấy đường dẫn file ảnh trên server
+			String link = request.getContextPath() + "/img/" + fileName;
 //			request.setAttribute("image", link);
 //			request.getSession().setAttribute("fileName", fileName);
 			String maBaiBao = request.getParameter("maBaiBao");
@@ -333,7 +336,7 @@ public class NewsServlet extends HttpServlet {
 			baiBao.setMoTa(moTa);
 
 			request.setAttribute("baiBao", baiBao);
-			request.getRequestDispatcher("pageJournalist/chinhSuaBaiBao.jsp").forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("pageJournalist/chinhSuaBaiBao.jsp")).forward(request, response);
 		} else {
 			String maBaiBao = request.getParameter("maBaiBao");
 			BaiBao baiBao = newsService.getBaiBaoByMaBB(maBaiBao);
@@ -350,7 +353,7 @@ public class NewsServlet extends HttpServlet {
 //				NewsService newsService = (NewsService) request.getSession().getAttribute("newsService");
 				request.getSession().removeAttribute("filePath");
 			} else {
-				//không thay đổi ảnh
+				// không thay đổi ảnh
 				link = baiBao.getFilePath();
 			}
 
@@ -382,7 +385,7 @@ public class NewsServlet extends HttpServlet {
 			baiBao.setTheLoai(dsTheLoai);
 			baiBao.setMoTa(moTa);
 			newsService.updateBaiBao(baiBao);
-			response.sendRedirect("MainServlet");
+			response.sendRedirect(newsService.rewriteURL("MainServlet"));
 		}
 
 	}

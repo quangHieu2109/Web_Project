@@ -8,7 +8,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Đăng bài</title>
+<fmt:setLocale value="vi_VN" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
+<title><fmt:message>dang_bai</fmt:message></title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -17,7 +22,8 @@
 	type="image/x-icon">
 <style type="text/css">
 </style>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dangBai.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/dangBai.css">
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
@@ -189,27 +195,32 @@
 				<textarea rows="20" cols="" wrap="soft" name="noiDung">${baiBao.getNoiDung()}</textarea>
 			</div>
 			<div class="divBtn">
-				<button type="button" onclick="submitForm()" class="button">Đăng bài</button>
+				<button type="button" onclick="submitForm()" class="button">Đăng
+					bài</button>
 			</div>
 		</form>
 
 	</div>
 	<script type="text/javascript">
-	document.getElementById('file').addEventListener('change', function() {
-		var type = document.getElementById('type');
-		var fileInput = document.getElementById('file');
-		  
-		var file = fileInput.files[0];
-		var maxSize=1024000;
-		if(file && file.size > maxSize){
-			alert('File ảnh có dung lượng quá lớn, vui lòng chọn file ảnh khác')
-			fileInput.value = '';
-			return;
-		}else{
-			type.value = "upAnh";
-			document.getElementById('myform').submit();
-		}
-	});
+		document
+				.getElementById('file')
+				.addEventListener(
+						'change',
+						function() {
+							var type = document.getElementById('type');
+							var fileInput = document.getElementById('file');
+
+							var file = fileInput.files[0];
+							var maxSize = 1024000;
+							if (file && file.size > maxSize) {
+								alert('File ảnh có dung lượng quá lớn, vui lòng chọn file ảnh khác')
+								fileInput.value = '';
+								return;
+							} else {
+								type.value = "upAnh";
+								document.getElementById('myform').submit();
+							}
+						});
 		function submitFormUpAnh() {
 			var form = document.getElementById('myform');
 			var fileInput = document.getElementById('file');

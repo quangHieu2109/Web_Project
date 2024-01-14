@@ -1,11 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<fmt:setLocale value="vi_VN" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
 <title><fmt:message>thay_doi_thong_tin</fmt:message></title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
@@ -13,26 +18,26 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dangKy.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/dangKy.css">
 
 </head>
 <body>
-<fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+
 	<jsp:include page="header.jsp"></jsp:include>
 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
-	<form action="${pageContext.request.contextPath}/UserServlet" method="post" id="myform">
-	<input type="hidden" name="type" value="editIn4">
-	<jsp:useBean id="thongBao" class="java.lang.String" scope="request"></jsp:useBean>
-	<div class="thongBao">
-		<c:if test="${thongBao.length() >0 }">
-			<label>${thongBao }</label>
-		</c:if>
-	</div>
-		<h1><fmt:message>thay_doi_thong_tin_tai_khoan</fmt:message></h1>
+	<form action="${pageContext.request.contextPath}/UserServlet"
+		method="post" id="myform">
+		<input type="hidden" name="type" value="editIn4">
+		<jsp:useBean id="thongBao" class="java.lang.String" scope="request"></jsp:useBean>
+		<div class="thongBao">
+			<c:if test="${thongBao.length() >0 }">
+				<label>${thongBao }</label>
+			</c:if>
+		</div>
+		<h1>
+			<fmt:message>thay_doi_thong_tin_tai_khoan</fmt:message>
+		</h1>
 		<div class="body">
 			<div class="content">
 				<table>
@@ -75,7 +80,9 @@
 
 		</div>
 		<div class="button">
-			<button type="button" class="btn margin-a" onclick="submitForm()"><fmt:message>luu_thay_doi</fmt:message></button>
+			<button type="button" class="btn margin-a" onclick="submitForm()">
+				<fmt:message>luu_thay_doi</fmt:message>
+			</button>
 		</div>
 	</form>
 	<jsp:include page="footer.jsp"></jsp:include>
