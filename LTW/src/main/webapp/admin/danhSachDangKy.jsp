@@ -37,7 +37,7 @@
 							<label class="date-cmt">${ds.getNgayDK() }</label>
 						</div>
 						<div class="div-in4">
-						<label>Ngày sinh: ${ds.getNguoiDung().getNgaySinh() }</label>
+						<label><fmt:message>ngay_sinh</fmt:message>: ${ds.getNguoiDung().getNgaySinh() }</label>
 						<label>Email: ${ds.getNguoiDung().getEmail() }</label>
 						</div>
 
