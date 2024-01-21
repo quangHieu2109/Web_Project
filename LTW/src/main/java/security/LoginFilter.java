@@ -16,15 +16,15 @@ import model.NewsService;
 import model.NguoiDung;
 
 /**
- * Servlet Filter implementation class AdminFilter
+ * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(urlPatterns ={"/admin/*"})
-public class AdminFilter extends HttpFilter implements Filter {
+@WebFilter(urlPatterns ={"/thayDoiThongTin.jsp", "/thongTinTaiKhoan.jsp"})
+public class LoginFilter extends HttpFilter implements Filter {
        
     /**
      * @see HttpFilter#HttpFilter()
      */
-    public AdminFilter() {
+    public LoginFilter() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -50,11 +50,7 @@ public class AdminFilter extends HttpFilter implements Filter {
 				
 				res.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/UserServlet?type=dangNhap"));
 			}else {
-				if(nguoiDung.isAdmin() ) {
 					chain.doFilter(req, res);
-				}else {
-					res.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/thongBaoLoi.jsp"));
-				}
 			}
 	}
 
