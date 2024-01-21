@@ -28,8 +28,8 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<jsp:useBean id="baoDB" class="model.BaiBao" scope="session"></jsp:useBean>
-	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean>
+<%-- 	<jsp:useBean id="baoDB" class="model.BaiBao" scope="session"></jsp:useBean> --%>
+<%-- 	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean> --%>
 	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
 		<form method="POST"
@@ -181,7 +181,8 @@
 			<div class="div TaiAnh">
 				<label><fmt:message>tai_anh_len</fmt:message></label>
 				<div class="img">
-					<input type="file" accept="image/*" value="" name="file" id="file">
+					<input type="file" accept="image/*" value="" name="file" id="file" class="hidden-input">
+					<label class="button" for="file"><fmt:message>tai_anh_len</fmt:message></label>
 					<img alt="" src="${baiBao.getFilePath()}">
 				</div>
 			</div>

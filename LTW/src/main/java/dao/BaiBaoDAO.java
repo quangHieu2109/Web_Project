@@ -175,8 +175,24 @@ public class BaiBaoDAO {
 //		JDBCUtil.closeConnection();
 		return result;
 	}
-
-	public ArrayList<BaiBao> selectOrderByTime(int size) {
+	public static int selectAmount() {
+		int result =0;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement st = conn.prepareStatement("select count(*) from baibao");
+			ResultSet rs = st.executeQuery();
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
+			rs.close();
+			st.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return result;
+	}
+	public ArrayList<BaiBao> selectOrderByTime(int page) {
 		ArrayList<BaiBao> temp = new ArrayList<BaiBao>();
 		ArrayList<BaiBao> result = new ArrayList<BaiBao>();
 		BinhLuanDAO binhLuanDAO = new BinhLuanDAO();
@@ -185,7 +201,7 @@ public class BaiBaoDAO {
 		try {
 //			JDBCUtil.connection();
 			Connection conn = JDBCUtil.getConnection();
-			String sql = "SELECT * FROM baibao ORDER BY ngayDang DESC LIMIT " + size;
+			String sql = "SELECT * FROM baibao ORDER BY ngayDang DESC LIMIT " + (page-1)*16+", "+16;
 			PreparedStatement st = conn.prepareStatement(sql);
 			ResultSet rs = st.executeQuery();
 			while (rs.next()) {
@@ -585,10 +601,10 @@ public class BaiBaoDAO {
 //		}
 //		System.out.println("\n");
 //		dsTheLoai.addTheLoai(new TheLoai("tl3", null));
-		for (BaiBao bb : dao.selectXuHuong()) {
-			System.out.println(bb);
-		}
-//		System.out.println(dao.selectByMaBaiBao("Q1702659445184"));
+//		for (BaiBao bb : dao.selectXuHuong()) {
+//			System.out.println(bb);
+//		}
+		System.out.println(dao.selectAmount());
 //		dao.insertXuHuong(dao.createXuHuong());
 		JDBCUtil.closeConnection();
 

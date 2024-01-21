@@ -188,9 +188,9 @@ ul {
 </style>
 </head>
 <body>
-	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
-	<jsp:useBean id="newsService" type="model.NewsService" scope="session"></jsp:useBean>
-	<jsp:useBean id="path" class="java.lang.String" scope="application"></jsp:useBean>
+<%-- 	<jsp:useBean id="nguoiDung" class="model.NguoiDung" scope="session"></jsp:useBean> --%>
+<%-- 	<jsp:useBean id="newsService" class="model.NewsService" scope="session"></jsp:useBean> --%>
+<%-- 	<jsp:useBean id="path" class="java.lang.String" scope="application"></jsp:useBean> --%>
 	<fmt:setLocale value="vi_VN" />
 	<c:if test="${param.lang == 'en'}">
 		<fmt:setLocale value="en_US" />
@@ -221,7 +221,7 @@ ul {
 			</form>
 		</div>
 		<div
-			style="margin-top: auto; margin-bottom: auto; display:  ${nguoiDung.getTenDangNhap() == null ? "flex" : "none"}; width:max-content; justify-content:space-between;">
+			style="margin-top: auto; margin-bottom: auto; display:  ${!nguoiDung.isLogin() ? "flex" : "none"}; width:max-content; justify-content:space-between;">
 
 			<a
 				href="${pageContext.request.contextPath}/UserServlet?type=dangNhap"
@@ -230,7 +230,7 @@ ul {
 				style="padding: 12px; font-size: 20px; border-radius: 7px; color: white; font-weight: 600; background: #363628ed; text-decoration: none; text-align: center;"><fmt:message>dang_ky</fmt:message></a>
 		</div>
 		<div class="user label2" onclick="toggleDropdown('div2')"
-			style="display:  ${nguoiDung.getTenDangNhap() != null ? "flex" : "none"}">
+			style="display:  ${!nguoiDung.isLogin() ? "none" : "flex"}">
 			<img src="${nguoiDung.getAvt() }" alt="mdo" width="32" height="32"
 				class="rounded-circle"> <i class="fa-solid fa-angle-down"></i>
 

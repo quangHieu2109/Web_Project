@@ -24,6 +24,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
+<%-- 	<jsp:useBean id="nguoidung" class="model.NguoiDung" scope="request"></jsp:useBean> --%>
 	<form action="${pageContext.request.contextPath}/UserServlet"
 		method="post" id="myform">
 		<input type="hidden" name="type" value="register">
@@ -40,36 +41,41 @@
 			<div class="content">
 				<table>
 					<tr>
-						<th><fmt:message>ten_dang_nhap</fmt:message></th>
-						<td><input type="text" name="tenDangNhap" id="tenDangNhap"></td>
+						<th><fmt:message>ten_dang_nhap</fmt:message>(<span
+							class="thongBao">*</span>)</th>
+						<td><input type="text" name="tenDangNhap" id="tenDangNhap" value="${nguoidung.getTenDangNhap() }"></td>
 					</tr>
 					<tr>
-						<th><fmt:message>mat_khau</fmt:message></th>
+						<th><fmt:message>mat_khau</fmt:message>(<span
+							class="thongBao">*</span>)</th>
 						<td><input type="password" name="matKhau" id="matKhau"
-							required="required"></td>
+							required="required" value="${nguoidung.getMatKhau() }"></td>
 					</tr>
 					<tr>
-						<th><fmt:message>nhap_lai_mat_khau</fmt:message></th>
+						<th><fmt:message>nhap_lai_mat_khau</fmt:message>(<span
+							class="thongBao">*</span>)</th>
 						<td><input type="password" name="nhapLaiMatKhau"
-							id="nhapLaiMatKhau"></td>
+							id="nhapLaiMatKhau" value="${nguoidung.getMatKhau() }"></td>
 					</tr>
 				</table>
 			</div>
 			<div class="content">
 				<table>
 					<tr>
-						<th><fmt:message>ho_ten</fmt:message></th>
-						<td><input type="text" name="hoTen" id="hoTen"></td>
+						<th><fmt:message>ho_ten</fmt:message>(<span class="thongBao">*</span>)</th>
+						<td><input type="text" name="hoTen" id="hoTen" value="${nguoidung.getHoVaTen() }"></td>
 					</tr>
 					<tr>
-						<th>Email</th>
+						<th>Email(<span class="thongBao">*</span>)
+						</th>
 						<td><input type="email" name="email" id="email"
-							required="required"></td>
+							required="required" value="${nguoidung.getEmail() }"></td>
 					</tr>
 					<tr>
-						<th><fmt:message>ngay_sinh</fmt:message></th>
+						<th><fmt:message>ngay_sinh</fmt:message>(<span
+							class="thongBao">*</span>)</th>
 						<td><input type="date" name="ngaySinh" id="ngaySinh"
-							required="required"></td>
+							required="required" value="${nguoidung.getNgaySinh() }"></td>
 					</tr>
 				</table>
 			</div>
@@ -88,6 +94,7 @@
 	<fmt:message key="error_ngay_sinh" var="error_ngay_sinh" />
 	<fmt:message key="error_email" var="error_email" />
 	<fmt:message key="error_sai_mat_khau" var="error_sai_mat_khau" />
+	<fmt:message key="error_ten_dang_nhap" var="error_ten_dang_nhap" />
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		function submitForm() {
@@ -97,15 +104,17 @@
 			var date = new Date(document.getElementById('ngaySinh').value);
 			var ngaySinh = document.getElementById('ngaySinh').value;
 			var matKhau = document.getElementById('matKhau').value;
-			var tenDangNhap = document.getElementById('matKhau').value;
-			var hoTen = document.getElementById('matKhau').value;
+			var tenDangNhap = document.getElementById('tenDangNhap').value;
+			var hoTen = document.getElementById('hoTen').value;
 			var nhapLaiMatKhau = document.getElementById('nhapLaiMatKhau').value;
 
 			if (tenDangNhap === "" || matKhau === "" || nhapLaiMatKhau === ""
 					|| hoTen === "" || email === "" || ngaySinh === "") {
 				alert("<c:out value='${error_thieu_thong_tin}' />");
 			} else {
-				if (matKhau !== nhapLaiMatKhau) {
+				if(tenDangNhap.trim() ===""){
+					alert("<c:out value='${error_ten_dang_nhap}' />");
+				}else if (matKhau !== nhapLaiMatKhau) {
 					alert("<c:out value='${error_sai_mat_khau}' />");
 				} else if (!gmailRegex.test(email)) {
 					alert("<c:out value='${error_email}' />");

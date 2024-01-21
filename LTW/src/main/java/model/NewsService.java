@@ -150,7 +150,6 @@ public class NewsService {
 	public void setEnglish(boolean isEnglish) {
 		this.isEnglish = isEnglish;
 	}
-
 	public static void main(String[] args) {
 		NewsService news = new NewsService();
 		System.out.println(news.getNguoiDung("hao"));

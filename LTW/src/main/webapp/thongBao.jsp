@@ -99,7 +99,7 @@ label {
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
+<%-- 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean> --%>
 	
 	<form action="${pageContext.request.contextPath}/UserServlet"
 		method="post" class="form">

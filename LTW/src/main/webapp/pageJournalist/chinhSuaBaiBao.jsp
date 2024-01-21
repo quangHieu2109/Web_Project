@@ -2,17 +2,20 @@
 <%@page import="model.BaiBao"%>
 <%@page import="model.TheLoai"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
 <title><fmt:message>chinh_sua_bai_bao</fmt:message></title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
@@ -22,21 +25,25 @@
 	type="image/x-icon">
 <style type="text/css">
 </style>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/dangBai.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/dangBai.css">
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<jsp:useBean id="baiBao" class="model.BaiBao" scope="request"></jsp:useBean>
-	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean>
+	<%-- 	<jsp:useBean id="baiBao" class="model.BaiBao" scope="request"></jsp:useBean> --%>
+	<%-- 	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean> --%>
 	<%-- 	<c:set  value="${newService.getBaiBaoByMaBB(request.getParameter(maBaiBao))}" var="bao"></c:set> --%>
 	<%-- <% BaiBao bao = newService.getBaiBaoByMaBB(request.getParameter("maBaiBao")); %> --%>
+	<c:set var="baiBao"
+		value="${newsService.getBaiBaoByMaBB(param.maBaiBao) }"></c:set>
 	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
-		<form method="POST" action="${pageContext.request.contextPath}/NewsServlet" enctype="multipart/form-data"
-			id="myform">
+		<form method="POST"
+			action="${pageContext.request.contextPath}/NewsServlet"
+			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="edit"> <input
-				type="hidden" name="typeEdit" value="1234" id="type">
-				<input type="hidden" name="maBaiBao" value="${baiBao.getMaBaiBao()}">
+				type="hidden" name="typeEdit" value="1234" id="type"> <input
+				type="hidden" name="maBaiBao" value="${baiBao.getMaBaiBao()}">
 			<div class="div TieuDe">
 				<label>Tiêu đề</label>
 				<textarea rows="1" cols="" wrap="soft" class="tieude" name="tieuDe"
@@ -197,7 +204,8 @@
 				<textarea rows="20" cols="" wrap="soft" name="noiDung">${baiBao.getNoiDung()}</textarea>
 			</div>
 			<div class="divBtn">
-				<button type="button" onclick="submitForm()" class="button">Cập nhật</button>
+				<button type="button" onclick="submitForm()" class="button">Cập
+					nhật</button>
 			</div>
 		</form>
 

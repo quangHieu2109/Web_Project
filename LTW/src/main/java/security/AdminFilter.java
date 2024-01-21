@@ -18,7 +18,7 @@ import model.NguoiDung;
 /**
  * Servlet Filter implementation class AdminFilter
  */
-@WebFilter(urlPatterns ={"/admin/*","/UserServlet?*type=danhSachDangKy*"})
+@WebFilter(urlPatterns ={"/admin/*","/UserServlet?*type=dangKyDangBai&typeDK=danhSach*"})
 public class AdminFilter extends HttpFilter implements Filter {
        
     /**
@@ -40,12 +40,13 @@ public class AdminFilter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		System.out.println("filter");
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 		NguoiDung nguoiDung = (NguoiDung) req.getSession().getAttribute("nguoiDung");
 		
 			NewsService newsService = (NewsService) req.getSession().getAttribute("newsService");
-			if(nguoiDung.getTenDangNhap()==null) {
+			if(!nguoiDung.isLogin()) {
 				
 				
 				res.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/UserServlet?type=dangNhap"));

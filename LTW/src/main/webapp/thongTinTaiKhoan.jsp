@@ -22,8 +22,8 @@
 </head>
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean>
-	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
+<%-- 	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean> --%>
+<%-- 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean> --%>
 	<div class="container w-80">
 		<div class="row border mt-30">
 			<div class="custom-file-input avt">

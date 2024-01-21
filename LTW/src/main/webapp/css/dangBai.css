@@ -25,7 +25,9 @@
 
 
 /*}*/
-
+.hidden-input {
+  display: none;
+}  
 .moTa {
 	display: flex;
 	flex-direction: column;

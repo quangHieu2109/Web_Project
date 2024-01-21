@@ -18,16 +18,40 @@ import model.NguoiDung;
 /**
  * Servlet Filter implementation class SecurityFilter
  */
-@WebFilter(urlPatterns ={"/pageJournalist/*", "/NewsServlet?*typeShow=danhSachBaiBao*", "/NewsServlet?*type=dangBao*","/NewsServlet?*type=edit*"})
+@WebFilter(urlPatterns = { "/pageJournalist/*", "/NewsServlet?*typeShow=danhSachBaiBao*", "/NewsServlet?*type=dangBao*",
+		"/NewsServlet?*type=edit*" })
 public class PageJournalistFilter extends HttpFilter implements Filter {
-       
-    /**
-     * @see HttpFilter#HttpFilter()
-     */
-    public PageJournalistFilter() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse res = (HttpServletResponse) response;
+		NguoiDung nguoiDung = (NguoiDung) req.getSession().getAttribute("nguoiDung");
+		
+		NewsService newsService = (NewsService) req.getSession().getAttribute("newsService");
+		if (!nguoiDung.isLogin()) {
+
+			// Người dùng chưa đăng nhập thì chuyển đến trang đăng nhập
+			res.sendRedirect(newsService.rewriteURL(req.getContextPath() + "/UserServlet?type=dangNhap"));
+		} else {
+			if (nguoiDung.isAdmin() || nguoiDung.isNhaBao()) {
+				chain.doFilter(req, res);
+			} else {
+				res.sendRedirect(newsService.rewriteURL(req.getContextPath() + "/thongBao.jsp"));
+			}
+		}
+
+	}
+
+	/**
+	 * @see HttpFilter#HttpFilter()
+	 */
+	public PageJournalistFilter() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -39,31 +63,6 @@ public class PageJournalistFilter extends HttpFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException { 
-		// TODO Auto-generated method stub
-		HttpServletRequest req = (HttpServletRequest) request;
-		HttpServletResponse res = (HttpServletResponse) response;
-		NguoiDung nguoiDung = (NguoiDung) req.getSession().getAttribute("nguoiDung");
-		NewsService newsService = (NewsService) req.getSession().getAttribute("newsService");
-		
-			if(nguoiDung.getTenDangNhap()==null) {
-				
-				
-				res.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/UserServlet?type=dangNhap"));
-			}else {
-				if(nguoiDung.isAdmin() || nguoiDung.isNhaBao()) {
-					chain.doFilter(req, res);
-				}else {
-					res.sendRedirect(newsService.rewriteURL(req.getContextPath()+"/thongBao.jsp"));
-				}
-			}
-			
-			
-		
-	}
-
-
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */

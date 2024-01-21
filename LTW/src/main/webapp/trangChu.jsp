@@ -24,9 +24,9 @@
 	</c:if>
 	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:useBean id="baos" class="java.util.ArrayList" scope="session"></jsp:useBean>
-	<jsp:useBean id="xuHuong" class="java.util.ArrayList" scope="session"></jsp:useBean>
-	<jsp:useBean id="topView" class="java.util.ArrayList" scope="session"></jsp:useBean>
+<%-- 	<jsp:useBean id="baos" class="java.util.ArrayList" scope="session"></jsp:useBean> --%>
+<%-- 	<jsp:useBean id="xuHuong" class="java.util.ArrayList" scope="session"></jsp:useBean> --%>
+<%-- 	<jsp:useBean id="topView" class="java.util.ArrayList" scope="session"></jsp:useBean> --%>
 	<c:set value="${baos}" var="news"></c:set>
 	<div class="container">
 		<div class="row">

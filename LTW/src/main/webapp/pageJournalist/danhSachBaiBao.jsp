@@ -22,10 +22,11 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean>
+<%-- 	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean> --%>
 	<div class="container">
 		<h1 class="fs-25"><fmt:message>thong_bao_DS</fmt:message></h1>
 		<div class="col-lg-10 ma">
+		<c:set var="baoND" value="${newsService.getBaiBaoByTenDanhNap(nguoiDung.getTenDangNhap()) }"></c:set>
 			<c:forEach items="${baoND }" var="bao">
 				<div class="row border">
 					<div class="col-lg-10 space flex ">

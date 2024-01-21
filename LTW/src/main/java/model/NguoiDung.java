@@ -34,9 +34,18 @@ public class NguoiDung {
 	}
 
 	public NguoiDung() {
-//		this.tenDangNhap=null;
+		this.tenDangNhap = "";
+		this.matKhau = "";
+		this.hoVaTen = "";
+		this.email = "";
+		this.ngaySinh = null;
 	}
-
+	public boolean isLogin() {
+		if(tenDangNhap.length() >0) {
+			return true;
+		}
+		return false;
+	}
 	public String getTenDangNhap() {
 		return tenDangNhap;
 	}

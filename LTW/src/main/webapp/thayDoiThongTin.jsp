@@ -25,7 +25,7 @@
 <body>
 
 	<jsp:include page="header.jsp"></jsp:include>
-	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean>
+<%-- 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean> --%>
 	<form action="${pageContext.request.contextPath}/UserServlet"
 		method="post" id="myform">
 		<input type="hidden" name="type" value="editIn4">
