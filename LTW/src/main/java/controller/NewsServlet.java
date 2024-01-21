@@ -235,8 +235,8 @@ public class NewsServlet extends HttpServlet {
 //			request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
 			response.sendRedirect(newsService.rewriteURL(request.getContextPath()+"/pageJournalist/danhSachBaiBao.jsp"));
 		} else if (type.equalsIgnoreCase("trangCaNhan")) {
-			request.getRequestDispatcher(newsService.rewriteURL("/thongTinTaiKhoan.jsp")).forward(request, response);
-//			response.sendRedirect(newsService.rewriteURL(request.getContextPath()+"/thongTinTaiKhoan.jsp"));
+//			request.getRequestDispatcher(newsService.rewriteURL("/thongTinTaiKhoan.jsp")).forward(request, response);
+			response.sendRedirect(newsService.rewriteURL(request.getContextPath()+"/thongTinTaiKhoan.jsp"));
 		}
 //		
 
