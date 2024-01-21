@@ -79,12 +79,12 @@ public class UserServlet extends HttpServlet {
 		if (nguoiDung == null) {
 			error = "dang_nhap_error_tk";
 			request.setAttribute("error", error);
-			request.getRequestDispatcher(newsService.rewriteURL(request.getContextPath()+"/dangNhap.jsp")).forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("/dangNhap.jsp")).forward(request, response);
 		} else {
 			if (!nguoiDung.getMatKhau().equals(matKhau)) {
 				error = "dang_nhap_error_mk";
 				request.setAttribute("error", error);
-				request.getRequestDispatcher(newsService.rewriteURL(request.getContextPath()+"/dangNhap.jsp")).forward(request, response);
+				request.getRequestDispatcher(newsService.rewriteURL("/dangNhap.jsp")).forward(request, response);
 			} else {
 				request.getSession().setAttribute("nguoiDung", nguoiDung);
 
@@ -117,12 +117,12 @@ public class UserServlet extends HttpServlet {
 //		}
 		if (newsService.addNguoiDung(new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh))) != 0) {
 			request.setAttribute("error", "dang_ky_thanh_cong");
-			request.getRequestDispatcher(newsService.rewriteURL(request.getContextPath()+"/dangNhap.jsp")).forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("/dangNhap.jsp")).forward(request, response);
 		} else {
 			request.setAttribute("error", "dang_ky_error");
 			NguoiDung nguoidung = new NguoiDung(tenDangNhap, matKhau, hoTen, email, Date.valueOf(ngaySinh));
 			request.setAttribute("nguoidung", nguoidung);
-			request.getRequestDispatcher(newsService.rewriteURL(request.getContextPath()+"/dangKy.jsp")).forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("/dangKy.jsp")).forward(request, response);
 		}
 	}
 
@@ -195,7 +195,7 @@ public class UserServlet extends HttpServlet {
 		}
 		service.updateNguoiDung(nguoiDung);
 		request.setAttribute("thongBao", "Thay đổi thông tin thành công");
-		request.getRequestDispatcher(newsService.rewriteURL(request.getContextPath()+"/thayDoiThongTin.jsp")).forward(request, response);
+		request.getRequestDispatcher(newsService.rewriteURL("/thayDoiThongTin.jsp")).forward(request, response);
 	}
 
 }

@@ -235,7 +235,8 @@ public class NewsServlet extends HttpServlet {
 //			request.getRequestDispatcher("pageJournalist/danhSachBaiBao.jsp").forward(request, response);
 			response.sendRedirect(newsService.rewriteURL(request.getContextPath()+"/pageJournalist/danhSachBaiBao.jsp"));
 		} else if (type.equalsIgnoreCase("trangCaNhan")) {
-			request.getRequestDispatcher(newsService.rewriteURL(request.getContextPath()+"/thongTinTaiKhoan.jsp")).forward(request, response);
+			request.getRequestDispatcher(newsService.rewriteURL("/thongTinTaiKhoan.jsp")).forward(request, response);
+//			response.sendRedirect(newsService.rewriteURL(request.getContextPath()+"/thongTinTaiKhoan.jsp"));
 		}
 //		
 
@@ -257,7 +258,7 @@ public class NewsServlet extends HttpServlet {
 			req.setAttribute("key", txtSearch);
 			req.setAttribute("baos", newsService.searchBaiBao(txtSearch));
 		}
-		req.getRequestDispatcher(newsService.rewriteURL(req.getContextPath()+"/ketQuaTimKiem.jsp")).forward(req, resp);
+		req.getRequestDispatcher(newsService.rewriteURL("/ketQuaTimKiem.jsp")).forward(req, resp);
 	}
 
 	protected void read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -269,7 +270,7 @@ public class NewsServlet extends HttpServlet {
 		request.setAttribute("bao", bao);
 		request.setAttribute("cmts", newsService.getBinhLuan(bao));
 		newsService.updateBaiBao(bao);
-		request.getRequestDispatcher(newsService.rewriteURL(request.getContextPath()+"/docBao.jsp")).forward(request, response);
+		request.getRequestDispatcher(newsService.rewriteURL("/docBao.jsp")).forward(request, response);
 	}
 
 	protected void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

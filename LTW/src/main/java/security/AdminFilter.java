@@ -18,7 +18,7 @@ import model.NguoiDung;
 /**
  * Servlet Filter implementation class AdminFilter
  */
-@WebFilter(urlPatterns ={"/admin/*","/UserServlet?*type=dangKyDangBai&typeDK=danhSach*"})
+@WebFilter(urlPatterns ={"/admin/*"})
 public class AdminFilter extends HttpFilter implements Filter {
        
     /**
