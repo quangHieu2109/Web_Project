@@ -24,10 +24,10 @@
 	</c:if>
 	<fmt:setBundle basename="lang.lang" />
 	<jsp:include page="header.jsp"></jsp:include>
-<%-- 	<jsp:useBean id="baos" class="java.util.ArrayList" scope="session"></jsp:useBean> --%>
-<%-- 	<jsp:useBean id="xuHuong" class="java.util.ArrayList" scope="session"></jsp:useBean> --%>
-<%-- 	<jsp:useBean id="topView" class="java.util.ArrayList" scope="session"></jsp:useBean> --%>
 	<c:set value="${baos}" var="news"></c:set>
+<!-- 	EncodeRUL -->
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<div class="container">
 		<div class="row">
 
@@ -38,7 +38,7 @@
 					<span style="font-size: 20px; font-weight: bold; color: #9F224E"><fmt:message>xu_huong</fmt:message></span>
 					<c:forEach items="${xuHuong }" var="baoXH">
 						<a
-							href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${baoXH.getMaBaiBao() }"
+							href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${baoXH.getMaBaiBao() }"
 							class="list-group-item"> <span class="main-color"
 							style="font-size: 18px; line-height: 20px">${baoXH.getTieuDe() }</span>
 						</a>
@@ -54,8 +54,9 @@
 					<!-- 				ô lớn ở giữa -->
 					<div class="col-lg-12 col-md-6 mb-4">
 						<div class="card h-200" style="width: 100%;">
+
 							<a
-								href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${news[0].getMaBaiBao() }"><div
+								href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${news[0].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-8">
 										<img src="${news[0].getFilePath()}" class="card-img"
@@ -75,7 +76,7 @@
 					<div class="row  mt-15">
 						<div class="card h-200 " style="width: 31%;">
 							<a
-								href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${news[1].getMaBaiBao() }"><div
+								href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${news[1].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(1).getFilePath()}" class=" card-img-3"
@@ -92,7 +93,7 @@
 						<div class="card h-200 ml-3"
 							style="width: 31%; margin-left: 3.5%; margin-right: 3.5%">
 							<a
-								href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${news[2].getMaBaiBao() }"><div
+								href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${news[2].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(2).getFilePath()}" class="card-img-3"
@@ -109,7 +110,7 @@
 						</div>
 						<div class="card h-200 " style="width: 31%;">
 							<a
-								href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${news[3].getMaBaiBao() }"><div
+								href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${news[3].getMaBaiBao() }"><div
 									class="row no-gutters">
 									<div class="col-md-12">
 										<img src="${news.get(3).getFilePath()}" class="card-img-3"
@@ -128,7 +129,7 @@
 							<c:forEach var="bao" items="${baos}" begin="4">
 								<div class=" border col-lg-4 mt-30">
 									<a
-										href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${bao.getMaBaiBao() }">
+										href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${bao.getMaBaiBao() }">
 										<div class="col-md-12">
 											<img src="${bao.getFilePath()}" class="card-img-3"
 												alt="Hình ảnh">
@@ -162,7 +163,7 @@
 						style="font-size: 20px; font-weight: bold; line-height: 22px; color: #9F224E"><fmt:message>top_view</fmt:message></span>
 					<c:forEach items="${topView }" var="baoTV">
 						<a
-							href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
+							href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
 							class="list-group-item"> <span class="main-color"
 							style="font-size: 18px; line-height: 20px">${baoTV.getTieuDe() }</span>
 						</a>

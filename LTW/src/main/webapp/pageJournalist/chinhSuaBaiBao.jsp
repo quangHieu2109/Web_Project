@@ -30,16 +30,14 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-	<%-- 	<jsp:useBean id="baiBao" class="model.BaiBao" scope="request"></jsp:useBean> --%>
-	<%-- 	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean> --%>
-	<%-- 	<c:set  value="${newService.getBaiBaoByMaBB(request.getParameter(maBaiBao))}" var="bao"></c:set> --%>
-	<%-- <% BaiBao bao = newService.getBaiBaoByMaBB(request.getParameter("maBaiBao")); %> --%>
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<c:set var="baiBao"
 		value="${newsService.getBaiBaoByMaBB(param.maBaiBao) }"></c:set>
 	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
 	<div>
 		<form method="POST"
-			action="${pageContext.request.contextPath}/NewsServlet"
+			action="${pageContext.request.contextPath}/${NewsServlet}"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="edit"> <input
 				type="hidden" name="typeEdit" value="1234" id="type"> <input

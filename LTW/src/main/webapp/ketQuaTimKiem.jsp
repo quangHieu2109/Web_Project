@@ -22,7 +22,8 @@
 	type="image/x-icon">
 </head>
 <body>
-
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<jsp:include page="header.jsp"></jsp:include>
 <%-- 	<jsp:useBean id="baos" class="java.util.ArrayList" scope="request"></jsp:useBean> --%>
 <%-- 	<jsp:useBean id="key" class="java.lang.String" scope="request"></jsp:useBean> --%>
@@ -32,7 +33,7 @@
 				${key}</label>
 			<c:forEach var="bao" items="${baos}" varStatus="status">
 				<a
-					href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${bao.getMaBaiBao() }"><div
+					href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${bao.getMaBaiBao() }"><div
 						class="row space">
 						<div class="col-lg-4">
 							<img alt="" src="${bao.getFilePath()}" class="card-img">

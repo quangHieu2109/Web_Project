@@ -15,25 +15,27 @@ public class JDBCUtil {
 	private static DataSource dataSource ;
 
 	public static void connection() {
-		try {
-			// Đăng ký MySQL Driver với DriverManager
-			
-			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+		if(conn == null) {
+			try {
+				// Đăng ký MySQL Driver với DriverManager
+				
+				DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
-			// Các thông số
-			String url = "jdbc:mySQL://localhost:3306/web";
-			String username = "root";
-			String password = ""; 
+				// Các thông số
+				String url = "jdbc:mySQL://localhost:3306/web";
+				String username = "root";
+				String password = ""; 
 
-			// Tạo kết nối
-			conn = DriverManager.getConnection(url, username, password);
-			System.out.println("Kết nối thành công");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			System.out.println("Kết nối thất bại");
-			e.printStackTrace();
+				// Tạo kết nối
+				conn = DriverManager.getConnection(url, username, password);
+				System.out.println("Kết nối thành công");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				System.out.println("Kết nối thất bại");
+				e.printStackTrace();
+			}
+
 		}
-
 	}
 
 	public static Connection getConnection() {

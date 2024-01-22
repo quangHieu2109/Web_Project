@@ -91,7 +91,8 @@ label {
 
 </head>
 <body>
-	
+		<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<jsp:include page="header.jsp"></jsp:include>
 <%-- 	<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean> --%>
 	<div class="error">
@@ -100,7 +101,7 @@ label {
 		</c:if>
 	</div>
 
-	<form action="${pageContext.request.contextPath}/UserServlet" method="post" class="form">
+	<form action="${pageContext.request.contextPath}/${UserServlet}" method="post" class="form">
 	<input type="hidden" name="type" value="login">
 		<h1><fmt:message>dang_nhap_tai_khoan</fmt:message></h1>
 		<div class="body">
@@ -116,7 +117,7 @@ label {
 
 				<div class="button2">
 
-					<a href="${pageContext.request.contextPath}/UserServlet?type=dangKy" class="btn"><fmt:message>dang_ky</fmt:message></a>
+					<a href="${pageContext.request.contextPath}/${UserServlet}?type=dangKy" class="btn"><fmt:message>dang_ky</fmt:message></a>
 					<button type="submit" class="btn"><fmt:message>dang_nhap</fmt:message></button>
 
 				</div>

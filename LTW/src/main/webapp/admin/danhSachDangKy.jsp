@@ -7,10 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
 <title><fmt:message>danh_sach_dang_ky</fmt:message></title>
 <link href="../css/main.css" rel="stylesheet" type="text/css">
 <link rel="icon"
@@ -22,11 +22,14 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-<%-- 	<jsp:useBean id="danhSachDK" type="java.util.ArrayList" scope="request"></jsp:useBean> --%>
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<div class="container">
-		<h1 class="fs-25"><fmt:message>thong_bao_DK</fmt:message></h1>
+		<h1 class="fs-25">
+			<fmt:message>thong_bao_DK</fmt:message>
+		</h1>
 		<div class="col-lg-10 ma">
-		<c:set var="danhSachDK" value="${newsService.getDangKyDangBai() }"></c:set>
+			<c:set var="danhSachDK" value="${newsService.getDangKyDangBai() }"></c:set>
 			<c:forEach items="${danhSachDK}" var="ds">
 				<div class="row border">
 					<div class="col-lg-2 avt-cmt mtb-10">
@@ -38,15 +41,17 @@
 							<label class="date-cmt">${ds.getNgayDK() }</label>
 						</div>
 						<div class="div-in4">
-						<label><fmt:message>ngay_sinh</fmt:message>: ${ds.getNguoiDung().getNgaySinh() }</label>
-						<label>Email: ${ds.getNguoiDung().getEmail() }</label>
+							<label><fmt:message>ngay_sinh</fmt:message>:
+								${ds.getNguoiDung().getNgaySinh() }</label> <label>Email:
+								${ds.getNguoiDung().getEmail() }</label>
 						</div>
 
 					</div>
 					<div class="col-lg-3 button">
-						<a href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=chapNhan&maDK=${ds.getMaDK() }"
+						<a
+							href="${pageContext.request.contextPath}/${UserServlet}?type=dangKyDangBai&typeDK=chapNhan&maDK=${ds.getMaDK() }"
 							class="btn"><fmt:message>chap_nhan</fmt:message></a> <a
-							href="${pageContext.request.contextPath}/UserServlet?type=dangKyDangBai&typeDK=xoa&maDK=${ds.getMaDK() }"
+							href="${pageContext.request.contextPath}/${UserServlet}?type=dangKyDangBai&typeDK=xoa&maDK=${ds.getMaDK() }"
 							class="btn"><fmt:message>xoa</fmt:message></a>
 					</div>
 				</div>

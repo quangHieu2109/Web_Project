@@ -7,12 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <fmt:setLocale value="vi_VN" />
-	<c:if test="${param.lang == 'en'}">
-		<fmt:setLocale value="en_US" />
-	</c:if>
-	<fmt:setBundle basename="lang.lang" />
+<c:if test="${param.lang == 'en'}">
+	<fmt:setLocale value="en_US" />
+</c:if>
+<fmt:setBundle basename="lang.lang" />
 <title><fmt:message>thong_bao_DS</fmt:message></title>
-<link href="${pageContext.request.contextPath}/css/main.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/main.css"
+	rel="stylesheet">
 <link rel="icon"
 	href="${pageContext.request.contextPath}/img/logo_icon3.png"
 	type="image/x-icon">
@@ -22,11 +23,15 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-<%-- 	<jsp:useBean id="baoND" type="java.util.ArrayList" scope="request"></jsp:useBean> --%>
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<div class="container">
-		<h1 class="fs-25"><fmt:message>thong_bao_DS</fmt:message></h1>
+		<h1 class="fs-25">
+			<fmt:message>thong_bao_DS</fmt:message>
+		</h1>
 		<div class="col-lg-10 ma">
-		<c:set var="baoND" value="${newsService.getBaiBaoByTenDanhNap(nguoiDung.getTenDangNhap()) }"></c:set>
+			<c:set var="baoND"
+				value="${newsService.getBaiBaoByTenDanhNap(nguoiDung.getTenDangNhap()) }"></c:set>
 			<c:forEach items="${baoND }" var="bao">
 				<div class="row border">
 					<div class="col-lg-10 space flex ">
@@ -39,9 +44,10 @@
 						</div>
 					</div>
 					<div class="col-lg-2 button">
-						<a href="${pageContext.request.contextPath}/NewsServlet?type=edit&typeEdit=edit&maBaiBao=${bao.getMaBaiBao() }"
+						<a
+							href="${pageContext.request.contextPath}/${NewsServlet}?type=edit&typeEdit=edit&maBaiBao=${bao.getMaBaiBao() }"
 							class="btn"><fmt:message>chinh_sua</fmt:message></a> <a
-							href="${pageContext.request.contextPath}/NewsServlet?type=edit&typeEdit=remove&maBaiBao=${bao.getMaBaiBao()}"
+							href="${pageContext.request.contextPath}/${NewsServlet}?type=edit&typeEdit=remove&maBaiBao=${bao.getMaBaiBao()}"
 							class="btn"><fmt:message>xoa</fmt:message></a>
 					</div>
 				</div>

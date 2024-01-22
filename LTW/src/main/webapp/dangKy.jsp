@@ -23,9 +23,11 @@
 
 </head>
 <body>
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<jsp:include page="header.jsp"></jsp:include>
 <%-- 	<jsp:useBean id="nguoidung" class="model.NguoiDung" scope="request"></jsp:useBean> --%>
-	<form action="${pageContext.request.contextPath}/UserServlet"
+	<form action="${pageContext.request.contextPath}/${UserServlet}"
 		method="post" id="myform">
 		<input type="hidden" name="type" value="register">
 		<jsp:useBean id="error" class="java.lang.String" scope="request"></jsp:useBean>
@@ -83,7 +85,7 @@
 		</div>
 		<div class="button">
 			<a
-				href="${pageContext.request.contextPath}/UserServlet?type=dangNhap"
+				href="${pageContext.request.contextPath}/${UserServlet}?type=dangNhap"
 				class="btn"><fmt:message>dang_nhap</fmt:message></a>
 			<button type="button" class="btn" onclick="submitForm()">
 				<fmt:message>dang_ky</fmt:message>

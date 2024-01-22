@@ -28,18 +28,18 @@
 </head>
 <body>
 	<jsp:include page="/header.jsp"></jsp:include>
-<%-- 	<jsp:useBean id="baoDB" class="model.BaiBao" scope="session"></jsp:useBean> --%>
-<%-- 	<jsp:useBean id="newService" class="model.NewsService" scope="session"></jsp:useBean> --%>
-	<c:set value="${baiBao.getTheLoai()}" var="theLoai"></c:set>
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
+	<c:set value="${baoDB.getTheLoai()}" var="theLoai"></c:set>
 	<div>
 		<form method="POST"
-			action="${pageContext.request.contextPath}/NewsServlet"
+			action="${pageContext.request.contextPath}/${NewsServlet}"
 			enctype="multipart/form-data" id="myform">
 			<input type="hidden" name="type" value="1234" id="type">
 			<div class="div TieuDe">
 				<label><fmt:message>tieu_de</fmt:message></label>
 				<textarea rows="1" cols="" wrap="soft" class="tieude" name="tieuDe"
-					value="">${baiBao.getTieuDe()}</textarea>
+					value="">${baoDB.getTieuDe()}</textarea>
 
 			</div>
 			<div class="div TheLoai">
@@ -48,65 +48,87 @@
 					<div class="uls">
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="thoisu"
-								${theLoai.checkTLChinh("thoisu") }><fmt:message>thoi_su</fmt:message>
+								${theLoai.checkTLChinh("thoisu") }>
+							<fmt:message>thoi_su</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="thoisu" value="chinhtri"
-									${theLoai.checkTLPhu("chinhtri") }><fmt:message>chinh_tri</fmt:message></li>
+									${theLoai.checkTLPhu("chinhtri") }>
+								<fmt:message>chinh_tri</fmt:message></li>
 								<li><input type="checkbox" name="thoisu" value="laodong"
-									${theLoai.checkTLPhu("laodong") }><fmt:message>lao_dong</fmt:message></li>
+									${theLoai.checkTLPhu("laodong") }>
+								<fmt:message>lao_dong</fmt:message></li>
 								<li><input type="checkbox" name="thoisu" value="giaoduc"
-									${theLoai.checkTLPhu("giaoduc") }><fmt:message>giao_duc</fmt:message></li>
+									${theLoai.checkTLPhu("giaoduc") }>
+								<fmt:message>giao_duc</fmt:message></li>
 								<li><input type="checkbox" name="thoisu" value="giaothong"
-									${theLoai.checkTLPhu("giaothong") }><fmt:message>giao_thong</fmt:message></li>
+									${theLoai.checkTLPhu("giaothong") }>
+								<fmt:message>giao_thong</fmt:message></li>
 							</div>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="thegioi"
-								${theLoai.checkTLChinh("thegioi") }> <fmt:message>the_gioi</fmt:message>
+								${theLoai.checkTLChinh("thegioi") }>
+							<fmt:message>the_gioi</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="thegioi" value="tulieu"
-									${theLoai.checkTLPhu("tulieu") }><fmt:message>tu_lieu</fmt:message></li>
+									${theLoai.checkTLPhu("tulieu") }>
+								<fmt:message>tu_lieu</fmt:message></li>
 								<li><input type="checkbox" name="thegioi" value="cuocsong"
-									${theLoai.checkTLPhu("cuocsong") }><fmt:message>cuoc_song</fmt:message></li>
+									${theLoai.checkTLPhu("cuocsong") }>
+								<fmt:message>cuoc_song</fmt:message></li>
 								<li><input type="checkbox" name="thegioi" value="quansu"
-									${theLoai.checkTLPhu("quansu") }><fmt:message>quan_su</fmt:message></li>
+									${theLoai.checkTLPhu("quansu") }>
+								<fmt:message>quan_su</fmt:message></li>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="kinhdoanh"
-								${theLoai.checkTLChinh("kinhdoanh") }> <fmt:message>kinh_doanh</fmt:message>
+								${theLoai.checkTLChinh("kinhdoanh") }>
+							<fmt:message>kinh_doanh</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="kinhdoanh" value="quocte"
-									${theLoai.checkTLPhu("quocte") }><fmt:message>quoc_te</fmt:message></li>
+									${theLoai.checkTLPhu("quocte") }>
+								<fmt:message>quoc_te</fmt:message></li>
 								<li><input type="checkbox" name="kinhdoanh"
-									value="doanhnghiep" ${theLoai.checkTLPhu("doanhnghiep") }><fmt:message>doanh_nghiep</fmt:message></li>
+									value="doanhnghiep" ${theLoai.checkTLPhu("doanhnghiep") }>
+								<fmt:message>doanh_nghiep</fmt:message></li>
 								<li><input type="checkbox" name="kinhdoanh"
-									value="chungkhoang" ${theLoai.checkTLPhu("chungkhoang") }><fmt:message>chung_khoan</fmt:message></li>
+									value="chungkhoang" ${theLoai.checkTLPhu("chungkhoang") }>
+								<fmt:message>chung_khoan</fmt:message></li>
 								<li><input type="checkbox" name="kinhdoanh" value="baohiem"
-									${theLoai.checkTLPhu("baohiem") }><fmt:message>bao_hiem</fmt:message></li>
+									${theLoai.checkTLPhu("baohiem") }>
+								<fmt:message>bao_hiem</fmt:message></li>
 							</div>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="batdongsan"
-								${theLoai.checkTLChinh("batdongsan") }> <fmt:message>bat_dong_san</fmt:message>
+								${theLoai.checkTLChinh("batdongsan") }>
+							<fmt:message>bat_dong_san</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="batdongsan"
-									value="chinhsach" ${theLoai.checkTLPhu("chinhsach") }><fmt:message>chinh_sach</fmt:message></li>
+									value="chinhsach" ${theLoai.checkTLPhu("chinhsach") }>
+								<fmt:message>chinh_sach</fmt:message></li>
 								<li><input type="checkbox" name="batdongsan"
-									value="thitruong" ${theLoai.checkTLPhu("thitruong") }><fmt:message>thi_truong</fmt:message></li>
+									value="thitruong" ${theLoai.checkTLPhu("thitruong") }>
+								<fmt:message>thi_truong</fmt:message></li>
 								<li><input type="checkbox" name="batdongsan" value="duan"
-									${theLoai.checkTLPhu("duan") }><fmt:message>du_an</fmt:message></li>
+									${theLoai.checkTLPhu("duan") }>
+								<fmt:message>du_an</fmt:message></li>
 								<li><input type="checkbox" name="batdongsan" value="tuvan"
-									${theLoai.checkTLPhu("tuvan") }><fmt:message>tu_van</fmt:message></li>
+									${theLoai.checkTLPhu("tuvan") }>
+								<fmt:message>tu_van</fmt:message></li>
 							</div>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="thethao"
-								${theLoai.checkTLChinh("thethao") }><fmt:message>the_thao</fmt:message>
+								${theLoai.checkTLChinh("thethao") }>
+							<fmt:message>the_thao</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="thethao" value="bongda"
-									${theLoai.checkTLPhu("bongda") }><fmt:message>bong_da</fmt:message></li>
+									${theLoai.checkTLPhu("bongda") }>
+								<fmt:message>bong_da</fmt:message></li>
 								<li><input type="checkbox" name="thethao"
-									value="lichthidau" ${theLoai.checkTLPhu("thethao") }><fmt:message>lich_thi_dau</fmt:message></li>
+									value="lichthidau" ${theLoai.checkTLPhu("thethao") }>
+								<fmt:message>lich_thi_dau</fmt:message></li>
 								<li><input type="checkbox" name="thethao" value="tennis"
 									${theLoai.checkTLPhu("tennis") }>Tennis</li>
 								<li><input type="checkbox" name="thethao" value="marathon"
@@ -115,60 +137,80 @@
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="giaoduc"
-								${theLoai.checkTLChinh("giaoduc") }> <fmt:message>giao_duc</fmt:message>
+								${theLoai.checkTLChinh("giaoduc") }>
+							<fmt:message>giao_duc</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="giaoduc" value="tintuc"
-									${theLoai.checkTLPhu("tintuc") }><fmt:message>tin_tuc</fmt:message></li>
+									${theLoai.checkTLPhu("tintuc") }>
+								<fmt:message>tin_tuc</fmt:message></li>
 								<li><input type="checkbox" name="giaoduc" value="tuyensinh"
-									${theLoai.checkTLPhu("tuyensinh") }><fmt:message>tuyen_sinh</fmt:message></li>
+									${theLoai.checkTLPhu("tuyensinh") }>
+								<fmt:message>tuyen_sinh</fmt:message></li>
 								<li><input type="checkbox" name="giaoduc" value="duhoc"
-									${theLoai.checkTLPhu("duhoc") }><fmt:message>du_hoc</fmt:message></li>
+									${theLoai.checkTLPhu("duhoc") }>
+								<fmt:message>du_hoc</fmt:message></li>
 								<li><input type="checkbox" name="giaoduc"
-									value="hoctienganh" ${theLoai.checkTLPhu("hoctienganh") }><fmt:message>hoc_tieng_anh</fmt:message></li>
+									value="hoctienganh" ${theLoai.checkTLPhu("hoctienganh") }>
+								<fmt:message>hoc_tieng_anh</fmt:message></li>
 								<li><input type="checkbox" name="giaoduc" value="giaoduc40"
-									${theLoai.checkTLPhu("giaoduc40") }><fmt:message>giao_duc_4.0</fmt:message></li>
+									${theLoai.checkTLPhu("giaoduc40") }>
+								<fmt:message>giao_duc_4.0</fmt:message></li>
 							</div>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="doisong"
-								${theLoai.checkTLChinh("doisong") }> <fmt:message>doi_song</fmt:message>
+								${theLoai.checkTLChinh("doisong") }>
+							<fmt:message>doi_song</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="doisong" value="nhipsong"
-									${theLoai.checkTLPhu("") }><fmt:message>nhip_song</fmt:message></li>
+									${theLoai.checkTLPhu("") }>
+								<fmt:message>nhip_song</fmt:message></li>
 								<li><input type="checkbox" name="doisong" value="toam"
-									${theLoai.checkTLPhu("toam") }><fmt:message>to_am</fmt:message></li>
+									${theLoai.checkTLPhu("toam") }>
+								<fmt:message>to_am</fmt:message></li>
 								<li><input type="checkbox" name="doisong" value="cooking"
 									${theLoai.checkTLPhu("cooking") }>Cooking</li>
 								<li><input type="checkbox" name="doisong" value="tieudung"
-									${theLoai.checkTLPhu("tieudung") }><fmt:message>tieu_dung</fmt:message></li>
+									${theLoai.checkTLPhu("tieudung") }>
+								<fmt:message>tieu_dung</fmt:message></li>
 							</div>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="dulich"
-								${theLoai.checkTLChinh("dulich") }><fmt:message>du_lich</fmt:message>
+								${theLoai.checkTLChinh("dulich") }>
+							<fmt:message>du_lich</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="dulich" value="diemden"
-									${theLoai.checkTLPhu("diemden") }><fmt:message>diem_den</fmt:message></li>
+									${theLoai.checkTLPhu("diemden") }>
+								<fmt:message>diem_den</fmt:message></li>
 								<li><input type="checkbox" name="dulich" value="amthuc"
-									${theLoai.checkTLPhu("amthuc") }><fmt:message>am_thuc</fmt:message></li>
+									${theLoai.checkTLPhu("amthuc") }>
+								<fmt:message>am_thuc</fmt:message></li>
 								<li><input type="checkbox" name="dulich" value="camnang"
-									${theLoai.checkTLPhu("camnang") }><fmt:message>cam_nang</fmt:message></li>
+									${theLoai.checkTLPhu("camnang") }>
+								<fmt:message>cam_nang</fmt:message></li>
 								<li><input type="checkbox" name="dulich" value="tuvan"
-									${theLoai.checkTLPhu("tuvan") }><fmt:message>tu_van</fmt:message></li>
+									${theLoai.checkTLPhu("tuvan") }>
+								<fmt:message>tu_van</fmt:message></li>
 							</div>
 						</ul>
 						<ul class="ul">
 							<input type="radio" name="theLoai" id="" value="xe"
-								${theLoai.checkTLChinh("xe") }> <fmt:message>xe</fmt:message>
+								${theLoai.checkTLChinh("xe") }>
+							<fmt:message>xe</fmt:message>
 							<div class="li">
 								<li><input type="checkbox" name="xe" value="thitruong"
-									${theLoai.checkTLPhu("thitruong") }><fmt:message>thi_truong</fmt:message></li>
+									${theLoai.checkTLPhu("thitruong") }>
+								<fmt:message>thi_truong</fmt:message></li>
 								<li><input type="checkbox" name="xe" value="diendan"
-									${theLoai.checkTLPhu("diendan") }><fmt:message>dien_dan</fmt:message></li>
+									${theLoai.checkTLPhu("diendan") }>
+								<fmt:message>dien_dan</fmt:message></li>
 								<li><input type="checkbox" name="xe" value="thibanglai"
-									${theLoai.checkTLPhu("thibanglai") }><fmt:message>thi_bang_lai</fmt:message></li>
+									${theLoai.checkTLPhu("thibanglai") }>
+								<fmt:message>thi_bang_lai</fmt:message></li>
 								<li><input type="checkbox" name="xe" value="muaban"
-									${theLoai.checkTLPhu("muaban") }><fmt:message>mua_ban</fmt:message></li>
+									${theLoai.checkTLPhu("muaban") }>
+								<fmt:message>mua_ban</fmt:message></li>
 							</div>
 						</ul>
 					</div>
@@ -176,22 +218,24 @@
 			</div>
 			<div class="div MoTa">
 				<label><fmt:message>mo_ta</fmt:message></label>
-				<textarea rows="5" cols="" wrap="soft" name="moTa">${baiBao.getMoTa()}</textarea>
+				<textarea rows="5" cols="" wrap="soft" name="moTa">${baoDB.getMoTa()}</textarea>
 			</div>
 			<div class="div TaiAnh">
 				<label><fmt:message>tai_anh_len</fmt:message></label>
 				<div class="img">
-					<input type="file" accept="image/*" value="" name="file" id="file" class="hidden-input">
-					<label class="button" for="file"><fmt:message>tai_anh_len</fmt:message></label>
-					<img alt="" src="${baiBao.getFilePath()}">
+					<input type="file" accept="image/*" value="" name="file" id="file"
+						class="hidden-input"> <label class="button" for="file"><fmt:message>tai_anh_len</fmt:message></label>
+					<img alt="" src="${baoDB.getFilePath()}">
 				</div>
 			</div>
 			<div class="div NoiDung">
 				<label><fmt:message>noi_dung</fmt:message></label>
-				<textarea rows="20" cols="" wrap="soft" name="noiDung">${baiBao.getNoiDung()}</textarea>
+				<textarea rows="20" cols="" wrap="soft" name="noiDung">${baoDB.getNoiDung()}</textarea>
 			</div>
 			<div class="divBtn">
-				<button type="button" onclick="submitForm()" class="button"><fmt:message>dang_bai</fmt:message></button>
+				<button type="button" onclick="submitForm()" class="button">
+					<fmt:message>dang_bai</fmt:message>
+				</button>
 			</div>
 		</form>
 

@@ -23,10 +23,11 @@
 
 </head>
 <body>
-
+	<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<jsp:include page="header.jsp"></jsp:include>
 <%-- 	<jsp:useBean id="nguoiDung" type="model.NguoiDung" scope="session"></jsp:useBean> --%>
-	<form action="${pageContext.request.contextPath}/UserServlet"
+	<form action="${pageContext.request.contextPath}/${UserServlet}"
 		method="post" id="myform">
 		<input type="hidden" name="type" value="editIn4">
 		<jsp:useBean id="thongBao" class="java.lang.String" scope="request"></jsp:useBean>

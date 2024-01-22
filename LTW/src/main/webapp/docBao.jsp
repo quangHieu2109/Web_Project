@@ -25,9 +25,8 @@
 <body>
 	
 	<jsp:include page="header.jsp"></jsp:include>
-<%-- 	<jsp:useBean id="bao" class="model.BaiBao" scope="request"></jsp:useBean> --%>
-<%-- 	<jsp:useBean id="cmts" class="java.util.ArrayList" scope="request"></jsp:useBean> --%>
-<%-- 	<jsp:useBean id="topView" class="java.util.ArrayList" scope="session"></jsp:useBean> --%>
+		<c:url var="NewsServlet" value="NewsServlet"></c:url>
+	<c:url var="UserServlet" value="UserServlet"></c:url>
 	<div class="container">
 		<div class="row space  w-80">
 			<div class="col-lg-8">
@@ -54,7 +53,7 @@
 						style="font-size: 20px; font-weight: bold; color: #9F224E; padding: 10px"><fmt:message>xem_nhieu</fmt:message></span>
 					<c:forEach items="${topView }" var="baoTV">
 						<a
-							href="${pageContext.request.contextPath}/NewsServlet?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
+							href="${pageContext.request.contextPath}/${NewsServlet}?type=read&maBaiBao=${baoTV.getMaBaiBao() }"
 							class="list-group-item">
 							<div class="row">
 								<div class="col-md-4">
@@ -95,7 +94,7 @@
 
 					</div>
 					<c:if test="${nguoiDung.getTenDangNhap()!=null }">
-						<form action="${pageContext.request.contextPath}/NewsServlet"
+						<form action="${pageContext.request.contextPath}/${NewsServlet}"
 							method="get" id="myform">
 							<input type="hidden" name="type" value="cmt"> <input
 								type="hidden" name="maBaiBao" value="${bao.getMaBaiBao() }">
